@@ -1,0 +1,1367 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed Knowledge Quiz | Bounty Millers Limited</title>
+  <meta name="description" content="Test your animal nutrition and feed formulation knowledge with our comprehensive interactive quiz. Track your progress and earn achievements."><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- SDKs -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* Feed Quiz Color Scheme */
+        :root {
+            --quiz-primary: #2563eb;
+            --quiz-secondary: #10b981;
+            --quiz-accent: #f59e0b;
+            --quiz-danger: #ef4444;
+            --quiz-light: #f8fafc;
+        }
+        
+        .bg-quiz-primary { background-color: var(--quiz-primary); }
+        .bg-quiz-secondary { background-color: var(--quiz-secondary); }
+        .bg-quiz-accent { background-color: var(--quiz-accent); }
+        .bg-quiz-danger { background-color: var(--quiz-danger); }
+        .bg-quiz-light { background-color: var(--quiz-light); }
+        
+        .text-quiz-primary { color: var(--quiz-primary); }
+        .text-quiz-secondary { color: var(--quiz-secondary); }
+        .text-quiz-accent { color: var(--quiz-accent); }
+        .text-quiz-danger { color: var(--quiz-danger); }
+        
+        .gradient-quiz {
+            background: linear-gradient(135deg, var(--quiz-primary) 0%, var(--quiz-secondary) 100%);
+        }
+        
+        .quiz-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-card:hover {
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+            border-color: var(--quiz-secondary);
+        }
+        
+        .category-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card:hover {
+            border-color: var(--quiz-secondary);
+            background: #f0fdf4;
+            transform: translateY(-4px);
+        }
+        
+        .category-card.selected {
+            border-color: var(--quiz-secondary);
+            background: var(--quiz-secondary);
+            color: white;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .difficulty-beginner {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .difficulty-intermediate {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .difficulty-advanced {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .question-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e2e8f0;
+        }
+        
+        .answer-option {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .answer-option:hover {
+            border-color: var(--quiz-primary);
+            background: #eff6ff;
+        }
+        
+        .answer-option.selected {
+            border-color: var(--quiz-primary);
+            background: var(--quiz-primary);
+            color: white;
+        }
+        
+        .answer-option.correct {
+            border-color: var(--quiz-secondary);
+            background: var(--quiz-secondary);
+            color: white;
+        }
+        
+        .answer-option.incorrect {
+            border-color: var(--quiz-danger);
+            background: var(--quiz-danger);
+            color: white;
+        }
+        
+        .progress-bar {
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, var(--quiz-primary) 0%, var(--quiz-secondary) 100%);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .btn-quiz {
+            background: linear-gradient(135deg, var(--quiz-primary) 0%, var(--quiz-secondary) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-quiz:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #059669 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-quiz:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .achievement-badge {
+            background: linear-gradient(135deg, var(--quiz-accent) 0%, #f97316 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .timer {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .explanation-box {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin: 0 auto;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, var(--quiz-secondary) 0%, #059669 100%);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, var(--quiz-accent) 0%, #f97316 100%);
+        }
+        
+        .score-fair {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, var(--quiz-danger) 0%, #dc2626 100%);
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--quiz-secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.success { background: var(--quiz-secondary); }
+        .toast.error { background: var(--quiz-danger); }
+        .toast.warning { background: var(--quiz-accent); }
+        
+        @media (max-width: 768px) {
+            .category-card {
+                padding: 16px;
+            }
+            
+            .question-card {
+                padding: 20px;
+            }
+            
+            .answer-option {
+                padding: 12px;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-quiz-light"><!-- Header -->
+  <header class="gradient-quiz text-white py-8">
+   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+     <h1 class="text-4xl md:text-5xl font-bold mb-4" id="quiz-title">Feed Knowledge Quiz</h1>
+     <p class="text-xl opacity-90 max-w-3xl mx-auto" id="quiz-subtitle">Test your animal nutrition expertise</p>
+     <div class="flex justify-center items-center mt-6 space-x-6">
+      <div class="flex items-center"><i class="fas fa-brain text-2xl mr-2"></i> <span class="font-semibold">Knowledge Testing</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-trophy text-2xl mr-2"></i> <span class="font-semibold">Achievement System</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-chart-line text-2xl mr-2"></i> <span class="font-semibold">Progress Tracking</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header><!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><!-- Welcome Screen -->
+   <div id="welcome-screen" class="text-center">
+    <div class="quiz-card p-8 max-w-4xl mx-auto">
+     <div class="mb-8"><i class="fas fa-graduation-cap text-6xl text-quiz-primary mb-4"></i>
+      <h2 class="text-3xl font-bold text-gray-800 mb-4" id="welcome-message">Welcome to our comprehensive feed knowledge assessment</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Test your understanding of animal nutrition, feed formulation, and quality control. Choose your category and difficulty level to get started.</p>
+     </div><!-- Quiz Categories -->
+     <div class="mb-8">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6">Select Quiz Category</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+       <div class="category-card" data-category="nutrition" onclick="selectCategory('nutrition')"><i class="fas fa-apple-alt text-4xl text-quiz-primary mb-4"></i>
+        <h4 class="font-bold text-lg mb-2">Animal Nutrition</h4>
+        <p class="text-sm text-gray-600">Nutritional requirements, vitamins, minerals</p>
+       </div>
+       <div class="category-card" data-category="ingredients" onclick="selectCategory('ingredients')"><i class="fas fa-seedling text-4xl text-quiz-secondary mb-4"></i>
+        <h4 class="font-bold text-lg mb-2">Feed Ingredients</h4>
+        <p class="text-sm text-gray-600">Ingredient properties, composition, usage</p>
+       </div>
+       <div class="category-card" data-category="formulation" onclick="selectCategory('formulation')"><i class="fas fa-calculator text-4xl text-quiz-accent mb-4"></i>
+        <h4 class="font-bold text-lg mb-2">Formulation</h4>
+        <p class="text-sm text-gray-600">Feed mixing, ratios, calculations</p>
+       </div>
+       <div class="category-card" data-category="quality" onclick="selectCategory('quality')"><i class="fas fa-shield-alt text-4xl text-quiz-danger mb-4"></i>
+        <h4 class="font-bold text-lg mb-2">Quality Control</h4>
+        <p class="text-sm text-gray-600">Testing, storage, safety standards</p>
+       </div>
+      </div>
+     </div><!-- Difficulty Selection -->
+     <div class="mb-8">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6">Choose Difficulty Level</h3>
+      <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+       <div class="category-card" data-difficulty="beginner" onclick="selectDifficulty('beginner')"><span class="difficulty-badge difficulty-beginner mb-4">Beginner</span>
+        <h4 class="font-bold text-lg mb-2">Basic Level</h4>
+        <p class="text-sm text-gray-600">Fundamental concepts and principles</p>
+       </div>
+       <div class="category-card" data-difficulty="intermediate" onclick="selectDifficulty('intermediate')"><span class="difficulty-badge difficulty-intermediate mb-4">Intermediate</span>
+        <h4 class="font-bold text-lg mb-2">Standard Level</h4>
+        <p class="text-sm text-gray-600">Practical applications and calculations</p>
+       </div>
+       <div class="category-card" data-difficulty="advanced" onclick="selectDifficulty('advanced')"><span class="difficulty-badge difficulty-advanced mb-4">Advanced</span>
+        <h4 class="font-bold text-lg mb-2">Expert Level</h4>
+        <p class="text-sm text-gray-600">Complex scenarios and optimization</p>
+       </div>
+      </div>
+     </div><!-- Start Quiz Button --> <button id="start-quiz-btn" onclick="startQuiz()" class="btn-quiz text-lg px-8 py-4" disabled> <i class="fas fa-play mr-2"></i>Start Quiz </button>
+    </div>
+   </div><!-- Quiz Screen -->
+   <div id="quiz-screen" class="hidden">
+    <div class="quiz-card p-8 max-w-4xl mx-auto"><!-- Quiz Header -->
+     <div class="flex justify-between items-center mb-8">
+      <div>
+       <h3 class="text-2xl font-bold text-gray-800" id="quiz-category-title">Animal Nutrition Quiz</h3><span id="quiz-difficulty-badge" class="difficulty-badge difficulty-beginner">Beginner</span>
+      </div>
+      <div class="flex items-center gap-4">
+       <div class="timer"><i class="fas fa-clock"></i> <span id="timer-display">00:00</span>
+       </div>
+       <div class="text-sm text-gray-600">
+        Question <span id="current-question">1</span> of <span id="total-questions">10</span>
+       </div>
+      </div>
+     </div><!-- Progress Bar -->
+     <div class="mb-8">
+      <div class="progress-bar">
+       <div id="quiz-progress" class="progress-fill" style="width: 10%"></div>
+      </div>
+     </div><!-- Question -->
+     <div class="question-card mb-8">
+      <h4 class="text-xl font-bold text-gray-800 mb-6" id="question-text">Loading question...</h4>
+      <div id="answer-options" class="space-y-3"><!-- Answer options will be populated here -->
+      </div>
+      <div id="explanation" class="explanation-box hidden">
+       <h5 class="font-bold text-lg mb-2"><i class="fas fa-lightbulb mr-2"></i>Explanation</h5>
+       <p id="explanation-text"></p>
+      </div>
+     </div><!-- Quiz Controls -->
+     <div class="flex justify-between items-center"><button id="prev-btn" onclick="previousQuestion()" class="bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors" disabled> <i class="fas fa-arrow-left mr-2"></i>Previous </button>
+      <div class="flex gap-4"><button id="submit-answer-btn" onclick="submitAnswer()" class="btn-quiz" disabled> <i class="fas fa-check mr-2"></i>Submit Answer </button> <button id="next-btn" onclick="nextQuestion()" class="btn-quiz hidden"> <i class="fas fa-arrow-right mr-2"></i>Next Question </button> <button id="finish-quiz-btn" onclick="finishQuiz()" class="btn-quiz hidden"> <i class="fas fa-flag-checkered mr-2"></i>Finish Quiz </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Results Screen -->
+   <div id="results-screen" class="hidden">
+    <div class="quiz-card p-8 max-w-4xl mx-auto text-center">
+     <h2 class="text-3xl font-bold text-gray-800 mb-8">Quiz Complete!</h2><!-- Score Display -->
+     <div class="mb-8">
+      <div id="score-circle" class="score-circle score-excellent mb-4"><span id="score-percentage">85%</span>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-800 mb-2" id="score-message">Excellent Performance!</h3>
+      <p class="text-lg text-gray-600">You scored <span id="final-score">8</span> out of <span id="final-total">10</span> questions correctly</p>
+     </div><!-- Performance Stats -->
+     <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-gray-50 p-6 rounded-lg"><i class="fas fa-clock text-3xl text-quiz-accent mb-2"></i>
+       <div class="font-bold text-xl" id="time-taken">
+        2:45
+       </div>
+       <div class="text-sm text-gray-600">
+        Time Taken
+       </div>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg"><i class="fas fa-target text-3xl text-quiz-secondary mb-2"></i>
+       <div class="font-bold text-xl" id="accuracy-rate">
+        80%
+       </div>
+       <div class="text-sm text-gray-600">
+        Accuracy Rate
+       </div>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg"><i class="fas fa-medal text-3xl text-quiz-primary mb-2"></i>
+       <div class="font-bold text-xl" id="quiz-rank">
+        Good
+       </div>
+       <div class="text-sm text-gray-600">
+        Performance
+       </div>
+      </div>
+     </div><!-- Achievements -->
+     <div id="achievements" class="mb-8">
+      <h4 class="text-xl font-bold text-gray-800 mb-4">Achievements Unlocked</h4>
+      <div class="flex flex-wrap justify-center gap-3"><!-- Achievement badges will be added here -->
+      </div>
+     </div><!-- Action Buttons -->
+     <div class="flex flex-wrap justify-center gap-4"><button onclick="retakeQuiz()" class="btn-quiz"> <i class="fas fa-redo mr-2"></i>Retake Quiz </button> <button onclick="saveResults()" class="btn-quiz"> <i class="fas fa-save mr-2"></i>Save Results </button> <button onclick="newQuiz()" class="bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors"> <i class="fas fa-plus mr-2"></i>New Quiz </button>
+     </div>
+    </div>
+   </div><!-- Quiz History -->
+   <div class="mt-12">
+    <div class="quiz-card p-8">
+     <h3 class="text-2xl font-bold text-quiz-primary mb-6"><i class="fas fa-history mr-2"></i> Quiz History</h3>
+     <div id="quiz-history" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="text-center py-8 text-gray-500"><i class="fas fa-clipboard-list text-4xl mb-4 opacity-50"></i>
+       <p>No quiz history yet. Complete your first quiz to see results here!</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </main><!-- Company Info -->
+  <section class="gradient-quiz text-white py-12 mt-16">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold mb-4" id="company-name">Bounty Millers Limited</h2>
+    <p class="text-xl opacity-90 mb-8">Advancing animal nutrition through education and innovation</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="tel:+254727455027" class="bg-white text-quiz-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"> <i class="fas fa-phone mr-2"></i>+254727455027 </a> <a href="mailto:info@bountymillers.com" class="bg-quiz-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors"> <i class="fas fa-envelope mr-2"></i>info@bountymillers.com </a>
+    </div>
+   </div>
+  </section>
+  <script>
+        // Global variables
+        let currentCategory = '';
+        let currentDifficulty = '';
+        let currentQuestionIndex = 0;
+        let quizQuestions = [];
+        let userAnswers = [];
+        let quizStartTime = null;
+        let timerInterval = null;
+        let selectedAnswer = null;
+        let quizHistory = [];
+        let currentRecordCount = 0;
+
+        // Question database
+        const questionDatabase = {
+            nutrition: {
+                beginner: [
+                    {
+                        question: "What is the primary function of protein in animal feed?",
+                        options: ["Energy source", "Growth and tissue repair", "Vitamin absorption", "Water retention"],
+                        correct: 1,
+                        explanation: "Protein is essential for growth, tissue repair, and maintenance. It provides amino acids that are the building blocks of muscles, organs, and other body tissues."
+                    },
+                    {
+                        question: "Which vitamin is essential for calcium absorption in animals?",
+                        options: ["Vitamin A", "Vitamin B12", "Vitamin D", "Vitamin E"],
+                        correct: 2,
+                        explanation: "Vitamin D is crucial for calcium absorption in the intestines and helps maintain proper calcium and phosphorus levels in the blood."
+                    },
+                    {
+                        question: "What percentage of an animal's body weight is typically water?",
+                        options: ["30-40%", "50-60%", "60-70%", "80-90%"],
+                        correct: 2,
+                        explanation: "Water makes up approximately 60-70% of an animal's body weight and is essential for all metabolic processes, temperature regulation, and nutrient transport."
+                    },
+                    {
+                        question: "Which mineral is most important for oxygen transport in blood?",
+                        options: ["Calcium", "Iron", "Zinc", "Magnesium"],
+                        correct: 1,
+                        explanation: "Iron is a key component of hemoglobin, which carries oxygen from the lungs to tissues throughout the body."
+                    },
+                    {
+                        question: "What is the main energy source in most animal feeds?",
+                        options: ["Protein", "Carbohydrates", "Fats", "Vitamins"],
+                        correct: 1,
+                        explanation: "Carbohydrates, particularly starches and sugars, are the primary energy source in most animal feeds, providing readily available energy for daily activities."
+                    }
+                ],
+                intermediate: [
+                    {
+                        question: "What is the ideal protein-to-energy ratio for growing pigs?",
+                        options: ["12-14g/MJ", "16-18g/MJ", "20-22g/MJ", "24-26g/MJ"],
+                        correct: 1,
+                        explanation: "Growing pigs require approximately 16-18g of protein per MJ of metabolizable energy for optimal growth and feed conversion efficiency."
+                    },
+                    {
+                        question: "Which amino acid is typically the first limiting in corn-based diets?",
+                        options: ["Methionine", "Lysine", "Threonine", "Tryptophan"],
+                        correct: 1,
+                        explanation: "Lysine is usually the first limiting amino acid in corn-based diets because corn is relatively low in lysine compared to the animal's requirements."
+                    },
+                    {
+                        question: "What is the recommended crude fiber level for dairy cow rations?",
+                        options: ["10-15%", "18-25%", "30-35%", "40-45%"],
+                        correct: 1,
+                        explanation: "Dairy cows require 18-25% crude fiber in their total ration to maintain proper rumen function and milk fat production."
+                    },
+                    {
+                        question: "Which fatty acid is essential for poultry reproduction?",
+                        options: ["Oleic acid", "Linoleic acid", "Palmitic acid", "Stearic acid"],
+                        correct: 1,
+                        explanation: "Linoleic acid is an essential fatty acid required for proper reproduction, egg production, and overall health in poultry."
+                    },
+                    {
+                        question: "What is the optimal calcium to phosphorus ratio for most animals?",
+                        options: ["1:1", "1.5:1", "2:1", "3:1"],
+                        correct: 2,
+                        explanation: "A calcium to phosphorus ratio of approximately 2:1 is optimal for most animals to ensure proper bone development and metabolic function."
+                    }
+                ],
+                advanced: [
+                    {
+                        question: "What is the metabolizable energy content of pure glucose?",
+                        options: ["3.2 kcal/g", "3.7 kcal/g", "4.1 kcal/g", "4.5 kcal/g"],
+                        correct: 1,
+                        explanation: "Pure glucose provides approximately 3.7 kcal/g of metabolizable energy, which serves as a reference for calculating energy values of other carbohydrates."
+                    },
+                    {
+                        question: "Which enzyme is responsible for phytate phosphorus release in monogastric animals?",
+                        options: ["Amylase", "Protease", "Phytase", "Lipase"],
+                        correct: 2,
+                        explanation: "Phytase enzyme breaks down phytic acid (phytate) to release bound phosphorus, making it available for absorption in monogastric animals."
+                    },
+                    {
+                        question: "What is the net energy for lactation (NEL) requirement for a 600kg dairy cow producing 30L milk?",
+                        options: ["120-130 MJ", "140-150 MJ", "160-170 MJ", "180-190 MJ"],
+                        correct: 1,
+                        explanation: "A 600kg dairy cow producing 30L of milk requires approximately 140-150 MJ of NEL daily for maintenance and milk production."
+                    }
+                ]
+            },
+            ingredients: {
+                beginner: [
+                    {
+                        question: "Which feed ingredient has the highest protein content?",
+                        options: ["Maize meal", "Soybean meal", "Wheat bran", "Rice bran"],
+                        correct: 1,
+                        explanation: "Soybean meal typically contains 44-48% crude protein, making it one of the highest protein plant-based feed ingredients."
+                    },
+                    {
+                        question: "What is the primary nutrient provided by maize in animal feeds?",
+                        options: ["Protein", "Energy", "Fiber", "Minerals"],
+                        correct: 1,
+                        explanation: "Maize is primarily an energy source, providing carbohydrates and having a high metabolizable energy content of around 3200 kcal/kg."
+                    },
+                    {
+                        question: "Which ingredient is commonly used as a calcium source in feeds?",
+                        options: ["Salt", "Limestone", "Molasses", "Vegetable oil"],
+                        correct: 1,
+                        explanation: "Limestone (calcium carbonate) is the most common and economical source of calcium in animal feeds, containing about 38% calcium."
+                    },
+                    {
+                        question: "What is the main concern with using cottonseed meal in feeds?",
+                        options: ["Low protein", "High cost", "Gossypol toxin", "Poor palatability"],
+                        correct: 2,
+                        explanation: "Cottonseed meal contains gossypol, a toxic compound that can be harmful to monogastric animals if fed in large quantities without proper processing."
+                    },
+                    {
+                        question: "Which ingredient provides the highest energy density?",
+                        options: ["Wheat", "Vegetable oil", "Barley", "Oats"],
+                        correct: 1,
+                        explanation: "Vegetable oils provide the highest energy density at approximately 8500-9000 kcal/kg, more than twice that of cereal grains."
+                    }
+                ],
+                intermediate: [
+                    {
+                        question: "What is the typical crude protein content of fish meal?",
+                        options: ["35-40%", "45-50%", "60-65%", "70-75%"],
+                        correct: 2,
+                        explanation: "High-quality fish meal typically contains 60-65% crude protein and provides an excellent amino acid profile for animal nutrition."
+                    },
+                    {
+                        question: "Which anti-nutritional factor is found in raw soybeans?",
+                        options: ["Tannins", "Trypsin inhibitors", "Saponins", "Phytic acid"],
+                        correct: 1,
+                        explanation: "Raw soybeans contain trypsin inhibitors that interfere with protein digestion. Heat treatment during processing destroys these inhibitors."
+                    },
+                    {
+                        question: "What is the metabolizable energy content of wheat bran?",
+                        options: ["1800-2000 kcal/kg", "2200-2400 kcal/kg", "2800-3000 kcal/kg", "3200-3400 kcal/kg"],
+                        correct: 1,
+                        explanation: "Wheat bran has a metabolizable energy content of approximately 2200-2400 kcal/kg due to its high fiber content and lower starch levels."
+                    },
+                    {
+                        question: "Which ingredient is the best source of methionine?",
+                        options: ["Corn gluten meal", "Fish meal", "Sunflower meal", "Canola meal"],
+                        correct: 1,
+                        explanation: "Fish meal is an excellent source of methionine, an essential sulfur-containing amino acid that is often limiting in plant-based diets."
+                    }
+                ],
+                advanced: [
+                    {
+                        question: "What is the standardized ileal digestibility of lysine in soybean meal?",
+                        options: ["85-87%", "88-90%", "91-93%", "94-96%"],
+                        correct: 2,
+                        explanation: "The standardized ileal digestibility of lysine in soybean meal is approximately 91-93%, making it highly bioavailable for protein synthesis."
+                    },
+                    {
+                        question: "Which processing method improves the nutritional value of full-fat soybeans?",
+                        options: ["Grinding", "Extrusion", "Pelleting", "Mixing"],
+                        correct: 1,
+                        explanation: "Extrusion cooking improves the nutritional value of full-fat soybeans by destroying anti-nutritional factors while maintaining oil content and improving digestibility."
+                    }
+                ]
+            },
+            formulation: {
+                beginner: [
+                    {
+                        question: "What should the total percentage of ingredients in a feed formula equal?",
+                        options: ["90%", "95%", "100%", "105%"],
+                        correct: 2,
+                        explanation: "The total percentage of all ingredients in a complete feed formula must equal exactly 100% to ensure proper nutritional balance and cost calculation."
+                    },
+                    {
+                        question: "Which ingredient is typically used in the largest quantity in poultry feeds?",
+                        options: ["Soybean meal", "Maize", "Fish meal", "Limestone"],
+                        correct: 1,
+                        explanation: "Maize (corn) is typically the largest component in poultry feeds, often comprising 50-65% of the total formula as the primary energy source."
+                    },
+                    {
+                        question: "What is the recommended inclusion level of salt in most animal feeds?",
+                        options: ["0.1-0.2%", "0.3-0.5%", "0.8-1.0%", "1.5-2.0%"],
+                        correct: 1,
+                        explanation: "Salt is typically included at 0.3-0.5% of the total feed to provide essential sodium and chloride while maintaining palatability."
+                    },
+                    {
+                        question: "Which method is commonly used for small-scale feed mixing?",
+                        options: ["Ribbon mixer", "Hammer mill", "Pellet mill", "Hand mixing"],
+                        correct: 3,
+                        explanation: "Hand mixing is commonly used for small-scale feed production, though it requires careful attention to ensure uniform distribution of ingredients."
+                    }
+                ],
+                intermediate: [
+                    {
+                        question: "What is the maximum inclusion level of wheat bran in pig feeds?",
+                        options: ["5-10%", "15-20%", "25-30%", "35-40%"],
+                        correct: 1,
+                        explanation: "Wheat bran should be limited to 15-20% in pig feeds due to its high fiber content, which can reduce energy density and nutrient digestibility."
+                    },
+                    {
+                        question: "Which mixing time is optimal for achieving uniform feed distribution?",
+                        options: ["2-3 minutes", "5-7 minutes", "10-12 minutes", "15-20 minutes"],
+                        correct: 1,
+                        explanation: "Optimal mixing time is typically 5-7 minutes for most ribbon mixers to achieve uniform distribution without over-mixing or ingredient degradation."
+                    },
+                    {
+                        question: "What is the recommended particle size for broiler starter feeds?",
+                        options: ["1-2mm", "2-3mm", "3-4mm", "4-5mm"],
+                        correct: 0,
+                        explanation: "Broiler starter feeds should have a particle size of 1-2mm to ensure easy consumption by young chicks and optimal nutrient utilization."
+                    }
+                ],
+                advanced: [
+                    {
+                        question: "What is the coefficient of variation (CV) target for feed mixing uniformity?",
+                        options: ["<5%", "<10%", "<15%", "<20%"],
+                        correct: 0,
+                        explanation: "The coefficient of variation for feed mixing should be less than 5% to ensure adequate uniformity and consistent animal performance."
+                    },
+                    {
+                        question: "Which linear programming constraint is most critical in least-cost formulation?",
+                        options: ["Ingredient availability", "Nutritional requirements", "Cost minimization", "Processing capacity"],
+                        correct: 1,
+                        explanation: "Nutritional requirements are the most critical constraints in least-cost formulation, as they ensure the feed meets the animal's needs for optimal performance."
+                    }
+                ]
+            },
+            quality: {
+                beginner: [
+                    {
+                        question: "What is the maximum moisture content for safe feed storage?",
+                        options: ["10%", "12%", "14%", "16%"],
+                        correct: 2,
+                        explanation: "Feed should be stored at moisture levels below 14% to prevent mold growth, spoilage, and maintain nutritional quality during storage."
+                    },
+                    {
+                        question: "Which test is used to determine feed protein content?",
+                        options: ["Kjeldahl method", "Soxhlet extraction", "Bomb calorimetry", "Ash analysis"],
+                        correct: 0,
+                        explanation: "The Kjeldahl method is the standard procedure for determining nitrogen content, which is then converted to crude protein by multiplying by 6.25."
+                    },
+                    {
+                        question: "What causes rancidity in feeds containing fats?",
+                        options: ["High temperature", "Oxidation", "Moisture", "All of the above"],
+                        correct: 3,
+                        explanation: "Rancidity in feeds is caused by oxidation of fats, which is accelerated by high temperatures, moisture, light, and the presence of metals."
+                    },
+                    {
+                        question: "How often should feed samples be collected for quality testing?",
+                        options: ["Daily", "Weekly", "Monthly", "Per batch"],
+                        correct: 3,
+                        explanation: "Feed samples should be collected from each batch or production run to ensure consistent quality and detect any variations in nutritional content."
+                    }
+                ],
+                intermediate: [
+                    {
+                        question: "What is the acceptable aflatoxin level in dairy cattle feed?",
+                        options: ["10 ppb", "20 ppb", "50 ppb", "100 ppb"],
+                        correct: 1,
+                        explanation: "The FDA guideline for aflatoxin in dairy cattle feed is 20 ppb to prevent contamination of milk and protect animal health."
+                    },
+                    {
+                        question: "Which preservative is commonly used to prevent mold in feeds?",
+                        options: ["Propionic acid", "Citric acid", "Acetic acid", "Lactic acid"],
+                        correct: 0,
+                        explanation: "Propionic acid and its salts are effective mold inhibitors commonly used in feed preservation, particularly in high-moisture conditions."
+                    },
+                    {
+                        question: "What is the recommended storage temperature for vitamin premixes?",
+                        options: ["Below 15°C", "Below 20°C", "Below 25°C", "Below 30°C"],
+                        correct: 1,
+                        explanation: "Vitamin premixes should be stored below 20°C in cool, dry conditions to maintain potency and prevent degradation of heat-sensitive vitamins."
+                    }
+                ],
+                advanced: [
+                    {
+                        question: "What is the water activity (aw) threshold for mold growth prevention?",
+                        options: ["<0.60", "<0.65", "<0.70", "<0.75"],
+                        correct: 0,
+                        explanation: "Water activity below 0.60 effectively prevents mold growth in stored feeds, which corresponds to approximately 12-14% moisture content in most grains."
+                    },
+                    {
+                        question: "Which HACCP principle involves establishing critical control points?",
+                        options: ["Principle 2", "Principle 3", "Principle 4", "Principle 5"],
+                        correct: 0,
+                        explanation: "HACCP Principle 2 involves identifying and establishing Critical Control Points (CCPs) where hazards can be prevented, eliminated, or reduced."
+                    }
+                ]
+            }
+        };
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                quizHistory = data;
+                displayQuizHistory();
+            }
+        };
+
+        // Element SDK Configuration
+        const defaultConfig = {
+            quiz_title: "Feed Knowledge Quiz",
+            quiz_subtitle: "Test your animal nutrition expertise",
+            company_name: "Bounty Millers Limited",
+            welcome_message: "Welcome to our comprehensive feed knowledge assessment"
+        };
+
+        // Initialize SDKs
+        async function initializeSDKs() {
+            try {
+                // Initialize Data SDK
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize Data SDK");
+                    }
+                }
+
+                // Initialize Element SDK
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: async (config) => {
+                            // Update quiz title and subtitle
+                            const titleElement = document.getElementById('quiz-title');
+                            if (titleElement) {
+                                titleElement.textContent = config.quiz_title || defaultConfig.quiz_title;
+                            }
+
+                            const subtitleElement = document.getElementById('quiz-subtitle');
+                            if (subtitleElement) {
+                                subtitleElement.textContent = config.quiz_subtitle || defaultConfig.quiz_subtitle;
+                            }
+
+                            // Update welcome message
+                            const welcomeElement = document.getElementById('welcome-message');
+                            if (welcomeElement) {
+                                welcomeElement.textContent = config.welcome_message || defaultConfig.welcome_message;
+                            }
+
+                            // Update company name
+                            const companyElement = document.getElementById('company-name');
+                            if (companyElement) {
+                                companyElement.textContent = config.company_name || defaultConfig.company_name;
+                            }
+                        },
+                        mapToCapabilities: (config) => ({
+                            recolorables: [],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["quiz_title", config.quiz_title || defaultConfig.quiz_title],
+                            ["quiz_subtitle", config.quiz_subtitle || defaultConfig.quiz_subtitle],
+                            ["company_name", config.company_name || defaultConfig.company_name],
+                            ["welcome_message", config.welcome_message || defaultConfig.welcome_message]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("SDK initialization error:", error);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSDKs();
+        });
+
+        // Select category
+        function selectCategory(category) {
+            currentCategory = category;
+            
+            // Update UI
+            document.querySelectorAll('[data-category]').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('selected');
+            
+            updateStartButton();
+        }
+
+        // Select difficulty
+        function selectDifficulty(difficulty) {
+            currentDifficulty = difficulty;
+            
+            // Update UI
+            document.querySelectorAll('[data-difficulty]').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-difficulty="${difficulty}"]`).classList.add('selected');
+            
+            updateStartButton();
+        }
+
+        // Update start button state
+        function updateStartButton() {
+            const startBtn = document.getElementById('start-quiz-btn');
+            if (currentCategory && currentDifficulty) {
+                startBtn.disabled = false;
+                startBtn.innerHTML = `<i class="fas fa-play mr-2"></i>Start ${currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)} Quiz`;
+            } else {
+                startBtn.disabled = true;
+                startBtn.innerHTML = '<i class="fas fa-play mr-2"></i>Select Category & Difficulty';
+            }
+        }
+
+        // Start quiz
+        function startQuiz() {
+            if (!currentCategory || !currentDifficulty) return;
+            
+            // Get questions for selected category and difficulty
+            quizQuestions = [...questionDatabase[currentCategory][currentDifficulty]];
+            
+            // Shuffle questions
+            for (let i = quizQuestions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [quizQuestions[i], quizQuestions[j]] = [quizQuestions[j], quizQuestions[i]];
+            }
+            
+            // Initialize quiz state
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            selectedAnswer = null;
+            quizStartTime = Date.now();
+            
+            // Update UI
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            
+            // Set quiz info
+            document.getElementById('quiz-category-title').textContent = `${currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)} Quiz`;
+            document.getElementById('quiz-difficulty-badge').className = `difficulty-badge difficulty-${currentDifficulty}`;
+            document.getElementById('quiz-difficulty-badge').textContent = currentDifficulty.charAt(0).toUpperCase() + currentDifficulty.slice(1);
+            document.getElementById('total-questions').textContent = quizQuestions.length;
+            
+            // Start timer
+            startTimer();
+            
+            // Load first question
+            loadQuestion();
+        }
+
+        // Start timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                const elapsed = Date.now() - quizStartTime;
+                const minutes = Math.floor(elapsed / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                document.getElementById('timer-display').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Load question
+        function loadQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            
+            // Update question info
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            document.getElementById('question-text').textContent = question.question;
+            
+            // Update progress
+            const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('quiz-progress').style.width = progress + '%';
+            
+            // Load answer options
+            const optionsContainer = document.getElementById('answer-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'answer-option';
+                optionDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <span class="font-semibold mr-3">${String.fromCharCode(65 + index)}.</span>
+                        <span>${option}</span>
+                    </div>
+                `;
+                optionDiv.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Reset UI state
+            selectedAnswer = null;
+            document.getElementById('explanation').classList.add('hidden');
+            document.getElementById('submit-answer-btn').disabled = true;
+            document.getElementById('next-btn').classList.add('hidden');
+            document.getElementById('finish-quiz-btn').classList.add('hidden');
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+        }
+
+        // Select answer
+        function selectAnswer(index) {
+            selectedAnswer = index;
+            
+            // Update UI
+            document.querySelectorAll('.answer-option').forEach((option, i) => {
+                option.classList.remove('selected');
+                if (i === index) {
+                    option.classList.add('selected');
+                }
+            });
+            
+            document.getElementById('submit-answer-btn').disabled = false;
+        }
+
+        // Submit answer
+        function submitAnswer() {
+            if (selectedAnswer === null) return;
+            
+            const question = quizQuestions[currentQuestionIndex];
+            const isCorrect = selectedAnswer === question.correct;
+            
+            // Store answer
+            userAnswers[currentQuestionIndex] = {
+                selected: selectedAnswer,
+                correct: question.correct,
+                isCorrect: isCorrect
+            };
+            
+            // Update answer options display
+            document.querySelectorAll('.answer-option').forEach((option, index) => {
+                option.onclick = null; // Disable clicking
+                
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedAnswer && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Show explanation
+            document.getElementById('explanation-text').textContent = question.explanation;
+            document.getElementById('explanation').classList.remove('hidden');
+            
+            // Update buttons
+            document.getElementById('submit-answer-btn').classList.add('hidden');
+            
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                document.getElementById('next-btn').classList.remove('hidden');
+            } else {
+                document.getElementById('finish-quiz-btn').classList.remove('hidden');
+            }
+        }
+
+        // Next question
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+        }
+
+        // Previous question
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+                
+                // If question was already answered, show the result
+                if (userAnswers[currentQuestionIndex]) {
+                    const answer = userAnswers[currentQuestionIndex];
+                    selectedAnswer = answer.selected;
+                    
+                    // Update UI to show previous answer
+                    document.querySelectorAll('.answer-option').forEach((option, index) => {
+                        option.onclick = null;
+                        
+                        if (index === answer.correct) {
+                            option.classList.add('correct');
+                        } else if (index === answer.selected && !answer.isCorrect) {
+                            option.classList.add('incorrect');
+                        }
+                        
+                        if (index === answer.selected) {
+                            option.classList.add('selected');
+                        }
+                    });
+                    
+                    // Show explanation
+                    const question = quizQuestions[currentQuestionIndex];
+                    document.getElementById('explanation-text').textContent = question.explanation;
+                    document.getElementById('explanation').classList.remove('hidden');
+                    
+                    // Update buttons
+                    document.getElementById('submit-answer-btn').classList.add('hidden');
+                    
+                    if (currentQuestionIndex < quizQuestions.length - 1) {
+                        document.getElementById('next-btn').classList.remove('hidden');
+                    } else {
+                        document.getElementById('finish-quiz-btn').classList.remove('hidden');
+                    }
+                }
+            }
+        }
+
+        // Finish quiz
+        function finishQuiz() {
+            clearInterval(timerInterval);
+            
+            // Calculate results
+            const correctAnswers = userAnswers.filter(answer => answer.isCorrect).length;
+            const totalQuestions = quizQuestions.length;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            const timeTaken = Date.now() - quizStartTime;
+            
+            // Show results screen
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('results-screen').classList.remove('hidden');
+            
+            // Update results display
+            displayResults(correctAnswers, totalQuestions, percentage, timeTaken);
+        }
+
+        // Display results
+        function displayResults(correct, total, percentage, timeTaken) {
+            // Update score display
+            document.getElementById('score-percentage').textContent = percentage + '%';
+            document.getElementById('final-score').textContent = correct;
+            document.getElementById('final-total').textContent = total;
+            
+            // Update score circle and message
+            const scoreCircle = document.getElementById('score-circle');
+            const scoreMessage = document.getElementById('score-message');
+            
+            scoreCircle.className = 'score-circle';
+            
+            if (percentage >= 90) {
+                scoreCircle.classList.add('score-excellent');
+                scoreMessage.textContent = 'Excellent Performance!';
+            } else if (percentage >= 75) {
+                scoreCircle.classList.add('score-good');
+                scoreMessage.textContent = 'Good Job!';
+            } else if (percentage >= 60) {
+                scoreCircle.classList.add('score-fair');
+                scoreMessage.textContent = 'Fair Performance';
+            } else {
+                scoreCircle.classList.add('score-poor');
+                scoreMessage.textContent = 'Needs Improvement';
+            }
+            
+            // Update performance stats
+            const minutes = Math.floor(timeTaken / 60000);
+            const seconds = Math.floor((timeTaken % 60000) / 1000);
+            document.getElementById('time-taken').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('accuracy-rate').textContent = percentage + '%';
+            
+            // Update rank
+            let rank = 'Poor';
+            if (percentage >= 90) rank = 'Excellent';
+            else if (percentage >= 75) rank = 'Good';
+            else if (percentage >= 60) rank = 'Fair';
+            document.getElementById('quiz-rank').textContent = rank;
+            
+            // Show achievements
+            displayAchievements(percentage, timeTaken);
+        }
+
+        // Display achievements
+        function displayAchievements(percentage, timeTaken) {
+            const achievementsContainer = document.getElementById('achievements');
+            const badgesContainer = achievementsContainer.querySelector('div');
+            badgesContainer.innerHTML = '';
+            
+            const achievements = [];
+            
+            // First quiz achievement
+            if (quizHistory.length === 0) {
+                achievements.push({
+                    icon: 'fas fa-star',
+                    text: 'First Quiz Complete'
+                });
+            }
+            
+            // Perfect score achievement
+            if (percentage === 100) {
+                achievements.push({
+                    icon: 'fas fa-trophy',
+                    text: 'Perfect Score'
+                });
+            }
+            
+            // Speed achievement
+            if (timeTaken < 120000) { // Less than 2 minutes
+                achievements.push({
+                    icon: 'fas fa-bolt',
+                    text: 'Speed Demon'
+                });
+            }
+            
+            // Excellence achievement
+            if (percentage >= 90) {
+                achievements.push({
+                    icon: 'fas fa-medal',
+                    text: 'Excellence Award'
+                });
+            }
+            
+            // Knowledge master (multiple high scores)
+            const highScores = quizHistory.filter(quiz => quiz.percentage >= 85).length;
+            if (highScores >= 3) {
+                achievements.push({
+                    icon: 'fas fa-graduation-cap',
+                    text: 'Knowledge Master'
+                });
+            }
+            
+            if (achievements.length === 0) {
+                badgesContainer.innerHTML = '<p class="text-gray-500">Complete more quizzes to unlock achievements!</p>';
+            } else {
+                achievements.forEach(achievement => {
+                    const badge = document.createElement('div');
+                    badge.className = 'achievement-badge';
+                    badge.innerHTML = `<i class="${achievement.icon}"></i>${achievement.text}`;
+                    badgesContainer.appendChild(badge);
+                });
+            }
+        }
+
+        // Save results
+        async function saveResults() {
+            if (currentRecordCount >= 999) {
+                showToast('Maximum limit of 999 quiz results reached. Please delete some results first.', 'error');
+                return;
+            }
+
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="spinner"></span> Saving...';
+            button.disabled = true;
+
+            const correctAnswers = userAnswers.filter(answer => answer.isCorrect).length;
+            const totalQuestions = quizQuestions.length;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
+
+            const quizResult = {
+                id: 'quiz-' + Date.now(),
+                quiz_category: currentCategory,
+                difficulty_level: currentDifficulty,
+                score: correctAnswers,
+                total_questions: totalQuestions,
+                percentage: percentage,
+                time_taken: timeTaken,
+                completed_at: new Date().toISOString(),
+                user_name: 'User'
+            };
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(quizResult);
+                if (result.isOk) {
+                    showToast('Quiz results saved successfully!', 'success');
+                } else {
+                    showToast('Failed to save results. Please try again.', 'error');
+                }
+            } else {
+                showToast('Quiz results saved locally!', 'success');
+            }
+
+            // Reset button state
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }
+
+        // Display quiz history
+        function displayQuizHistory() {
+            const container = document.getElementById('quiz-history');
+            
+            if (quizHistory.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-clipboard-list text-4xl mb-4 opacity-50"></i>
+                        <p>No quiz history yet. Complete your first quiz to see results here!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            quizHistory.slice().reverse().forEach(quiz => {
+                const date = new Date(quiz.completed_at).toLocaleDateString();
+                const time = new Date(quiz.completed_at).toLocaleTimeString();
+                const minutes = Math.floor(quiz.time_taken / 60);
+                const seconds = quiz.time_taken % 60;
+                
+                let scoreClass = 'score-poor';
+                if (quiz.percentage >= 90) scoreClass = 'score-excellent';
+                else if (quiz.percentage >= 75) scoreClass = 'score-good';
+                else if (quiz.percentage >= 60) scoreClass = 'score-fair';
+                
+                html += `
+                    <div class="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-blue-300 transition-colors">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="font-bold text-lg text-gray-800 capitalize">${quiz.quiz_category}</h4>
+                            <span class="difficulty-badge difficulty-${quiz.difficulty_level}">${quiz.difficulty_level}</span>
+                        </div>
+                        
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 ${scoreClass} rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-2">
+                                ${quiz.percentage}%
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                ${quiz.score}/${quiz.total_questions} correct
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Time:</span>
+                                <span class="font-semibold">${minutes}:${seconds.toString().padStart(2, '0')}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Date:</span>
+                                <span class="font-semibold">${date}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Time:</span>
+                                <span class="font-semibold">${time}</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="deleteQuizResult('${quiz.id}')" class="w-full mt-4 bg-red-500 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-red-600 transition-colors">
+                            <i class="fas fa-trash mr-1"></i>Delete
+                        </button>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Delete quiz result
+        async function deleteQuizResult(quizId) {
+            const quiz = quizHistory.find(q => q.id === quizId);
+            if (!quiz) return;
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.delete(quiz);
+                if (result.isOk) {
+                    showToast('Quiz result deleted successfully!', 'success');
+                } else {
+                    showToast('Failed to delete quiz result. Please try again.', 'error');
+                }
+            } else {
+                showToast('Quiz result deleted!', 'success');
+            }
+        }
+
+        // Retake quiz
+        function retakeQuiz() {
+            document.getElementById('results-screen').classList.add('hidden');
+            startQuiz();
+        }
+
+        // New quiz
+        function newQuiz() {
+            // Reset selections
+            currentCategory = '';
+            currentDifficulty = '';
+            
+            // Clear UI selections
+            document.querySelectorAll('.category-card, [data-difficulty]').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Show welcome screen
+            document.getElementById('results-screen').classList.add('hidden');
+            document.getElementById('welcome-screen').classList.remove('hidden');
+            
+            // Reset start button
+            updateStartButton();
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'exclamation-triangle'} mr-2"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 4000);
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9976988ae2c68a6a',t:'MTc2MTk0OTgxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
