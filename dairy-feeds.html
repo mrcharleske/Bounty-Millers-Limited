@@ -1,0 +1,1368 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dairy Feeds - Premium Nutrition for Dairy Cattle | Bounty Millers Limited</title>
+  <meta name="description" content="Premium dairy feeds for maximum milk production. Dairy Gold, Dairy Supreme, and Dairy Economy feeds with complete nutritional analysis and feeding guidelines."><!-- Schema Markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Premium Dairy Feeds",
+      "brand": "Bounty Millers Limited",
+      "description": "Complete range of dairy feeds for optimal milk production and cow health",
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "Bounty Millers Limited",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kiambu",
+          "addressCountry": "KE"
+        }
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "KES",
+        "lowPrice": "2400",
+        "highPrice": "3500"
+      }
+    }
+    </script><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- Chart.js for nutritional charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><!-- SDKs -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* Agricultural Color Scheme */
+        :root {
+            --primary-green: #2d5016;
+            --secondary-green: #4a7c59;
+            --accent-green: #6b8e23;
+            --earth-brown: #8b4513;
+            --warm-yellow: #daa520;
+        }
+        
+        .bg-primary { background-color: var(--primary-green); }
+        .bg-secondary { background-color: var(--secondary-green); }
+        .bg-accent { background-color: var(--accent-green); }
+        .bg-earth { background-color: var(--earth-brown); }
+        .bg-warm { background-color: var(--warm-yellow); }
+        
+        .text-primary { color: var(--primary-green); }
+        .text-secondary { color: var(--secondary-green); }
+        .text-accent { color: var(--accent-green); }
+        .text-earth { color: var(--earth-brown); }
+        .text-warm { color: var(--warm-yellow); }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 50%, var(--accent-green) 100%);
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(45, 80, 22, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--accent-green) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(74, 124, 89, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--earth-brown) 0%, var(--warm-yellow) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #654321 0%, #b8860b 100%);
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 36px;
+        }
+        
+        .language-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--secondary-green);
+            transition: .4s;
+            border-radius: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 28px;
+            width: 28px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(44px);
+        }
+        
+        /* Navigation Dropdown */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-section {
+            padding: 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .dropdown-section:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-title {
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 6px 0;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            color: var(--secondary-green);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu-content {
+            background: white;
+            width: 280px;
+            height: 100%;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateX(0);
+        }
+        
+        /* Product Features */
+        .feature-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .badge-premium { background: #fef3c7; color: #92400e; }
+        .badge-standard { background: #dbeafe; color: #1e40af; }
+        .badge-budget { background: #dcfce7; color: #166534; }
+        
+        /* Nutritional Analysis */
+        .nutrition-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .nutrition-item {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .nutrition-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-green);
+            display: block;
+        }
+        
+        .nutrition-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        /* Feeding Guidelines */
+        .feeding-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feeding-table th {
+            background: var(--secondary-green);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .feeding-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .feeding-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .feeding-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        /* Tabs */
+        .tab-container {
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 24px;
+        }
+        
+        .tab-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+        
+        .tab-button {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            color: #6b7280;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            color: var(--secondary-green);
+            border-bottom-color: var(--secondary-green);
+        }
+        
+        .tab-button:hover {
+            color: var(--secondary-green);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Comparison Chart */
+        .comparison-chart {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
+        
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+            
+            .nutrition-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .feeding-table {
+                font-size: 14px;
+            }
+            
+            .feeding-table th,
+            .feeding-table td {
+                padding: 8px;
+            }
+            
+            .tab-nav {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                text-align: left;
+                border-bottom: 1px solid #e5e7eb;
+                border-left: 3px solid transparent;
+            }
+            
+            .tab-button.active {
+                border-bottom-color: #e5e7eb;
+                border-left-color: var(--secondary-green);
+            }
+        }
+        
+        /* Hidden class for language switching */
+        .hidden-lang {
+            display: none !important;
+        }
+        
+        /* Loading states */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--secondary-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-gray-50"><!-- Navigation -->
+  <nav class="bg-white shadow-lg fixed w-full z-50" data-aos="slide-down">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16"><!-- Logo and Company Name -->
+     <div class="flex items-center"><a href="index.html" class="flex items-center"> <img src="images/logo.jpg" alt="Bounty Millers Logo" class="h-10 w-auto"> <span class="ml-3 text-xl font-bold text-primary" id="company-name">Bounty Millers Limited</span> </a>
+     </div><!-- Desktop Menu -->
+     <div class="hidden lg:flex items-center space-x-8"><a href="index.html" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Home" data-lang-sw="Nyumbani">Home</a> <!-- Products Dropdown -->
+      <div class="dropdown"><button class="text-secondary font-semibold flex items-center"> <span data-lang-en="Products" data-lang-sw="Bidhaa">Products</span> <i class="fas fa-chevron-down ml-1"></i> </button>
+       <div class="dropdown-content">
+        <div class="dropdown-section">
+         <div class="dropdown-title" data-lang-en="Finished Feeds" data-lang-sw="Chakula Tayari">
+          Finished Feeds
+         </div><a href="dairy-feeds.html" class="dropdown-item font-semibold text-secondary" data-lang-en="Dairy Feeds" data-lang-sw="Chakula cha Ng'ombe wa Maziwa">Dairy Feeds</a> <a href="poultry-feeds.html" class="dropdown-item" data-lang-en="Poultry Feeds" data-lang-sw="Chakula cha Kuku">Poultry Feeds</a> <a href="layer-feeds.html" class="dropdown-item" data-lang-en="Layer Feeds" data-lang-sw="Chakula cha Kuku wa Mayai">Layer Feeds</a> <a href="pig-feeds.html" class="dropdown-item" data-lang-en="Pig Feeds" data-lang-sw="Chakula cha Nguruwe">Pig Feeds</a>
+        </div>
+        <div class="dropdown-section">
+         <div class="dropdown-title" data-lang-en="Raw Materials" data-lang-sw="Malighafi">
+          Raw Materials
+         </div><a href="raw-materials.html" class="dropdown-item" data-lang-en="Protein Sources" data-lang-sw="Vyanzo vya Protini">Protein Sources</a> <a href="raw-materials.html" class="dropdown-item" data-lang-en="Energy Sources" data-lang-sw="Vyanzo vya Nishati">Energy Sources</a> <a href="raw-materials.html" class="dropdown-item" data-lang-en="Minerals &amp; Additives" data-lang-sw="Madini na Viongezeo">Minerals &amp; Additives</a>
+        </div>
+       </div>
+      </div><!-- Tools Dropdown -->
+      <div class="dropdown"><button class="text-gray-700 hover:text-secondary transition-colors flex items-center"> <span data-lang-en="Tools" data-lang-sw="Zana">Tools</span> <i class="fas fa-chevron-down ml-1"></i> </button>
+       <div class="dropdown-content">
+        <div class="dropdown-section"><a href="calculator.html" class="dropdown-item" data-lang-en="Feed Calculator" data-lang-sw="Kikokotoo cha Chakula">Feed Calculator</a> <a href="quiz.html" class="dropdown-item" data-lang-en="Feed Quiz" data-lang-sw="Jaribio la Chakula">Feed Quiz</a> <a href="nutrition-assistant.html" class="dropdown-item" data-lang-en="Nutrition Assistant" data-lang-sw="Msaidizi wa Lishe">Nutrition Assistant</a> <a href="sustainability.html" class="dropdown-item" data-lang-en="Sustainability Hub" data-lang-sw="Kituo cha Mazingira">Sustainability Hub</a>
+        </div>
+       </div>
+      </div><a href="blog.html" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Blog" data-lang-sw="Blogu">Blog</a> <a href="contact.html" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Contact" data-lang-sw="Wasiliana">Contact</a> <!-- Language Toggle -->
+      <div class="flex items-center"><label class="language-toggle"> <input type="checkbox" id="language-toggle"> <span class="slider"> <span>EN</span> <span>SW</span> </span> </label>
+      </div><!-- Phone Button --> <a href="tel:+254727455027" class="btn-primary text-white px-4 py-2 rounded-lg font-semibold"> <i class="fas fa-phone mr-2"></i><span id="phone-display">+254727455027</span> </a>
+     </div><!-- Mobile Menu Button -->
+     <div class="lg:hidden flex items-center space-x-4"><!-- Mobile Language Toggle --> <label class="language-toggle"> <input type="checkbox" id="mobile-language-toggle"> <span class="slider"> <span>EN</span> <span>SW</span> </span> </label> <button id="mobile-menu-btn" class="text-gray-700 hover:text-secondary"> <i class="fas fa-bars text-xl"></i> </button>
+     </div>
+    </div>
+   </div>
+  </nav><!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+   <div class="mobile-menu-content">
+    <div class="p-6 border-b">
+     <div class="flex items-center justify-between"><span class="text-xl font-bold text-primary" id="mobile-company-name">Bounty Millers</span> <button id="close-mobile-menu" class="text-gray-500 hover:text-gray-700"> <i class="fas fa-times text-xl"></i> </button>
+     </div>
+    </div>
+    <div class="p-6 space-y-4"><a href="index.html" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Home" data-lang-sw="Nyumbani">Home</a> <!-- Mobile Products Section -->
+     <div>
+      <div class="py-2 font-semibold text-secondary" data-lang-en="Products" data-lang-sw="Bidhaa">
+       Products
+      </div>
+      <div class="ml-4 space-y-2"><a href="dairy-feeds.html" class="block py-1 text-secondary font-semibold" data-lang-en="Dairy Feeds" data-lang-sw="Chakula cha Ng'ombe">Dairy Feeds</a> <a href="poultry-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Poultry Feeds" data-lang-sw="Chakula cha Kuku">Poultry Feeds</a> <a href="layer-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Layer Feeds" data-lang-sw="Chakula cha Mayai">Layer Feeds</a> <a href="pig-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Pig Feeds" data-lang-sw="Chakula cha Nguruwe">Pig Feeds</a> <a href="raw-materials.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Raw Materials" data-lang-sw="Malighafi">Raw Materials</a>
+      </div>
+     </div><!-- Mobile Tools Section -->
+     <div>
+      <div class="py-2 font-semibold text-primary" data-lang-en="Tools" data-lang-sw="Zana">
+       Tools
+      </div>
+      <div class="ml-4 space-y-2"><a href="calculator.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Feed Calculator" data-lang-sw="Kikokotoo cha Chakula">Feed Calculator</a> <a href="quiz.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Feed Quiz" data-lang-sw="Jaribio la Chakula">Feed Quiz</a> <a href="nutrition-assistant.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Nutrition Assistant" data-lang-sw="Msaidizi wa Lishe">Nutrition Assistant</a> <a href="sustainability.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Sustainability Hub" data-lang-sw="Kituo cha Mazingira">Sustainability Hub</a>
+      </div>
+     </div><a href="blog.html" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Blog" data-lang-sw="Blogu">Blog</a> <a href="contact.html" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Contact" data-lang-sw="Wasiliana">Contact</a>
+     <div class="pt-4 border-t"><a href="tel:+254727455027" class="block w-full text-center btn-primary text-white py-3 rounded-lg font-semibold"> <i class="fas fa-phone mr-2"></i><span id="mobile-phone-display">+254727455027</span> </a>
+     </div>
+    </div>
+   </div>
+  </div><!-- Breadcrumb -->
+  <section class="pt-20 pb-4 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex" aria-label="Breadcrumb">
+     <ol class="inline-flex items-center space-x-1 md:space-x-3">
+      <li class="inline-flex items-center"><a href="index.html" class="text-gray-700 hover:text-secondary"> <i class="fas fa-home mr-2"></i> <span data-lang-en="Home" data-lang-sw="Nyumbani">Home</span> </a></li>
+      <li>
+       <div class="flex items-center"><i class="fas fa-chevron-right text-gray-400 mx-2"></i> <a href="products.html" class="text-gray-700 hover:text-secondary" data-lang-en="Products" data-lang-sw="Bidhaa">Products</a>
+       </div></li>
+      <li aria-current="page">
+       <div class="flex items-center"><i class="fas fa-chevron-right text-gray-400 mx-2"></i> <span class="text-secondary font-semibold" data-lang-en="Dairy Feeds" data-lang-sw="Chakula cha Ng'ombe">Dairy Feeds</span>
+       </div></li>
+     </ol>
+    </nav>
+   </div>
+  </section><!-- Hero Section -->
+  <section class="gradient-bg hero-pattern py-20">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center text-white" data-aos="fade-up">
+     <h1 class="text-4xl md:text-6xl font-bold mb-6"><span class="lang-en" id="page-title-en">Premium Dairy Feeds</span> <span class="lang-sw hidden-lang" id="page-title-sw">Chakula cha Ng'ombe wa Maziwa cha Ubora</span></h1>
+     <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto"><span class="lang-en" id="page-subtitle-en">Maximize milk production with our scientifically formulated dairy feeds</span> <span class="lang-sw hidden-lang" id="page-subtitle-sw">Ongeza uzalishaji wa maziwa kwa chakula chetu cha kisayansi</span></p><!-- Key Benefits -->
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+      <div class="text-center">
+       <div class="text-3xl font-bold mb-2">
+        +25%
+       </div>
+       <div class="text-sm opacity-80"><span class="lang-en">Milk Yield</span> <span class="lang-sw hidden-lang">Uzalishaji wa Maziwa</span>
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="text-3xl font-bold mb-2">
+        18%
+       </div>
+       <div class="text-sm opacity-80"><span class="lang-en">Max Protein</span> <span class="lang-sw hidden-lang">Protini ya Juu</span>
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="text-3xl font-bold mb-2">
+        3
+       </div>
+       <div class="text-sm opacity-80"><span class="lang-en">Feed Options</span> <span class="lang-sw hidden-lang">Chaguo za Chakula</span>
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="text-3xl font-bold mb-2">
+        20+
+       </div>
+       <div class="text-sm opacity-80"><span class="lang-en">Years Experience</span> <span class="lang-sw hidden-lang">Miaka ya Uzoefu</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Product Tabs -->
+  <section class="py-16 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="tab-container">
+     <div class="tab-nav"><button class="tab-button active" data-tab="dairy-gold"> <i class="fas fa-crown mr-2"></i> <span class="lang-en">Dairy Gold</span> <span class="lang-sw hidden-lang">Dairy Gold</span> </button> <button class="tab-button" data-tab="dairy-supreme"> <i class="fas fa-star mr-2"></i> <span class="lang-en">Dairy Supreme</span> <span class="lang-sw hidden-lang">Dairy Supreme</span> </button> <button class="tab-button" data-tab="dairy-economy"> <i class="fas fa-coins mr-2"></i> <span class="lang-en">Dairy Economy</span> <span class="lang-sw hidden-lang">Dairy Economy</span> </button> <button class="tab-button" data-tab="comparison"> <i class="fas fa-chart-bar mr-2"></i> <span class="lang-en">Compare All</span> <span class="lang-sw hidden-lang">Linganisha Zote</span> </button>
+     </div>
+    </div><!-- Dairy Gold Tab -->
+    <div id="dairy-gold" class="tab-content active">
+     <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div data-aos="fade-right"><img src="images/dairygold-large.jpg" alt="Dairy Gold Premium Feed" class="w-full rounded-xl shadow-lg">
+       <div class="mt-6 grid grid-cols-2 gap-4">
+        <div class="text-center p-4 bg-yellow-50 rounded-lg">
+         <div class="text-2xl font-bold text-yellow-600">
+          Premium
+         </div>
+         <div class="text-sm text-gray-600"><span class="lang-en">Quality Grade</span> <span class="lang-sw hidden-lang">Daraja la Ubora</span>
+         </div>
+        </div>
+        <div class="text-center p-4 bg-green-50 rounded-lg">
+         <div class="text-2xl font-bold text-green-600">
+          KSh 3,200-3,500
+         </div>
+         <div class="text-sm text-gray-600"><span class="lang-en">per 70kg bag</span> <span class="lang-sw hidden-lang">kwa mfuko wa 70kg</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div data-aos="fade-left">
+       <div class="flex items-center mb-4">
+        <h2 class="text-3xl font-bold text-primary mr-4">Dairy Gold</h2><span class="feature-badge badge-premium">Premium</span>
+       </div>
+       <p class="text-lg text-gray-600 mb-6"><span class="lang-en">Our flagship premium dairy feed designed for high-producing dairy cows. Formulated with the finest ingredients to maximize milk yield and maintain optimal cow health during peak lactation.</span> <span class="lang-sw hidden-lang">Chakula chetu cha ng'ombe wa maziwa cha ubora wa juu kilichoundwa kwa ng'ombe wazalishaji wa maziwa wengi. Kimeundwa kwa viungo bora zaidi kuongeza uzalishaji wa maziwa na kudumisha afya bora ya ng'ombe wakati wa uzalishaji wa kilele.</span></p><!-- Nutritional Analysis -->
+       <div class="nutrition-card">
+        <h3 class="text-xl font-semibold text-primary mb-4"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Analysis</span> <span class="lang-sw hidden-lang">Uchambuzi wa Lishe</span></h3>
+        <div class="nutrition-grid">
+         <div class="nutrition-item"><span class="nutrition-value">18%</span>
+          <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">2800</span>
+          <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">12%</span>
+          <div class="nutrition-label"><span class="lang-en">Crude Fiber</span> <span class="lang-sw hidden-lang">Nyuzi Ghafi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">1.2%</span>
+          <div class="nutrition-label"><span class="lang-en">Calcium</span> <span class="lang-sw hidden-lang">Kalsiamu</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">0.8%</span>
+          <div class="nutrition-label"><span class="lang-en">Phosphorus</span> <span class="lang-sw hidden-lang">Fosforasi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">8%</span>
+          <div class="nutrition-label"><span class="lang-en">Moisture</span> <span class="lang-sw hidden-lang">Unyevu</span>
+          </div>
+         </div>
+        </div>
+       </div><!-- Feeding Guidelines -->
+       <div class="mt-6">
+        <h3 class="text-xl font-semibold text-primary mb-4"><i class="fas fa-utensils mr-2"></i> <span class="lang-en">Feeding Guidelines</span> <span class="lang-sw hidden-lang">Miongozo ya Kulisha</span></h3>
+        <table class="feeding-table">
+         <thead>
+          <tr>
+           <th><span class="lang-en">Cow Weight (kg)</span> <span class="lang-sw hidden-lang">Uzito wa Ng'ombe (kg)</span></th>
+           <th><span class="lang-en">Daily Feed (kg)</span> <span class="lang-sw hidden-lang">Chakula cha Kila Siku (kg)</span></th>
+           <th><span class="lang-en">Expected Milk (L/day)</span> <span class="lang-sw hidden-lang">Maziwa Yanayotarajiwa (L/siku)</span></th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>400-500</td>
+           <td>6-8</td>
+           <td>15-20</td>
+          </tr>
+          <tr>
+           <td>500-600</td>
+           <td>8-10</td>
+           <td>20-25</td>
+          </tr>
+          <tr>
+           <td>600-700</td>
+           <td>10-12</td>
+           <td>25-30</td>
+          </tr>
+         </tbody>
+        </table>
+       </div><!-- Action Buttons -->
+       <div class="flex flex-col sm:flex-row gap-4 mt-8"><button onclick="requestQuote('Dairy Gold')" class="flex-1 btn-primary text-white py-3 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Request Quote</span> <span class="lang-sw hidden-lang">Omba Bei</span> </button> <button onclick="openWhatsApp('Dairy Gold')" class="flex-1 bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp Us</span> <span class="lang-sw hidden-lang">Tupigie WhatsApp</span> </button>
+       </div>
+      </div>
+     </div>
+    </div><!-- Dairy Supreme Tab -->
+    <div id="dairy-supreme" class="tab-content">
+     <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div data-aos="fade-right"><img src="images/dairysupreme-large.jpg" alt="Dairy Supreme Standard Feed" class="w-full rounded-xl shadow-lg">
+       <div class="mt-6 grid grid-cols-2 gap-4">
+        <div class="text-center p-4 bg-blue-50 rounded-lg">
+         <div class="text-2xl font-bold text-blue-600">
+          Standard
+         </div>
+         <div class="text-sm text-gray-600"><span class="lang-en">Quality Grade</span> <span class="lang-sw hidden-lang">Daraja la Ubora</span>
+         </div>
+        </div>
+        <div class="text-center p-4 bg-green-50 rounded-lg">
+         <div class="text-2xl font-bold text-green-600">
+          KSh 2,800-3,100
+         </div>
+         <div class="text-sm text-gray-600"><span class="lang-en">per 70kg bag</span> <span class="lang-sw hidden-lang">kwa mfuko wa 70kg</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div data-aos="fade-left">
+       <div class="flex items-center mb-4">
+        <h2 class="text-3xl font-bold text-primary mr-4">Dairy Supreme</h2><span class="feature-badge badge-standard">Standard</span>
+       </div>
+       <p class="text-lg text-gray-600 mb-6"><span class="lang-en">A well-balanced dairy feed that provides consistent nutrition for steady milk production. Perfect for medium-producing dairy cows and farmers seeking reliable performance at an affordable price.</span> <span class="lang-sw hidden-lang">Chakula cha ng'ombe wa maziwa kilichosawazishwa vizuri kinachotoa lishe sawa kwa uzalishaji wa maziwa wa kawaida. Kamili kwa ng'ombe wazalishaji wa maziwa wa kati na wakulima wanaotafuta utendaji wa kuaminika kwa bei nafuu.</span></p><!-- Nutritional Analysis -->
+       <div class="nutrition-card">
+        <h3 class="text-xl font-semibold text-primary mb-4"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Analysis</span> <span class="lang-sw hidden-lang">Uchambuzi wa Lishe</span></h3>
+        <div class="nutrition-grid">
+         <div class="nutrition-item"><span class="nutrition-value">16%</span>
+          <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">2600</span>
+          <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">14%</span>
+          <div class="nutrition-label"><span class="lang-en">Crude Fiber</span> <span class="lang-sw hidden-lang">Nyuzi Ghafi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">1.0%</span>
+          <div class="nutrition-label"><span class="lang-en">Calcium</span> <span class="lang-sw hidden-lang">Kalsiamu</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">0.7%</span>
+          <div class="nutrition-label"><span class="lang-en">Phosphorus</span> <span class="lang-sw hidden-lang">Fosforasi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">8%</span>
+          <div class="nutrition-label"><span class="lang-en">Moisture</span> <span class="lang-sw hidden-lang">Unyevu</span>
+          </div>
+         </div>
+        </div>
+       </div><!-- Feeding Guidelines -->
+       <div class="mt-6">
+        <h3 class="text-xl font-semibold text-primary mb-4"><i class="fas fa-utensils mr-2"></i> <span class="lang-en">Feeding Guidelines</span> <span class="lang-sw hidden-lang">Miongozo ya Kulisha</span></h3>
+        <table class="feeding-table">
+         <thead>
+          <tr>
+           <th><span class="lang-en">Cow Weight (kg)</span> <span class="lang-sw hidden-lang">Uzito wa Ng'ombe (kg)</span></th>
+           <th><span class="lang-en">Daily Feed (kg)</span> <span class="lang-sw hidden-lang">Chakula cha Kila Siku (kg)</span></th>
+           <th><span class="lang-en">Expected Milk (L/day)</span> <span class="lang-sw hidden-lang">Maziwa Yanayotarajiwa (L/siku)</span></th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>400-500</td>
+           <td>7-9</td>
+           <td>12-16</td>
+          </tr>
+          <tr>
+           <td>500-600</td>
+           <td>9-11</td>
+           <td>16-20</td>
+          </tr>
+          <tr>
+           <td>600-700</td>
+           <td>11-13</td>
+           <td>20-24</td>
+          </tr>
+         </tbody>
+        </table>
+       </div><!-- Action Buttons -->
+       <div class="flex flex-col sm:flex-row gap-4 mt-8"><button onclick="requestQuote('Dairy Supreme')" class="flex-1 btn-primary text-white py-3 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Request Quote</span> <span class="lang-sw hidden-lang">Omba Bei</span> </button> <button onclick="openWhatsApp('Dairy Supreme')" class="flex-1 bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp Us</span> <span class="lang-sw hidden-lang">Tupigie WhatsApp</span> </button>
+       </div>
+      </div>
+     </div>
+    </div><!-- Dairy Economy Tab -->
+    <div id="dairy-economy" class="tab-content">
+     <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div data-aos="fade-right"><img src="images/dairyeconomy-large.jpg" alt="Dairy Economy Budget Feed" class="w-full rounded-xl shadow-lg">
+       <div class="mt-6 grid grid-cols-2 gap-4">
+        <div class="text-center p-4 bg-green-50 rounded-lg">
+         <div class="text-2xl font-bold text-green-600">
+          Budget
+         </div>
+         <div class="text-sm text-gray-600"><span class="lang-en">Quality Grade</span> <span class="lang-sw hidden-lang">Daraja la Ubora</span>
+         </div>
+        </div>
+        <div class="text-center p-4 bg-green-50 rounded-lg">
+         <div class="text-2xl font-bold text-green-600">
+          KSh 2,400-2,700
+         </div>
+         <div class="text-sm text-gray-600"><span class="lang-en">per 70kg bag</span> <span class="lang-sw hidden-lang">kwa mfuko wa 70kg</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div data-aos="fade-left">
+       <div class="flex items-center mb-4">
+        <h2 class="text-3xl font-bold text-primary mr-4">Dairy Economy</h2><span class="feature-badge badge-budget">Budget</span>
+       </div>
+       <p class="text-lg text-gray-600 mb-6"><span class="lang-en">An economical dairy feed that maintains essential nutritional standards while being budget-friendly. Ideal for small-scale farmers and those looking to reduce feed costs without compromising basic cow health.</span> <span class="lang-sw hidden-lang">Chakula cha ng'ombe wa maziwa cha kiuchumi kinachohifadhi viwango muhimu vya lishe huku kikiwa cha bei nafuu. Kamili kwa wakulima wadogo na wale wanaotafuta kupunguza gharama za chakula bila kuhatarisha afya ya msingi ya ng'ombe.</span></p><!-- Nutritional Analysis -->
+       <div class="nutrition-card">
+        <h3 class="text-xl font-semibold text-primary mb-4"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Analysis</span> <span class="lang-sw hidden-lang">Uchambuzi wa Lishe</span></h3>
+        <div class="nutrition-grid">
+         <div class="nutrition-item"><span class="nutrition-value">14%</span>
+          <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">2400</span>
+          <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">16%</span>
+          <div class="nutrition-label"><span class="lang-en">Crude Fiber</span> <span class="lang-sw hidden-lang">Nyuzi Ghafi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">0.8%</span>
+          <div class="nutrition-label"><span class="lang-en">Calcium</span> <span class="lang-sw hidden-lang">Kalsiamu</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">0.6%</span>
+          <div class="nutrition-label"><span class="lang-en">Phosphorus</span> <span class="lang-sw hidden-lang">Fosforasi</span>
+          </div>
+         </div>
+         <div class="nutrition-item"><span class="nutrition-value">8%</span>
+          <div class="nutrition-label"><span class="lang-en">Moisture</span> <span class="lang-sw hidden-lang">Unyevu</span>
+          </div>
+         </div>
+        </div>
+       </div><!-- Feeding Guidelines -->
+       <div class="mt-6">
+        <h3 class="text-xl font-semibold text-primary mb-4"><i class="fas fa-utensils mr-2"></i> <span class="lang-en">Feeding Guidelines</span> <span class="lang-sw hidden-lang">Miongozo ya Kulisha</span></h3>
+        <table class="feeding-table">
+         <thead>
+          <tr>
+           <th><span class="lang-en">Cow Weight (kg)</span> <span class="lang-sw hidden-lang">Uzito wa Ng'ombe (kg)</span></th>
+           <th><span class="lang-en">Daily Feed (kg)</span> <span class="lang-sw hidden-lang">Chakula cha Kila Siku (kg)</span></th>
+           <th><span class="lang-en">Expected Milk (L/day)</span> <span class="lang-sw hidden-lang">Maziwa Yanayotarajiwa (L/siku)</span></th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>400-500</td>
+           <td>8-10</td>
+           <td>10-14</td>
+          </tr>
+          <tr>
+           <td>500-600</td>
+           <td>10-12</td>
+           <td>14-18</td>
+          </tr>
+          <tr>
+           <td>600-700</td>
+           <td>12-14</td>
+           <td>18-22</td>
+          </tr>
+         </tbody>
+        </table>
+       </div><!-- Action Buttons -->
+       <div class="flex flex-col sm:flex-row gap-4 mt-8"><button onclick="requestQuote('Dairy Economy')" class="flex-1 btn-primary text-white py-3 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Request Quote</span> <span class="lang-sw hidden-lang">Omba Bei</span> </button> <button onclick="openWhatsApp('Dairy Economy')" class="flex-1 bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp Us</span> <span class="lang-sw hidden-lang">Tupigie WhatsApp</span> </button>
+       </div>
+      </div>
+     </div>
+    </div><!-- Comparison Tab -->
+    <div id="comparison" class="tab-content">
+     <div class="comparison-chart" data-aos="fade-up">
+      <h2 class="text-2xl font-bold text-primary mb-6 text-center"><i class="fas fa-chart-bar mr-2"></i> <span class="lang-en">Dairy Feeds Comparison</span> <span class="lang-sw hidden-lang">Ulinganisho wa Chakula cha Ng'ombe</span></h2>
+      <div class="overflow-x-auto">
+       <table class="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-lg">
+        <thead>
+         <tr class="bg-secondary text-white">
+          <th class="p-4 text-left"><span class="lang-en">Feature</span> <span class="lang-sw hidden-lang">Kipengele</span></th>
+          <th class="p-4 text-center">Dairy Gold</th>
+          <th class="p-4 text-center">Dairy Supreme</th>
+          <th class="p-4 text-center">Dairy Economy</th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr class="border-b">
+          <td class="p-4 font-semibold"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span></td>
+          <td class="p-4 text-center font-bold text-green-600">18%</td>
+          <td class="p-4 text-center font-bold text-blue-600">16%</td>
+          <td class="p-4 text-center font-bold text-orange-600">14%</td>
+         </tr>
+         <tr class="border-b bg-gray-50">
+          <td class="p-4 font-semibold"><span class="lang-en">Energy (ME kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (ME kcal/kg)</span></td>
+          <td class="p-4 text-center font-bold text-green-600">2800</td>
+          <td class="p-4 text-center font-bold text-blue-600">2600</td>
+          <td class="p-4 text-center font-bold text-orange-600">2400</td>
+         </tr>
+         <tr class="border-b">
+          <td class="p-4 font-semibold"><span class="lang-en">Expected Milk Yield</span> <span class="lang-sw hidden-lang">Uzalishaji wa Maziwa Unatarajiwa</span></td>
+          <td class="p-4 text-center font-bold text-green-600"><span class="lang-en">15-30 L/day</span> <span class="lang-sw hidden-lang">15-30 L/siku</span></td>
+          <td class="p-4 text-center font-bold text-blue-600"><span class="lang-en">12-24 L/day</span> <span class="lang-sw hidden-lang">12-24 L/siku</span></td>
+          <td class="p-4 text-center font-bold text-orange-600"><span class="lang-en">10-22 L/day</span> <span class="lang-sw hidden-lang">10-22 L/siku</span></td>
+         </tr>
+         <tr class="border-b bg-gray-50">
+          <td class="p-4 font-semibold"><span class="lang-en">Price Range (KSh)</span> <span class="lang-sw hidden-lang">Bei (KSh)</span></td>
+          <td class="p-4 text-center font-bold text-green-600">3,200-3,500</td>
+          <td class="p-4 text-center font-bold text-blue-600">2,800-3,100</td>
+          <td class="p-4 text-center font-bold text-orange-600">2,400-2,700</td>
+         </tr>
+         <tr class="border-b">
+          <td class="p-4 font-semibold"><span class="lang-en">Best For</span> <span class="lang-sw hidden-lang">Bora Kwa</span></td>
+          <td class="p-4 text-center"><span class="lang-en">High producers</span> <span class="lang-sw hidden-lang">Wazalishaji wa juu</span></td>
+          <td class="p-4 text-center"><span class="lang-en">Medium producers</span> <span class="lang-sw hidden-lang">Wazalishaji wa kati</span></td>
+          <td class="p-4 text-center"><span class="lang-en">Budget conscious</span> <span class="lang-sw hidden-lang">Wanaojali bajeti</span></td>
+         </tr>
+        </tbody>
+       </table>
+      </div><!-- Nutritional Chart -->
+      <div class="mt-8">
+       <h3 class="text-xl font-semibold text-primary mb-4 text-center"><span class="lang-en">Nutritional Comparison Chart</span> <span class="lang-sw hidden-lang">Chati ya Ulinganisho wa Lishe</span></h3>
+       <div class="bg-white p-6 rounded-lg">
+        <canvas id="nutritionChart" width="400" height="200"></canvas>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Benefits Section -->
+  <section class="py-16 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12" data-aos="fade-up">
+     <h2 class="text-3xl font-bold text-primary mb-4"><span class="lang-en">Why Choose Our Dairy Feeds?</span> <span class="lang-sw hidden-lang">Kwa Nini Uchague Chakula Chetu cha Ng'ombe?</span></h2>
+     <p class="text-gray-600 max-w-2xl mx-auto"><span class="lang-en">Our dairy feeds are scientifically formulated to deliver consistent results and maximize your farm's profitability</span> <span class="lang-sw hidden-lang">Chakula chetu cha ng'ombe kimeundwa kwa kisayansi kutoa matokeo ya kuaminika na kuongeza faida ya shamba lako</span></p>
+    </div>
+    <div class="benefits-grid">
+     <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="benefit-icon"><i class="fas fa-tint"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-3"><span class="lang-en">Increased Milk Yield</span> <span class="lang-sw hidden-lang">Ongezeko la Uzalishaji wa Maziwa</span></h3>
+      <p class="text-gray-600"><span class="lang-en">Our feeds can increase milk production by up to 25% compared to standard feeds, maximizing your daily income.</span> <span class="lang-sw hidden-lang">Chakula chetu kinaweza kuongeza uzalishaji wa maziwa hadi asilimia 25 ikilinganishwa na chakula cha kawaida, kuongeza kipato chako cha kila siku.</span></p>
+     </div>
+     <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="benefit-icon"><i class="fas fa-heart"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-3"><span class="lang-en">Better Cow Health</span> <span class="lang-sw hidden-lang">Afya Bora ya Ng'ombe</span></h3>
+      <p class="text-gray-600"><span class="lang-en">Balanced nutrition supports immune system, reduces veterinary costs, and extends productive life of your cows.</span> <span class="lang-sw hidden-lang">Lishe sawa inasaidia mfumo wa kinga, inapunguza gharama za daktari wa mifugo, na kuongeza maisha ya uzalishaji wa ng'ombe wako.</span></p>
+     </div>
+     <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="benefit-icon"><i class="fas fa-leaf"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-3"><span class="lang-en">Quality Ingredients</span> <span class="lang-sw hidden-lang">Viungo vya Ubora</span></h3>
+      <p class="text-gray-600"><span class="lang-en">Made from premium local and imported ingredients, ensuring consistent quality and nutritional value in every bag.</span> <span class="lang-sw hidden-lang">Kimetengenezwa kutoka viungo vya ubora vya ndani na nje ya nchi, kuhakikisha ubora na thamani ya lishe katika kila mfuko.</span></p>
+     </div>
+     <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+      <div class="benefit-icon"><i class="fas fa-chart-line"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-3"><span class="lang-en">Proven Results</span> <span class="lang-sw hidden-lang">Matokeo Yaliyothibitishwa</span></h3>
+      <p class="text-gray-600"><span class="lang-en">Over 20 years of experience serving Central Kenya farmers with consistent, reliable feed performance.</span> <span class="lang-sw hidden-lang">Zaidi ya miaka 20 ya uzoefu wa kutumikia wakulima wa Kenya ya Kati kwa utendaji wa chakula wa kuaminika.</span></p>
+     </div>
+     <div class="benefit-card" data-aos="fade-up" data-aos-delay="500">
+      <div class="benefit-icon"><i class="fas fa-phone-alt"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-3"><span class="lang-en">Expert Support</span> <span class="lang-sw hidden-lang">Msaada wa Kitaalamu</span></h3>
+      <p class="text-gray-600"><span class="lang-en">Our nutrition experts provide ongoing support and feeding advice to help you get the best results.</span> <span class="lang-sw hidden-lang">Wataalamu wetu wa lishe wanatoa msaada endelevu na ushauri wa kulisha kukusaidia kupata matokeo bora.</span></p>
+     </div>
+     <div class="benefit-card" data-aos="fade-up" data-aos-delay="600">
+      <div class="benefit-icon"><i class="fas fa-coins"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-3"><span class="lang-en">Cost Effective</span> <span class="lang-sw hidden-lang">Bei Nafuu</span></h3>
+      <p class="text-gray-600"><span class="lang-en">Better feed conversion rates mean you get more milk per kilogram of feed, improving your profit margins.</span> <span class="lang-sw hidden-lang">Viwango bora vya kubadilisha chakula kuwa maziwa vinamaanisha unapata maziwa mengi kwa kilo ya chakula, kuboresha faida yako.</span></p>
+     </div>
+    </div>
+   </div>
+  </section><!-- CTA Section -->
+  <section class="gradient-bg py-20">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+    <h2 class="text-4xl font-bold text-white mb-6"><span class="lang-en">Ready to Boost Your Milk Production?</span> <span class="lang-sw hidden-lang">Uko Tayari Kuongeza Uzalishaji wa Maziwa?</span></h2>
+    <p class="text-xl text-white opacity-90 mb-8"><span class="lang-en">Contact our dairy nutrition experts today for personalized feeding recommendations</span> <span class="lang-sw hidden-lang">Wasiliana na wataalamu wetu wa lishe ya ng'ombe leo kwa mapendekezo ya kulisha ya kibinafsi</span></p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="contact.html" class="btn-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg"> <i class="fas fa-phone mr-2"></i> <span class="lang-en">Contact Expert</span> <span class="lang-sw hidden-lang">Wasiliana na Mtaalamu</span> </a> <a href="calculator.html" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors"> <i class="fas fa-calculator mr-2"></i> <span class="lang-en">Calculate Feed Needs</span> <span class="lang-sw hidden-lang">Kokotoa Mahitaji ya Chakula</span> </a>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-primary text-white py-16">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8">
+     <div>
+      <div class="flex items-center mb-4"><img src="images/logo-white.jpg" alt="Bounty Millers Logo" class="h-10 w-auto mr-3"> <span class="text-xl font-bold" id="footer-company-name">Bounty Millers Limited</span>
+      </div>
+      <p class="text-gray-300 mb-4"><span class="lang-en">Premium animal feeds manufacturer serving Central Kenya farmers since 2003.</span> <span class="lang-sw hidden-lang">Mtengenezaji wa chakula cha wanyamapori cha ubora anayetumikia wakulima wa Kenya ya Kati tangu 2003.</span></p>
+      <div class="flex space-x-4"><a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-facebook text-xl"></i> </a> <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-twitter text-xl"></i> </a> <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-instagram text-xl"></i> </a> <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-linkedin text-xl"></i> </a>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4"><span class="lang-en">Products</span> <span class="lang-sw hidden-lang">Bidhaa</span></h4>
+      <ul class="space-y-2">
+       <li><a href="dairy-feeds.html" class="text-white font-semibold"> <span class="lang-en">Dairy Feeds</span> <span class="lang-sw hidden-lang">Chakula cha Ng'ombe</span> </a></li>
+       <li><a href="poultry-feeds.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Poultry Feeds</span> <span class="lang-sw hidden-lang">Chakula cha Kuku</span> </a></li>
+       <li><a href="layer-feeds.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Layer Feeds</span> <span class="lang-sw hidden-lang">Chakula cha Mayai</span> </a></li>
+       <li><a href="pig-feeds.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Pig Feeds</span> <span class="lang-sw hidden-lang">Chakula cha Nguruwe</span> </a></li>
+       <li><a href="raw-materials.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Raw Materials</span> <span class="lang-sw hidden-lang">Malighafi</span> </a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4"><span class="lang-en">Tools &amp; Services</span> <span class="lang-sw hidden-lang">Zana na Huduma</span></h4>
+      <ul class="space-y-2">
+       <li><a href="calculator.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Feed Calculator</span> <span class="lang-sw hidden-lang">Kikokotoo cha Chakula</span> </a></li>
+       <li><a href="quiz.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Feed Quiz</span> <span class="lang-sw hidden-lang">Jaribio la Chakula</span> </a></li>
+       <li><a href="sustainability.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Sustainability Hub</span> <span class="lang-sw hidden-lang">Kituo cha Mazingira</span> </a></li>
+       <li><a href="nutrition-assistant.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Nutrition Assistant</span> <span class="lang-sw hidden-lang">Msaidizi wa Lishe</span> </a></li>
+       <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Blog</span> <span class="lang-sw hidden-lang">Blogu</span> </a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4"><span class="lang-en">Contact Info</span> <span class="lang-sw hidden-lang">Maelezo ya Mawasiliano</span></h4>
+      <div class="space-y-2">
+       <p class="text-gray-300"><i class="fas fa-map-marker-alt mr-2"></i> Kiambu, Kenya</p>
+       <p class="text-gray-300"><i class="fas fa-phone mr-2"></i> <a href="tel:+254727455027" class="hover:text-white transition-colors" id="footer-phone">+254727455027</a></p>
+       <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i> <a href="mailto:info@bountymillers.com" class="hover:text-white transition-colors" id="footer-email">info@bountymillers.com</a></p>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+     <p class="text-gray-300"><span class="lang-en">© 2024 Bounty Millers Limited. All rights reserved. | Serving Central Kenya's farming community</span> <span class="lang-sw hidden-lang">© 2024 Bounty Millers Limited. Haki zote zimehifadhiwa. | Kutumikia jamii ya wakulima wa Kenya ya Kati</span></p>
+    </div>
+   </div>
+  </footer><!-- WhatsApp Float Button --> <a href="https://wa.me/254727455027?text=Hello%20Bounty%20Millers!%20I'm%20interested%20in%20your%20dairy%20feeds." target="_blank" rel="noopener noreferrer" class="whatsapp-float"> <i class="fab fa-whatsapp"></i> </a>
+  <script>
+        // Global variables
+        let currentLanguage = 'en';
+        let currentRecordCount = 0;
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                console.log(`Data updated: ${data.length} records`);
+            }
+        };
+
+        // Element SDK Configuration
+        const defaultConfig = {
+            page_title_en: "Premium Dairy Feeds",
+            page_title_sw: "Chakula cha Ng'ombe wa Maziwa cha Ubora",
+            page_subtitle_en: "Maximize milk production with our scientifically formulated dairy feeds",
+            page_subtitle_sw: "Ongeza uzalishaji wa maziwa kwa chakula chetu cha kisayansi",
+            company_name: "Bounty Millers Limited",
+            phone_number: "+254727455027",
+            email_address: "info@bountymillers.com"
+        };
+
+        // Initialize SDKs
+        async function initializeSDKs() {
+            try {
+                // Initialize Data SDK
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize Data SDK");
+                    }
+                }
+
+                // Initialize Element SDK
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: async (config) => {
+                            // Update page titles
+                            const pageTitleEn = document.getElementById('page-title-en');
+                            if (pageTitleEn) {
+                                pageTitleEn.textContent = config.page_title_en || defaultConfig.page_title_en;
+                            }
+
+                            const pageTitleSw = document.getElementById('page-title-sw');
+                            if (pageTitleSw) {
+                                pageTitleSw.textContent = config.page_title_sw || defaultConfig.page_title_sw;
+                            }
+
+                            const pageSubtitleEn = document.getElementById('page-subtitle-en');
+                            if (pageSubtitleEn) {
+                                pageSubtitleEn.textContent = config.page_subtitle_en || defaultConfig.page_subtitle_en;
+                            }
+
+                            const pageSubtitleSw = document.getElementById('page-subtitle-sw');
+                            if (pageSubtitleSw) {
+                                pageSubtitleSw.textContent = config.page_subtitle_sw || defaultConfig.page_subtitle_sw;
+                            }
+
+                            // Update company name
+                            const companyElements = document.querySelectorAll('#company-name, #mobile-company-name, #footer-company-name');
+                            companyElements.forEach(el => {
+                                el.textContent = config.company_name || defaultConfig.company_name;
+                            });
+
+                            // Update contact information
+                            const phoneElements = document.querySelectorAll('#phone-display, #mobile-phone-display, #footer-phone');
+                            phoneElements.forEach(el => {
+                                el.textContent = config.phone_number || defaultConfig.phone_number;
+                                if (el.tagName === 'A') {
+                                    el.href = `tel:${config.phone_number || defaultConfig.phone_number}`;
+                                }
+                            });
+
+                            const emailElements = document.querySelectorAll('#footer-email');
+                            emailElements.forEach(el => {
+                                el.textContent = config.email_address || defaultConfig.email_address;
+                                if (el.tagName === 'A') {
+                                    el.href = `mailto:${config.email_address || defaultConfig.email_address}`;
+                                }
+                            });
+                        },
+                        mapToCapabilities: (config) => ({
+                            recolorables: [],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["page_title_en", config.page_title_en || defaultConfig.page_title_en],
+                            ["page_title_sw", config.page_title_sw || defaultConfig.page_title_sw],
+                            ["page_subtitle_en", config.page_subtitle_en || defaultConfig.page_subtitle_en],
+                            ["page_subtitle_sw", config.page_subtitle_sw || defaultConfig.page_subtitle_sw],
+                            ["company_name", config.company_name || defaultConfig.company_name],
+                            ["phone_number", config.phone_number || defaultConfig.phone_number],
+                            ["email_address", config.email_address || defaultConfig.email_address]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("SDK initialization error:", error);
+            }
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSDKs();
+            initializeAOS();
+            initializeLanguageToggle();
+            initializeMobileMenu();
+            initializeTabs();
+            initializeNutritionChart();
+        });
+
+        // AOS Animation initialization
+        function initializeAOS() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
+            });
+        }
+
+        // Language toggle functionality
+        function initializeLanguageToggle() {
+            const toggles = document.querySelectorAll('#language-toggle, #mobile-language-toggle');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'sw' : 'en';
+                    updateLanguage();
+                    // Sync both toggles
+                    toggles.forEach(t => t.checked = this.checked);
+                });
+            });
+        }
+
+        function updateLanguage() {
+            // Hide all language elements first
+            document.querySelectorAll('.lang-en, .lang-sw').forEach(el => {
+                el.classList.add('hidden-lang');
+            });
+
+            // Show current language elements
+            document.querySelectorAll(`.lang-${currentLanguage}`).forEach(el => {
+                el.classList.remove('hidden-lang');
+            });
+
+            // Update elements with data attributes
+            document.querySelectorAll('[data-lang-en][data-lang-sw]').forEach(el => {
+                const text = currentLanguage === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sw');
+                el.textContent = text;
+            });
+        }
+
+        // Mobile menu functionality
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+
+            closeMobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+
+            // Close menu when clicking outside
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Tab functionality
+        function initializeTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+        }
+
+        // Initialize nutrition comparison chart
+        function initializeNutritionChart() {
+            const ctx = document.getElementById('nutritionChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Crude Protein (%)', 'Energy (ME)', 'Crude Fiber (%)', 'Calcium (%)', 'Phosphorus (%)'],
+                        datasets: [{
+                            label: 'Dairy Gold',
+                            data: [18, 28, 12, 1.2, 0.8],
+                            backgroundColor: 'rgba(74, 124, 89, 0.8)',
+                            borderColor: 'rgba(74, 124, 89, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Dairy Supreme',
+                            data: [16, 26, 14, 1.0, 0.7],
+                            backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Dairy Economy',
+                            data: [14, 24, 16, 0.8, 0.6],
+                            backgroundColor: 'rgba(249, 115, 22, 0.8)',
+                            borderColor: 'rgba(249, 115, 22, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Quote request function
+        async function requestQuote(productName) {
+            if (currentRecordCount >= 999) {
+                showToast(currentLanguage === 'en' ? 'Maximum limit reached. Please contact us directly.' : 'Kikomo cha juu kimefikiwa. Tafadhali wasiliana nasi moja kwa moja.', 'error');
+                return;
+            }
+
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="spinner"></span> ' + (currentLanguage === 'en' ? 'Submitting...' : 'Inatuma...');
+            button.disabled = true;
+
+            const data = {
+                type: 'quote_request',
+                product: productName,
+                created_at: new Date().toISOString()
+            };
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(data);
+                if (result.isOk) {
+                    showToast(currentLanguage === 'en' ? 'Quote request submitted! We\'ll contact you soon.' : 'Ombi la bei limewasilishwa! Tutawasiliana nawe hivi karibuni.', 'success');
+                } else {
+                    showToast(currentLanguage === 'en' ? 'Failed to submit request. Please try again.' : 'Imeshindwa kutuma ombi. Tafadhali jaribu tena.', 'error');
+                }
+            } else {
+                showToast(currentLanguage === 'en' ? 'Quote request noted! Please contact us for pricing.' : 'Ombi la bei limerekodiwa! Tafadhali wasiliana nasi kwa bei.', 'success');
+            }
+
+            // Reset button state
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }
+
+        // WhatsApp function
+        function openWhatsApp(product) {
+            const phone = window.elementSdk?.config?.phone_number || defaultConfig.phone_number;
+            const message = currentLanguage === 'en' ? 
+                `Hello Bounty Millers! I'm interested in ${product} dairy feed. Can you provide more information about nutritional content, pricing, and availability?` :
+                `Hujambo Bounty Millers! Ninapenda ${product} chakula cha ng'ombe. Je, mnaweza kutoa maelezo zaidi kuhusu maudhui ya lishe, bei, na upatikanaji?`;
+            const url = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300`;
+            
+            const colors = {
+                success: 'bg-green-600 text-white',
+                error: 'bg-red-600 text-white',
+                warning: 'bg-yellow-600 text-white',
+                info: 'bg-blue-600 text-white'
+            };
+            
+            toast.className += ` ${colors[type] || colors.info}`;
+            toast.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} mr-3"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (document.body.contains(toast)) {
+                        document.body.removeChild(toast);
+                    }
+                }, 300);
+            }, 4000);
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99765444470fb19c',t:'MTc2MTk0NzAxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
