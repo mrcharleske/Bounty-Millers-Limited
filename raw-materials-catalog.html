@@ -1,0 +1,1448 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Raw Materials - Quality Feed Ingredients | Bounty Millers Limited</title>
+  <meta name="description" content="Premium raw materials for animal feed manufacturing. Protein sources, energy ingredients, minerals, and additives for superior livestock nutrition formulations."><!-- Schema Markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Premium Raw Materials for Animal Feed",
+      "brand": "Bounty Millers Limited",
+      "description": "Quality feed ingredients including protein sources, energy ingredients, minerals and additives for animal nutrition",
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "Bounty Millers Limited",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kiambu",
+          "addressCountry": "KE"
+        }
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "KES",
+        "lowPrice": "1200",
+        "highPrice": "8500"
+      }
+    }
+    </script><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- Chart.js for nutritional charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><!-- SDKs -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* Raw Materials Color Scheme */
+        :root {
+            --primary-brown: #8b4513;
+            --secondary-brown: #a0522d;
+            --accent-green: #228b22;
+            --warm-orange: #ff8c00;
+            --cream-beige: #f5f5dc;
+        }
+        
+        .bg-primary { background-color: var(--primary-brown); }
+        .bg-secondary { background-color: var(--secondary-brown); }
+        .bg-accent { background-color: var(--accent-green); }
+        .bg-warm { background-color: var(--warm-orange); }
+        .bg-cream { background-color: var(--cream-beige); }
+        
+        .text-primary { color: var(--primary-brown); }
+        .text-secondary { color: var(--secondary-brown); }
+        .text-accent { color: var(--accent-green); }
+        .text-warm { color: var(--warm-orange); }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--secondary-brown) 50%, var(--accent-green) 100%);
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary-brown) 0%, var(--accent-green) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--secondary-brown) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(160, 82, 45, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--warm-orange) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #1e7e1e 0%, #e67e00 100%);
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 36px;
+        }
+        
+        .language-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--secondary-brown);
+            transition: .4s;
+            border-radius: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 28px;
+            width: 28px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(44px);
+        }
+        
+        /* Navigation Dropdown */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-section {
+            padding: 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .dropdown-section:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-title {
+            font-weight: 600;
+            color: var(--primary-brown);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 6px 0;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            color: var(--secondary-brown);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu-content {
+            background: white;
+            width: 280px;
+            height: 100%;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateX(0);
+        }
+        
+        /* Material Category Badges */
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .badge-protein { background: #fef3c7; color: #92400e; }
+        .badge-energy { background: #dcfce7; color: #166534; }
+        .badge-mineral { background: #dbeafe; color: #1e40af; }
+        .badge-additive { background: #fce7f3; color: #be185d; }
+        .badge-fiber { background: #f3e8ff; color: #7c3aed; }
+        
+        /* Material Cards */
+        .material-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .material-card:hover {
+            border-color: var(--secondary-brown);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(139, 69, 19, 0.15);
+        }
+        
+        /* Nutritional Analysis */
+        .nutrition-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #fbbf24;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .nutrition-item {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .nutrition-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-brown);
+            display: block;
+        }
+        
+        .nutrition-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        /* Filter System */
+        .filter-container {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 32px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--secondary-brown);
+            background: white;
+            color: var(--secondary-brown);
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--secondary-brown);
+            color: white;
+        }
+        
+        /* Specifications Table */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .specs-table th {
+            background: var(--secondary-brown);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .specs-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        /* Quality Indicators */
+        .quality-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .quality-premium { background: #dcfce7; color: #166534; }
+        .quality-standard { background: #dbeafe; color: #1e40af; }
+        .quality-organic { background: #f3e8ff; color: #7c3aed; }
+        
+        /* Supply Chain Visual */
+        .supply-chain {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 24px 0;
+            position: relative;
+        }
+        
+        .supply-chain::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-green);
+            z-index: 1;
+        }
+        
+        .supply-point {
+            background: white;
+            border: 3px solid var(--secondary-brown);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-brown);
+            z-index: 2;
+            position: relative;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .supply-label {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+            
+            .nutrition-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .specs-table {
+                font-size: 14px;
+            }
+            
+            .specs-table th,
+            .specs-table td {
+                padding: 8px;
+            }
+            
+            .filter-buttons {
+                justify-content: flex-start;
+            }
+            
+            .supply-chain {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .supply-chain::before {
+                display: none;
+            }
+            
+            .supply-point {
+                width: 60px;
+                height: 60px;
+                font-size: 10px;
+            }
+        }
+        
+        /* Hidden class for language switching */
+        .hidden-lang {
+            display: none !important;
+        }
+        
+        /* Loading states */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--secondary-brown);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Material grid */
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+        
+        /* Price range indicator */
+        .price-range {
+            background: linear-gradient(135deg, var(--warm-orange), #ff6b35);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 12px;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-gray-50"><!-- Navigation -->
+  <nav class="bg-white shadow-lg fixed w-full z-50" data-aos="slide-down">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16"><!-- Logo and Company Name -->
+     <div class="flex items-center"><a href="index.html" class="flex items-center"> <img src="images/logo.jpg" alt="Bounty Millers Logo" class="h-10 w-auto"> <span class="ml-3 text-xl font-bold text-primary" id="company-name">Bounty Millers Limited</span> </a>
+     </div><!-- Desktop Menu -->
+     <div class="hidden lg:flex items-center space-x-8"><a href="index.html" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Home" data-lang-sw="Nyumbani">Home</a> <!-- Products Dropdown -->
+      <div class="dropdown"><button class="text-gray-700 hover:text-secondary transition-colors flex items-center"> <span data-lang-en="Products" data-lang-sw="Bidhaa">Products</span> <i class="fas fa-chevron-down ml-1"></i> </button>
+       <div class="dropdown-content">
+        <div class="dropdown-section">
+         <div class="dropdown-title" data-lang-en="Finished Feeds" data-lang-sw="Chakula Tayari">
+          Finished Feeds
+         </div><a href="dairy-feeds.html" class="dropdown-item" data-lang-en="Dairy Feeds" data-lang-sw="Chakula cha Ng'ombe wa Maziwa">Dairy Feeds</a> <a href="poultry-feeds.html" class="dropdown-item" data-lang-en="Poultry Feeds" data-lang-sw="Chakula cha Kuku">Poultry Feeds</a> <a href="layer-feeds.html" class="dropdown-item" data-lang-en="Layer Feeds" data-lang-sw="Chakula cha Kuku wa Mayai">Layer Feeds</a> <a href="pig-feeds.html" class="dropdown-item" data-lang-en="Pig Feeds" data-lang-sw="Chakula cha Nguruwe">Pig Feeds</a>
+        </div>
+        <div class="dropdown-section">
+         <div class="dropdown-title" data-lang-en="Raw Materials" data-lang-sw="Malighafi">
+          Raw Materials
+         </div><a href="raw-materials.html" class="dropdown-item font-semibold text-secondary" data-lang-en="Protein Sources" data-lang-sw="Vyanzo vya Protini">Protein Sources</a> <a href="raw-materials.html" class="dropdown-item" data-lang-en="Energy Sources" data-lang-sw="Vyanzo vya Nishati">Energy Sources</a> <a href="raw-materials.html" class="dropdown-item" data-lang-en="Minerals &amp; Additives" data-lang-sw="Madini na Viongezeo">Minerals &amp; Additives</a>
+        </div>
+       </div>
+      </div><!-- Tools Dropdown -->
+      <div class="dropdown"><button class="text-gray-700 hover:text-secondary transition-colors flex items-center"> <span data-lang-en="Tools" data-lang-sw="Zana">Tools</span> <i class="fas fa-chevron-down ml-1"></i> </button>
+       <div class="dropdown-content">
+        <div class="dropdown-section"><a href="calculator.html" class="dropdown-item" data-lang-en="Feed Calculator" data-lang-sw="Kikokotoo cha Chakula">Feed Calculator</a> <a href="quiz.html" class="dropdown-item" data-lang-en="Feed Quiz" data-lang-sw="Jaribio la Chakula">Feed Quiz</a> <a href="nutrition-assistant.html" class="dropdown-item" data-lang-en="Nutrition Assistant" data-lang-sw="Msaidizi wa Lishe">Nutrition Assistant</a> <a href="sustainability.html" class="dropdown-item" data-lang-en="Sustainability Hub" data-lang-sw="Kituo cha Mazingira">Sustainability Hub</a>
+        </div>
+       </div>
+      </div><a href="blog.html" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Blog" data-lang-sw="Blogu">Blog</a> <a href="contact.html" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Contact" data-lang-sw="Wasiliana">Contact</a> <!-- Language Toggle -->
+      <div class="flex items-center"><label class="language-toggle"> <input type="checkbox" id="language-toggle"> <span class="slider"> <span>EN</span> <span>SW</span> </span> </label>
+      </div><!-- Phone Button --> <a href="tel:+254727455027" class="btn-primary text-white px-4 py-2 rounded-lg font-semibold"> <i class="fas fa-phone mr-2"></i><span id="phone-display">+254727455027</span> </a>
+     </div><!-- Mobile Menu Button -->
+     <div class="lg:hidden flex items-center space-x-4"><!-- Mobile Language Toggle --> <label class="language-toggle"> <input type="checkbox" id="mobile-language-toggle"> <span class="slider"> <span>EN</span> <span>SW</span> </span> </label> <button id="mobile-menu-btn" class="text-gray-700 hover:text-secondary"> <i class="fas fa-bars text-xl"></i> </button>
+     </div>
+    </div>
+   </div>
+  </nav><!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+   <div class="mobile-menu-content">
+    <div class="p-6 border-b">
+     <div class="flex items-center justify-between"><span class="text-xl font-bold text-primary" id="mobile-company-name">Bounty Millers</span> <button id="close-mobile-menu" class="text-gray-500 hover:text-gray-700"> <i class="fas fa-times text-xl"></i> </button>
+     </div>
+    </div>
+    <div class="p-6 space-y-4"><a href="index.html" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Home" data-lang-sw="Nyumbani">Home</a> <!-- Mobile Products Section -->
+     <div>
+      <div class="py-2 font-semibold text-secondary" data-lang-en="Products" data-lang-sw="Bidhaa">
+       Products
+      </div>
+      <div class="ml-4 space-y-2"><a href="dairy-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Dairy Feeds" data-lang-sw="Chakula cha Ng'ombe">Dairy Feeds</a> <a href="poultry-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Poultry Feeds" data-lang-sw="Chakula cha Kuku">Poultry Feeds</a> <a href="layer-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Layer Feeds" data-lang-sw="Chakula cha Mayai">Layer Feeds</a> <a href="pig-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Pig Feeds" data-lang-sw="Chakula cha Nguruwe">Pig Feeds</a> <a href="raw-materials.html" class="block py-1 text-secondary font-semibold" data-lang-en="Raw Materials" data-lang-sw="Malighafi">Raw Materials</a>
+      </div>
+     </div><!-- Mobile Tools Section -->
+     <div>
+      <div class="py-2 font-semibold text-primary" data-lang-en="Tools" data-lang-sw="Zana">
+       Tools
+      </div>
+      <div class="ml-4 space-y-2"><a href="calculator.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Feed Calculator" data-lang-sw="Kikokotoo cha Chakula">Feed Calculator</a> <a href="quiz.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Feed Quiz" data-lang-sw="Jaribio la Chakula">Feed Quiz</a> <a href="nutrition-assistant.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Nutrition Assistant" data-lang-sw="Msaidizi wa Lishe">Nutrition Assistant</a> <a href="sustainability.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Sustainability Hub" data-lang-sw="Kituo cha Mazingira">Sustainability Hub</a>
+      </div>
+     </div><a href="blog.html" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Blog" data-lang-sw="Blogu">Blog</a> <a href="contact.html" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Contact" data-lang-sw="Wasiliana">Contact</a>
+     <div class="pt-4 border-t"><a href="tel:+254727455027" class="block w-full text-center btn-primary text-white py-3 rounded-lg font-semibold"> <i class="fas fa-phone mr-2"></i><span id="mobile-phone-display">+254727455027</span> </a>
+     </div>
+    </div>
+   </div>
+  </div><!-- Breadcrumb -->
+  <section class="pt-20 pb-4 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex" aria-label="Breadcrumb">
+     <ol class="inline-flex items-center space-x-1 md:space-x-3">
+      <li class="inline-flex items-center"><a href="index.html" class="text-gray-700 hover:text-secondary"> <i class="fas fa-home mr-2"></i> <span data-lang-en="Home" data-lang-sw="Nyumbani">Home</span> </a></li>
+      <li>
+       <div class="flex items-center"><i class="fas fa-chevron-right text-gray-400 mx-2"></i> <a href="products.html" class="text-gray-700 hover:text-secondary" data-lang-en="Products" data-lang-sw="Bidhaa">Products</a>
+       </div></li>
+      <li aria-current="page">
+       <div class="flex items-center"><i class="fas fa-chevron-right text-gray-400 mx-2"></i> <span class="text-secondary font-semibold" data-lang-en="Raw Materials" data-lang-sw="Malighafi">Raw Materials</span>
+       </div></li>
+     </ol>
+    </nav>
+   </div>
+  </section><!-- Hero Section -->
+  <section class="gradient-bg hero-pattern py-20">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center text-white" data-aos="fade-up">
+     <h1 class="text-4xl md:text-6xl font-bold mb-6"><span class="lang-en" id="page-title-en">Premium Raw Materials</span> <span class="lang-sw hidden-lang" id="page-title-sw">Malighafi ya Ubora</span></h1>
+     <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto"><span class="lang-en" id="page-subtitle-en">Quality feed ingredients for superior animal nutrition formulations</span> <span class="lang-sw hidden-lang" id="page-subtitle-sw">Viungo vya chakula vya ubora kwa mchanganyiko bora wa lishe ya wanyamapori</span></p><!-- Key Statistics -->
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
+      <div class="text-center">
+       <div class="text-3xl font-bold mb-2">
+        50+
+       </div>
+       <div class="text-sm opacity-80"><span class="lang-en">Raw Materials</span> <span class="lang-sw hidden-lang">Malighafi</span>
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="text-3xl font-bold mb-2">
+        99%
+       </div>
+       <div class="text-sm opacity-80"><span class="lang-en">Quality Assured</span> <span class="lang-sw hidden-lang">Ubora Uliohakikishwa</span>
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="text-3xl font-bold mb-2">
+        24/7
+       </div>
+       <div class="text-sm opacity-80"><span class="lang-en">Supply Chain</span> <span class="lang-sw hidden-lang">Mnyororo wa Ugavi</span>
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="text-3xl font-bold mb-2">
+        ISO
+       </div>
+       <div class="text-sm opacity-80"><span class="lang-en">Certified</span> <span class="lang-sw hidden-lang">Iliyoidhinishwa</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Supply Chain Timeline -->
+  <section class="py-16 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12" data-aos="fade-up">
+     <h2 class="text-3xl font-bold text-primary mb-4"><span class="lang-en">From Source to Feed Mill</span> <span class="lang-sw hidden-lang">Kutoka Chanzo hadi Kiwanda cha Chakula</span></h2>
+     <p class="text-gray-600 max-w-2xl mx-auto"><span class="lang-en">Comprehensive quality control and traceability throughout our supply chain</span> <span class="lang-sw hidden-lang">Udhibiti kamili wa ubora na ufuatiliaji katika mnyororo wetu wa ugavi</span></p>
+    </div>
+    <div class="supply-chain" data-aos="fade-up" data-aos-delay="200">
+     <div class="text-center">
+      <div class="supply-point">
+       Source<br>
+       Farms
+      </div>
+      <div class="supply-label"><span class="lang-en">Quality Sourcing</span> <span class="lang-sw hidden-lang">Upataji wa Ubora</span>
+      </div>
+     </div>
+     <div class="text-center">
+      <div class="supply-point">
+       Quality<br>
+       Testing
+      </div>
+      <div class="supply-label"><span class="lang-en">Lab Analysis</span> <span class="lang-sw hidden-lang">Uchambuzi wa Maabara</span>
+      </div>
+     </div>
+     <div class="text-center">
+      <div class="supply-point">
+       Storage<br>
+       Facility
+      </div>
+      <div class="supply-label"><span class="lang-en">Proper Storage</span> <span class="lang-sw hidden-lang">Uhifadhi Sahihi</span>
+      </div>
+     </div>
+     <div class="text-center">
+      <div class="supply-point">
+       Feed<br>
+       Mill
+      </div>
+      <div class="supply-label"><span class="lang-en">Final Product</span> <span class="lang-sw hidden-lang">Bidhaa ya Mwisho</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Filter Section -->
+  <section class="py-8 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="filter-container" data-aos="fade-up">
+     <h3 class="text-xl font-semibold text-primary text-center mb-6"><i class="fas fa-filter mr-2"></i> <span class="lang-en">Filter by Category</span> <span class="lang-sw hidden-lang">Chuja kwa Aina</span></h3>
+     <div class="filter-buttons"><button class="filter-btn active" data-filter="all"> <span class="lang-en">All Materials</span> <span class="lang-sw hidden-lang">Malighafi Zote</span> </button> <button class="filter-btn" data-filter="protein"> <i class="fas fa-dna mr-2"></i> <span class="lang-en">Protein Sources</span> <span class="lang-sw hidden-lang">Vyanzo vya Protini</span> </button> <button class="filter-btn" data-filter="energy"> <i class="fas fa-bolt mr-2"></i> <span class="lang-en">Energy Sources</span> <span class="lang-sw hidden-lang">Vyanzo vya Nishati</span> </button> <button class="filter-btn" data-filter="mineral"> <i class="fas fa-gem mr-2"></i> <span class="lang-en">Minerals</span> <span class="lang-sw hidden-lang">Madini</span> </button> <button class="filter-btn" data-filter="additive"> <i class="fas fa-plus-circle mr-2"></i> <span class="lang-en">Additives</span> <span class="lang-sw hidden-lang">Viongezeo</span> </button> <button class="filter-btn" data-filter="fiber"> <i class="fas fa-leaf mr-2"></i> <span class="lang-en">Fiber Sources</span> <span class="lang-sw hidden-lang">Vyanzo vya Nyuzi</span> </button>
+     </div>
+    </div>
+   </div>
+  </section><!-- Raw Materials Grid -->
+  <section class="py-16 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="materials-grid" id="materials-grid"><!-- Soybean Meal -->
+     <div class="material-card card-hover" data-category="protein" data-aos="fade-up">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Soybean Meal</span> <span class="lang-sw hidden-lang">Unga wa Soya</span></h3><span class="category-badge badge-protein"> <span class="lang-en">Protein</span> <span class="lang-sw hidden-lang">Protini</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-premium"> <i class="fas fa-star mr-1"></i> <span class="lang-en">Premium Grade</span> <span class="lang-sw hidden-lang">Daraja la Juu</span> </span> <span class="quality-indicator quality-organic ml-2"> <i class="fas fa-leaf mr-1"></i> <span class="lang-en">Non-GMO</span> <span class="lang-sw hidden-lang">Bila GMO</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">High-quality protein source with excellent amino acid profile. Ideal for poultry, dairy, and pig feeds requiring superior protein content.</span> <span class="lang-sw hidden-lang">Chanzo cha protini ya ubora wa juu chenye mchanganyiko bora wa amino asidi. Bora kwa chakula cha kuku, ng'ombe wa maziwa, na nguruwe zinazohitaji maudhui ya protini ya juu.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">48%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2.8%</span>
+         <div class="nutrition-label"><span class="lang-en">Lysine</span> <span class="lang-sw hidden-lang">Lysine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">0.7%</span>
+         <div class="nutrition-label"><span class="lang-en">Methionine</span> <span class="lang-sw hidden-lang">Methionine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2400</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 4,200-4,800 per 50kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Soybean Meal')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Soybean Meal')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Fish Meal -->
+     <div class="material-card card-hover" data-category="protein" data-aos="fade-up" data-aos-delay="100">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Fish Meal</span> <span class="lang-sw hidden-lang">Unga wa Samaki</span></h3><span class="category-badge badge-protein"> <span class="lang-en">Protein</span> <span class="lang-sw hidden-lang">Protini</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-premium"> <i class="fas fa-star mr-1"></i> <span class="lang-en">Premium Grade</span> <span class="lang-sw hidden-lang">Daraja la Juu</span> </span> <span class="quality-indicator quality-standard ml-2"> <i class="fas fa-fish mr-1"></i> <span class="lang-en">Marine Source</span> <span class="lang-sw hidden-lang">Chanzo cha Baharini</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Superior protein source with excellent amino acid balance. Essential for poultry and aquaculture feeds requiring high-quality protein.</span> <span class="lang-sw hidden-lang">Chanzo bora cha protini chenye usawa bora wa amino asidi. Muhimu kwa chakula cha kuku na samaki kinachohitaji protini ya ubora wa juu.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">65%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">4.2%</span>
+         <div class="nutrition-label"><span class="lang-en">Lysine</span> <span class="lang-sw hidden-lang">Lysine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2.1%</span>
+         <div class="nutrition-label"><span class="lang-en">Methionine</span> <span class="lang-sw hidden-lang">Methionine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2800</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 7,500-8,500 per 50kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Fish Meal')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Fish Meal')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Sunflower Seed Cake -->
+     <div class="material-card card-hover" data-category="protein" data-aos="fade-up" data-aos-delay="200">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Sunflower Seed Cake</span> <span class="lang-sw hidden-lang">Keki ya Mbegu za Alizeti</span></h3><span class="category-badge badge-protein"> <span class="lang-en">Protein</span> <span class="lang-sw hidden-lang">Protini</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-standard"> <i class="fas fa-check-circle mr-1"></i> <span class="lang-en">Standard Grade</span> <span class="lang-sw hidden-lang">Daraja la Kawaida</span> </span> <span class="quality-indicator quality-organic ml-2"> <i class="fas fa-sun mr-1"></i> <span class="lang-en">Local Source</span> <span class="lang-sw hidden-lang">Chanzo cha Ndani</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Cost-effective protein source with good amino acid profile. Excellent for ruminant feeds and as partial replacement for soybean meal.</span> <span class="lang-sw hidden-lang">Chanzo cha protini cha gharama nafuu chenye mchanganyiko mzuri wa amino asidi. Bora kwa chakula cha wanyamapori wa chembe na kama mbadala wa sehemu ya unga wa soya.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">36%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">1.4%</span>
+         <div class="nutrition-label"><span class="lang-en">Lysine</span> <span class="lang-sw hidden-lang">Lysine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">0.5%</span>
+         <div class="nutrition-label"><span class="lang-en">Methionine</span> <span class="lang-sw hidden-lang">Methionine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2100</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 2,800-3,400 per 50kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Sunflower Seed Cake')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Sunflower Seed Cake')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Cotton Seed Cake -->
+     <div class="material-card card-hover" data-category="protein" data-aos="fade-up" data-aos-delay="300">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Cotton Seed Cake</span> <span class="lang-sw hidden-lang">Keki ya Mbegu za Pamba</span></h3><span class="category-badge badge-protein"> <span class="lang-en">Protein</span> <span class="lang-sw hidden-lang">Protini</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-standard"> <i class="fas fa-check-circle mr-1"></i> <span class="lang-en">Standard Grade</span> <span class="lang-sw hidden-lang">Daraja la Kawaida</span> </span> <span class="quality-indicator quality-organic ml-2"> <i class="fas fa-seedling mr-1"></i> <span class="lang-en">Processed</span> <span class="lang-sw hidden-lang">Iliyosindikwa</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">High-protein feed ingredient suitable for ruminants. Rich in lysine and provides good energy content for dairy and beef cattle.</span> <span class="lang-sw hidden-lang">Kiongezeo cha chakula chenye protini nyingi kinachofaa kwa wanyamapori wa chembe. Tajiri kwa lysine na hutoa maudhui mazuri ya nishati kwa ng'ombe wa maziwa na nyama.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">42%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">1.8%</span>
+         <div class="nutrition-label"><span class="lang-en">Lysine</span> <span class="lang-sw hidden-lang">Lysine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">0.6%</span>
+         <div class="nutrition-label"><span class="lang-en">Methionine</span> <span class="lang-sw hidden-lang">Methionine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2300</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 3,200-3,800 per 50kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Cotton Seed Cake')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Cotton Seed Cake')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Blood Meal -->
+     <div class="material-card card-hover" data-category="protein" data-aos="fade-up" data-aos-delay="400">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Blood Meal</span> <span class="lang-sw hidden-lang">Unga wa Damu</span></h3><span class="category-badge badge-protein"> <span class="lang-en">Protein</span> <span class="lang-sw hidden-lang">Protini</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-premium"> <i class="fas fa-star mr-1"></i> <span class="lang-en">Premium Grade</span> <span class="lang-sw hidden-lang">Daraja la Juu</span> </span> <span class="quality-indicator quality-standard ml-2"> <i class="fas fa-tint mr-1"></i> <span class="lang-en">Spray Dried</span> <span class="lang-sw hidden-lang">Iliyokaushwa kwa Dawa</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Ultra-high protein content with excellent lysine levels. Ideal for high-performance poultry and pig feeds requiring maximum protein density.</span> <span class="lang-sw hidden-lang">Maudhui ya protini ya juu sana yenye viwango bora vya lysine. Bora kwa chakula cha kuku na nguruwe wa utendaji wa juu kinachohitaji msongamano wa juu wa protini.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">85%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">7.2%</span>
+         <div class="nutrition-label"><span class="lang-en">Lysine</span> <span class="lang-sw hidden-lang">Lysine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">1.1%</span>
+         <div class="nutrition-label"><span class="lang-en">Methionine</span> <span class="lang-sw hidden-lang">Methionine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2600</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 9,500-11,200 per 50kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Blood Meal')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Blood Meal')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Meat and Bone Meal -->
+     <div class="material-card card-hover" data-category="protein" data-aos="fade-up" data-aos-delay="500">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Meat &amp; Bone Meal</span> <span class="lang-sw hidden-lang">Unga wa Nyama na Mifupa</span></h3><span class="category-badge badge-protein"> <span class="lang-en">Protein</span> <span class="lang-sw hidden-lang">Protini</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-standard"> <i class="fas fa-check-circle mr-1"></i> <span class="lang-en">Standard Grade</span> <span class="lang-sw hidden-lang">Daraja la Kawaida</span> </span> <span class="quality-indicator quality-organic ml-2"> <i class="fas fa-bone mr-1"></i> <span class="lang-en">Rendered</span> <span class="lang-sw hidden-lang">Iliyosindikwa</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Balanced protein and mineral source combining meat protein with calcium and phosphorus from bones. Excellent for poultry and pig feeds.</span> <span class="lang-sw hidden-lang">Chanzo cha protini na madini kilichosawazishwa kinachounganisha protini ya nyama na kalsiamu na fosforasi kutoka mifupa. Bora kwa chakula cha kuku na nguruwe.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">52%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">8.5%</span>
+         <div class="nutrition-label"><span class="lang-en">Calcium</span> <span class="lang-sw hidden-lang">Kalsiamu</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">4.2%</span>
+         <div class="nutrition-label"><span class="lang-en">Phosphorus</span> <span class="lang-sw hidden-lang">Fosforasi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2500</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 5,800-6,800 per 50kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Meat &amp; Bone Meal')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Meat &amp; Bone Meal')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Maize Meal -->
+     <div class="material-card card-hover" data-category="energy" data-aos="fade-up" data-aos-delay="100">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Maize Meal</span> <span class="lang-sw hidden-lang">Unga wa Mahindi</span></h3><span class="category-badge badge-energy"> <span class="lang-en">Energy</span> <span class="lang-sw hidden-lang">Nishati</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-standard"> <i class="fas fa-check-circle mr-1"></i> <span class="lang-en">Standard Grade</span> <span class="lang-sw hidden-lang">Daraja la Kawaida</span> </span> <span class="quality-indicator quality-organic ml-2"> <i class="fas fa-seedling mr-1"></i> <span class="lang-en">Local Source</span> <span class="lang-sw hidden-lang">Chanzo cha Ndani</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Primary energy source for all animal feeds. Provides essential carbohydrates and is highly palatable for all livestock species.</span> <span class="lang-sw hidden-lang">Chanzo kikuu cha nishati kwa chakula chote cha wanyamapori. Hutoa kabohaidreti muhimu na ni kitamu kwa aina zote za mifugo.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">9%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">3200</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">3%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Fiber</span> <span class="lang-sw hidden-lang">Nyuzi Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">4%</span>
+         <div class="nutrition-label"><span class="lang-en">Fat Content</span> <span class="lang-sw hidden-lang">Maudhui ya Mafuta</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 2,800-3,200 per 90kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Maize Meal')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Maize Meal')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Fish Meal -->
+     <div class="material-card card-hover" data-category="protein" data-aos="fade-up" data-aos-delay="200">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Fish Meal</span> <span class="lang-sw hidden-lang">Unga wa Samaki</span></h3><span class="category-badge badge-protein"> <span class="lang-en">Protein</span> <span class="lang-sw hidden-lang">Protini</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-premium"> <i class="fas fa-star mr-1"></i> <span class="lang-en">Premium Grade</span> <span class="lang-sw hidden-lang">Daraja la Juu</span> </span> <span class="quality-indicator quality-standard ml-2"> <i class="fas fa-fish mr-1"></i> <span class="lang-en">Marine Source</span> <span class="lang-sw hidden-lang">Chanzo cha Baharini</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Superior protein source with excellent amino acid balance. Essential for poultry and aquaculture feeds requiring high-quality protein.</span> <span class="lang-sw hidden-lang">Chanzo bora cha protini chenye usawa bora wa amino asidi. Muhimu kwa chakula cha kuku na samaki kinachohitaji protini ya ubora wa juu.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">65%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">4.2%</span>
+         <div class="nutrition-label"><span class="lang-en">Lysine</span> <span class="lang-sw hidden-lang">Lysine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2.1%</span>
+         <div class="nutrition-label"><span class="lang-en">Methionine</span> <span class="lang-sw hidden-lang">Methionine</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2800</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 7,500-8,500 per 50kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Fish Meal')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Fish Meal')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Limestone -->
+     <div class="material-card card-hover" data-category="mineral" data-aos="fade-up" data-aos-delay="300">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Limestone</span> <span class="lang-sw hidden-lang">Jiwe la Chokaa</span></h3><span class="category-badge badge-mineral"> <span class="lang-en">Mineral</span> <span class="lang-sw hidden-lang">Madini</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-standard"> <i class="fas fa-check-circle mr-1"></i> <span class="lang-en">Food Grade</span> <span class="lang-sw hidden-lang">Daraja la Chakula</span> </span> <span class="quality-indicator quality-organic ml-2"> <i class="fas fa-mountain mr-1"></i> <span class="lang-en">Natural</span> <span class="lang-sw hidden-lang">Asili</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Essential calcium source for strong bones and eggshell formation. Critical for layer feeds and growing animals requiring calcium supplementation.</span> <span class="lang-sw hidden-lang">Chanzo muhimu cha kalsiamu kwa mifupa imara na uundaji wa ganda la yai. Muhimu kwa chakula cha kuku wa mayai na wanyamapori wanaokua wanaohitaji nyongeza za kalsiamu.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Mineral Content</span> <span class="lang-sw hidden-lang">Maudhui ya Madini</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">38%</span>
+         <div class="nutrition-label"><span class="lang-en">Calcium</span> <span class="lang-sw hidden-lang">Kalsiamu</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">0.1%</span>
+         <div class="nutrition-label"><span class="lang-en">Phosphorus</span> <span class="lang-sw hidden-lang">Fosforasi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">0.2%</span>
+         <div class="nutrition-label"><span class="lang-en">Magnesium</span> <span class="lang-sw hidden-lang">Magnesiamu</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">99%</span>
+         <div class="nutrition-label"><span class="lang-en">Purity</span> <span class="lang-sw hidden-lang">Usafi</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 1,200-1,500 per 50kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Limestone')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Limestone')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Vitamin Premix -->
+     <div class="material-card card-hover" data-category="additive" data-aos="fade-up" data-aos-delay="400">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Vitamin Premix</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Vitamini</span></h3><span class="category-badge badge-additive"> <span class="lang-en">Additive</span> <span class="lang-sw hidden-lang">Kiongezeo</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-premium"> <i class="fas fa-star mr-1"></i> <span class="lang-en">Premium Grade</span> <span class="lang-sw hidden-lang">Daraja la Juu</span> </span> <span class="quality-indicator quality-standard ml-2"> <i class="fas fa-shield-alt mr-1"></i> <span class="lang-en">Stabilized</span> <span class="lang-sw hidden-lang">Imeimarishwa</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Complete vitamin supplement ensuring optimal animal health and performance. Essential for immune function and metabolic processes.</span> <span class="lang-sw hidden-lang">Nyongeza kamili za vitamini zinazohakikisha afya bora ya wanyamapori na utendaji. Muhimu kwa kazi za kinga na michakato ya kimetaboliki.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Vitamin Content</span> <span class="lang-sw hidden-lang">Maudhui ya Vitamini</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">12000</span>
+         <div class="nutrition-label"><span class="lang-en">Vitamin A (IU/kg)</span> <span class="lang-sw hidden-lang">Vitamini A (IU/kg)</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2500</span>
+         <div class="nutrition-label"><span class="lang-en">Vitamin D3 (IU/kg)</span> <span class="lang-sw hidden-lang">Vitamini D3 (IU/kg)</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">30</span>
+         <div class="nutrition-label"><span class="lang-en">Vitamin E (mg/kg)</span> <span class="lang-sw hidden-lang">Vitamini E (mg/kg)</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2</span>
+         <div class="nutrition-label"><span class="lang-en">Vitamin K (mg/kg)</span> <span class="lang-sw hidden-lang">Vitamini K (mg/kg)</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 3,500-4,200 per 25kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Vitamin Premix')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Vitamin Premix')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div><!-- Wheat Bran -->
+     <div class="material-card card-hover" data-category="fiber" data-aos="fade-up" data-aos-delay="500">
+      <div class="flex items-center justify-between mb-4">
+       <h3 class="text-2xl font-bold text-primary"><span class="lang-en">Wheat Bran</span> <span class="lang-sw hidden-lang">Mabua ya Ngano</span></h3><span class="category-badge badge-fiber"> <span class="lang-en">Fiber</span> <span class="lang-sw hidden-lang">Nyuzi</span> </span>
+      </div>
+      <div class="flex items-center mb-4"><span class="quality-indicator quality-standard"> <i class="fas fa-check-circle mr-1"></i> <span class="lang-en">Standard Grade</span> <span class="lang-sw hidden-lang">Daraja la Kawaida</span> </span> <span class="quality-indicator quality-organic ml-2"> <i class="fas fa-wheat mr-1"></i> <span class="lang-en">Fresh Milled</span> <span class="lang-sw hidden-lang">Iliyosagwa Upya</span> </span>
+      </div>
+      <p class="text-gray-600 mb-6"><span class="lang-en">Excellent fiber source promoting healthy digestion. Rich in B-vitamins and essential for ruminant feeds requiring bulk and fiber content.</span> <span class="lang-sw hidden-lang">Chanzo bora cha nyuzi kinachohimiza mmeng'enyo mzuri. Tajiri kwa vitamini za B na muhimu kwa chakula cha wanyamapori wa chembe zinazohitaji wingi na maudhui ya nyuzi.</span></p><!-- Nutritional Analysis -->
+      <div class="nutrition-card">
+       <h4 class="text-lg font-semibold text-primary mb-3"><i class="fas fa-flask mr-2"></i> <span class="lang-en">Nutritional Profile</span> <span class="lang-sw hidden-lang">Mchanganyiko wa Lishe</span></h4>
+       <div class="nutrition-grid">
+        <div class="nutrition-item"><span class="nutrition-value">16%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Protein</span> <span class="lang-sw hidden-lang">Protini Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">11%</span>
+         <div class="nutrition-label"><span class="lang-en">Crude Fiber</span> <span class="lang-sw hidden-lang">Nyuzi Ghafi</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">2200</span>
+         <div class="nutrition-label"><span class="lang-en">ME (kcal/kg)</span> <span class="lang-sw hidden-lang">Nishati (kcal/kg)</span>
+         </div>
+        </div>
+        <div class="nutrition-item"><span class="nutrition-value">1.2%</span>
+         <div class="nutrition-label"><span class="lang-en">Phosphorus</span> <span class="lang-sw hidden-lang">Fosforasi</span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="price-range"><i class="fas fa-tag mr-2"></i> KSh 1,800-2,200 per 70kg
+      </div>
+      <div class="flex gap-3 mt-6"><button onclick="requestQuote('Wheat Bran')" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold"> <i class="fas fa-quote-right mr-2"></i> <span class="lang-en">Get Quote</span> <span class="lang-sw hidden-lang">Pata Bei</span> </button> <button onclick="openWhatsApp('Wheat Bran')" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors"> <i class="fab fa-whatsapp mr-2"></i> <span class="lang-en">WhatsApp</span> <span class="lang-sw hidden-lang">WhatsApp</span> </button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Quality Assurance Section -->
+  <section class="py-16 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12" data-aos="fade-up">
+     <h2 class="text-3xl font-bold text-primary mb-4"><span class="lang-en">Quality Assurance &amp; Testing</span> <span class="lang-sw hidden-lang">Uhakikisho wa Ubora na Upimaji</span></h2>
+     <p class="text-gray-600 max-w-2xl mx-auto"><span class="lang-en">Every batch undergoes rigorous testing to ensure consistent quality and nutritional value</span> <span class="lang-sw hidden-lang">Kila kundi linapitia upimaji mkali kuhakikisha ubora thabiti na thamani ya lishe</span></p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+     <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+      <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-microscope text-white text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-4"><span class="lang-en">Laboratory Testing</span> <span class="lang-sw hidden-lang">Upimaji wa Maabara</span></h3>
+      <p class="text-gray-600"><span class="lang-en">Comprehensive analysis of protein, moisture, fiber, and mineral content for every batch</span> <span class="lang-sw hidden-lang">Uchambuzi kamili wa protini, unyevu, nyuzi, na maudhui ya madini kwa kila kundi</span></p>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+      <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-certificate text-white text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-4"><span class="lang-en">ISO Certification</span> <span class="lang-sw hidden-lang">Cheti cha ISO</span></h3>
+      <p class="text-gray-600"><span class="lang-en">All materials meet international quality standards and food safety requirements</span> <span class="lang-sw hidden-lang">Malighafi yote yanakidhi viwango vya kimataifa vya ubora na mahitaji ya usalama wa chakula</span></p>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+      <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-truck text-white text-2xl"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-primary mb-4"><span class="lang-en">Cold Chain Storage</span> <span class="lang-sw hidden-lang">Uhifadhi wa Mnyororo wa Baridi</span></h3>
+      <p class="text-gray-600"><span class="lang-en">Temperature-controlled storage and transportation to maintain nutritional integrity</span> <span class="lang-sw hidden-lang">Uhifadhi na usafirishaji unaodhibitiwa kwa joto kudumisha uthabiti wa lishe</span></p>
+     </div>
+    </div>
+   </div>
+  </section><!-- CTA Section -->
+  <section class="gradient-bg py-20">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+    <h2 class="text-4xl font-bold text-white mb-6"><span class="lang-en">Need Custom Raw Material Solutions?</span> <span class="lang-sw hidden-lang">Unahitaji Suluhisho la Kibinafsi la Malighafi?</span></h2>
+    <p class="text-xl text-white opacity-90 mb-8"><span class="lang-en">Contact our technical team for customized ingredient specifications and bulk pricing</span> <span class="lang-sw hidden-lang">Wasiliana na timu yetu ya kiufundi kwa vipimo vya kibinafsi vya viungo na bei za wingi</span></p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="contact.html" class="btn-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg"> <i class="fas fa-phone mr-2"></i> <span class="lang-en">Contact Technical Team</span> <span class="lang-sw hidden-lang">Wasiliana na Timu ya Kiufundi</span> </a> <a href="calculator.html" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors"> <i class="fas fa-calculator mr-2"></i> <span class="lang-en">Calculate Requirements</span> <span class="lang-sw hidden-lang">Kokotoa Mahitaji</span> </a>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-primary text-white py-16">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8">
+     <div>
+      <div class="flex items-center mb-4"><img src="images/logo-white.jpg" alt="Bounty Millers Logo" class="h-10 w-auto mr-3"> <span class="text-xl font-bold" id="footer-company-name">Bounty Millers Limited</span>
+      </div>
+      <p class="text-gray-300 mb-4"><span class="lang-en">Premium animal feeds manufacturer serving Central Kenya farmers since 2003.</span> <span class="lang-sw hidden-lang">Mtengenezaji wa chakula cha wanyamapori cha ubora anayetumikia wakulima wa Kenya ya Kati tangu 2003.</span></p>
+      <div class="flex space-x-4"><a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-facebook text-xl"></i> </a> <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-twitter text-xl"></i> </a> <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-instagram text-xl"></i> </a> <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-linkedin text-xl"></i> </a>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4"><span class="lang-en">Products</span> <span class="lang-sw hidden-lang">Bidhaa</span></h4>
+      <ul class="space-y-2">
+       <li><a href="dairy-feeds.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Dairy Feeds</span> <span class="lang-sw hidden-lang">Chakula cha Ng'ombe</span> </a></li>
+       <li><a href="poultry-feeds.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Poultry Feeds</span> <span class="lang-sw hidden-lang">Chakula cha Kuku</span> </a></li>
+       <li><a href="layer-feeds.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Layer Feeds</span> <span class="lang-sw hidden-lang">Chakula cha Mayai</span> </a></li>
+       <li><a href="pig-feeds.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Pig Feeds</span> <span class="lang-sw hidden-lang">Chakula cha Nguruwe</span> </a></li>
+       <li><a href="raw-materials.html" class="text-white font-semibold"> <span class="lang-en">Raw Materials</span> <span class="lang-sw hidden-lang">Malighafi</span> </a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4"><span class="lang-en">Tools &amp; Services</span> <span class="lang-sw hidden-lang">Zana na Huduma</span></h4>
+      <ul class="space-y-2">
+       <li><a href="calculator.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Feed Calculator</span> <span class="lang-sw hidden-lang">Kikokotoo cha Chakula</span> </a></li>
+       <li><a href="quiz.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Feed Quiz</span> <span class="lang-sw hidden-lang">Jaribio la Chakula</span> </a></li>
+       <li><a href="sustainability.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Sustainability Hub</span> <span class="lang-sw hidden-lang">Kituo cha Mazingira</span> </a></li>
+       <li><a href="nutrition-assistant.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Nutrition Assistant</span> <span class="lang-sw hidden-lang">Msaidizi wa Lishe</span> </a></li>
+       <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors"> <span class="lang-en">Blog</span> <span class="lang-sw hidden-lang">Blogu</span> </a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4"><span class="lang-en">Contact Info</span> <span class="lang-sw hidden-lang">Maelezo ya Mawasiliano</span></h4>
+      <div class="space-y-2">
+       <p class="text-gray-300"><i class="fas fa-map-marker-alt mr-2"></i> Kiambu, Kenya</p>
+       <p class="text-gray-300"><i class="fas fa-phone mr-2"></i> <a href="tel:+254727455027" class="hover:text-white transition-colors" id="footer-phone">+254727455027</a></p>
+       <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i> <a href="mailto:info@bountymillers.com" class="hover:text-white transition-colors" id="footer-email">info@bountymillers.com</a></p>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+     <p class="text-gray-300"><span class="lang-en">© 2024 Bounty Millers Limited. All rights reserved. | Serving Central Kenya's farming community</span> <span class="lang-sw hidden-lang">© 2024 Bounty Millers Limited. Haki zote zimehifadhiwa. | Kutumikia jamii ya wakulima wa Kenya ya Kati</span></p>
+    </div>
+   </div>
+  </footer><!-- WhatsApp Float Button --> <a href="https://wa.me/254727455027?text=Hello%20Bounty%20Millers!%20I'm%20interested%20in%20your%20raw%20materials." target="_blank" rel="noopener noreferrer" class="whatsapp-float"> <i class="fab fa-whatsapp"></i> </a>
+  <script>
+        // Global variables
+        let currentLanguage = 'en';
+        let currentRecordCount = 0;
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                console.log(`Data updated: ${data.length} records`);
+            }
+        };
+
+        // Element SDK Configuration
+        const defaultConfig = {
+            page_title_en: "Premium Raw Materials",
+            page_title_sw: "Malighafi ya Ubora",
+            page_subtitle_en: "Quality feed ingredients for superior animal nutrition formulations",
+            page_subtitle_sw: "Viungo vya chakula vya ubora kwa mchanganyiko bora wa lishe ya wanyamapori",
+            company_name: "Bounty Millers Limited",
+            phone_number: "+254727455027",
+            email_address: "info@bountymillers.com"
+        };
+
+        // Initialize SDKs
+        async function initializeSDKs() {
+            try {
+                // Initialize Data SDK
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize Data SDK");
+                    }
+                }
+
+                // Initialize Element SDK
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: async (config) => {
+                            // Update page titles
+                            const pageTitleEn = document.getElementById('page-title-en');
+                            if (pageTitleEn) {
+                                pageTitleEn.textContent = config.page_title_en || defaultConfig.page_title_en;
+                            }
+
+                            const pageTitleSw = document.getElementById('page-title-sw');
+                            if (pageTitleSw) {
+                                pageTitleSw.textContent = config.page_title_sw || defaultConfig.page_title_sw;
+                            }
+
+                            const pageSubtitleEn = document.getElementById('page-subtitle-en');
+                            if (pageSubtitleEn) {
+                                pageSubtitleEn.textContent = config.page_subtitle_en || defaultConfig.page_subtitle_en;
+                            }
+
+                            const pageSubtitleSw = document.getElementById('page-subtitle-sw');
+                            if (pageSubtitleSw) {
+                                pageSubtitleSw.textContent = config.page_subtitle_sw || defaultConfig.page_subtitle_sw;
+                            }
+
+                            // Update company name
+                            const companyElements = document.querySelectorAll('#company-name, #mobile-company-name, #footer-company-name');
+                            companyElements.forEach(el => {
+                                el.textContent = config.company_name || defaultConfig.company_name;
+                            });
+
+                            // Update contact information
+                            const phoneElements = document.querySelectorAll('#phone-display, #mobile-phone-display, #footer-phone');
+                            phoneElements.forEach(el => {
+                                el.textContent = config.phone_number || defaultConfig.phone_number;
+                                if (el.tagName === 'A') {
+                                    el.href = `tel:${config.phone_number || defaultConfig.phone_number}`;
+                                }
+                            });
+
+                            const emailElements = document.querySelectorAll('#footer-email');
+                            emailElements.forEach(el => {
+                                el.textContent = config.email_address || defaultConfig.email_address;
+                                if (el.tagName === 'A') {
+                                    el.href = `mailto:${config.email_address || defaultConfig.email_address}`;
+                                }
+                            });
+                        },
+                        mapToCapabilities: (config) => ({
+                            recolorables: [],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["page_title_en", config.page_title_en || defaultConfig.page_title_en],
+                            ["page_title_sw", config.page_title_sw || defaultConfig.page_title_sw],
+                            ["page_subtitle_en", config.page_subtitle_en || defaultConfig.page_subtitle_en],
+                            ["page_subtitle_sw", config.page_subtitle_sw || defaultConfig.page_subtitle_sw],
+                            ["company_name", config.company_name || defaultConfig.company_name],
+                            ["phone_number", config.phone_number || defaultConfig.phone_number],
+                            ["email_address", config.email_address || defaultConfig.email_address]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("SDK initialization error:", error);
+            }
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSDKs();
+            initializeAOS();
+            initializeLanguageToggle();
+            initializeMobileMenu();
+            initializeFilters();
+        });
+
+        // AOS Animation initialization
+        function initializeAOS() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
+            });
+        }
+
+        // Language toggle functionality
+        function initializeLanguageToggle() {
+            const toggles = document.querySelectorAll('#language-toggle, #mobile-language-toggle');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'sw' : 'en';
+                    updateLanguage();
+                    // Sync both toggles
+                    toggles.forEach(t => t.checked = this.checked);
+                });
+            });
+        }
+
+        function updateLanguage() {
+            // Hide all language elements first
+            document.querySelectorAll('.lang-en, .lang-sw').forEach(el => {
+                el.classList.add('hidden-lang');
+            });
+
+            // Show current language elements
+            document.querySelectorAll(`.lang-${currentLanguage}`).forEach(el => {
+                el.classList.remove('hidden-lang');
+            });
+
+            // Update elements with data attributes
+            document.querySelectorAll('[data-lang-en][data-lang-sw]').forEach(el => {
+                const text = currentLanguage === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sw');
+                el.textContent = text;
+            });
+        }
+
+        // Mobile menu functionality
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+
+            closeMobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+
+            // Close menu when clicking outside
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Filter functionality
+        function initializeFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const materialCards = document.querySelectorAll('.material-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter cards
+                    materialCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            // Re-trigger AOS animation
+                            card.classList.add('aos-animate');
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Quote request function
+        async function requestQuote(materialName) {
+            if (currentRecordCount >= 999) {
+                showToast(currentLanguage === 'en' ? 'Maximum limit reached. Please contact us directly.' : 'Kikomo cha juu kimefikiwa. Tafadhali wasiliana nasi moja kwa moja.', 'error');
+                return;
+            }
+
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="spinner"></span> ' + (currentLanguage === 'en' ? 'Submitting...' : 'Inatuma...');
+            button.disabled = true;
+
+            const data = {
+                type: 'quote_request',
+                product: materialName,
+                material_type: 'raw_material',
+                created_at: new Date().toISOString()
+            };
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(data);
+                if (result.isOk) {
+                    showToast(currentLanguage === 'en' ? 'Quote request submitted! We\'ll contact you soon.' : 'Ombi la bei limewasilishwa! Tutawasiliana nawe hivi karibuni.', 'success');
+                } else {
+                    showToast(currentLanguage === 'en' ? 'Failed to submit request. Please try again.' : 'Imeshindwa kutuma ombi. Tafadhali jaribu tena.', 'error');
+                }
+            } else {
+                showToast(currentLanguage === 'en' ? 'Quote request noted! Please contact us for pricing.' : 'Ombi la bei limerekodiwa! Tafadhali wasiliana nasi kwa bei.', 'success');
+            }
+
+            // Reset button state
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }
+
+        // WhatsApp function
+        function openWhatsApp(material) {
+            const phone = window.elementSdk?.config?.phone_number || defaultConfig.phone_number;
+            const message = currentLanguage === 'en' ? 
+                `Hello Bounty Millers! I'm interested in ${material} raw material. Can you provide more information about specifications, quality grades, pricing, and availability for feed manufacturing?` :
+                `Hujambo Bounty Millers! Ninapenda ${material} malighafi. Je, mnaweza kutoa maelezo zaidi kuhusu vipimo, daraja za ubora, bei, na upatikanaji kwa utengenezaji wa chakula?`;
+            const url = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300`;
+            
+            const colors = {
+                success: 'bg-green-600 text-white',
+                error: 'bg-red-600 text-white',
+                warning: 'bg-yellow-600 text-white',
+                info: 'bg-blue-600 text-white'
+            };
+            
+            toast.className += ` ${colors[type] || colors.info}`;
+            toast.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} mr-3"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (document.body.contains(toast)) {
+                        document.body.removeChild(toast);
+                    }
+                }, 300);
+            }, 4000);
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99768898d3b58a6a',t:'MTc2MTk0OTE2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
