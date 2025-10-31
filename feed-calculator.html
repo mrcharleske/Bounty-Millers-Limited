@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Feed Calculator | Bounty Millers Limited</title>
+  <meta name="description" content="Advanced feed formulation calculator for precise animal nutrition. Calculate protein, energy, and costs for dairy, poultry, pig, and layer feeds."><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- Chart.js for nutritional charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- SDKs -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* Feed Calculator Color Scheme */
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-green: #059669;
+            --accent-orange: #ea580c;
+            --warm-yellow: #d97706;
+            --light-gray: #f8fafc;
+        }
+        
+        .bg-primary { background-color: var(--primary-blue); }
+        .bg-secondary { background-color: var(--secondary-green); }
+        .bg-accent { background-color: var(--accent-orange); }
+        .bg-warm { background-color: var(--warm-yellow); }
+        .bg-light { background-color: var(--light-gray); }
+        
+        .text-primary { color: var(--primary-blue); }
+        .text-secondary { color: var(--secondary-green); }
+        .text-accent { color: var(--accent-orange); }
+        .text-warm { color: var(--warm-yellow); }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+        }
+        
+        .calculator-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.1);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .calculator-card:hover {
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.15);
+            border-color: var(--secondary-green);
+        }
+        
+        .ingredient-row {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .ingredient-row:hover {
+            background: #f1f5f9;
+            border-color: var(--secondary-green);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e3a8a 0%, #047857 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #c2410c;
+            transform: translateY(-1px);
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--secondary-green);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+        
+        .results-panel {
+            background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+            border: 2px solid var(--secondary-green);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        
+        .nutrition-meter {
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .nutrition-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .protein-fill { background: var(--secondary-green); }
+        .energy-fill { background: var(--accent-orange); }
+        .cost-fill { background: var(--warm-yellow); }
+        
+        .animal-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .animal-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .animal-option:hover {
+            border-color: var(--secondary-green);
+            background: #f0fdf4;
+        }
+        
+        .animal-option.active {
+            border-color: var(--secondary-green);
+            background: var(--secondary-green);
+            color: white;
+        }
+        
+        .animal-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--secondary-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.success { background: var(--secondary-green); }
+        .toast.error { background: #dc2626; }
+        .toast.warning { background: var(--warm-yellow); }
+        
+        @media (max-width: 768px) {
+            .animal-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .ingredient-row {
+                padding: 12px;
+            }
+            
+            .results-panel {
+                padding: 16px;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-light"><!-- Header -->
+  <header class="gradient-bg text-white py-8">
+   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+     <h1 class="text-4xl md:text-5xl font-bold mb-4" id="calculator-title">Professional Feed Calculator</h1>
+     <p class="text-xl opacity-90 max-w-3xl mx-auto" id="calculator-subtitle">Precision formulation for optimal animal nutrition</p>
+     <div class="flex justify-center items-center mt-6 space-x-6">
+      <div class="flex items-center"><i class="fas fa-calculator text-2xl mr-2"></i> <span class="font-semibold">Advanced Calculations</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-chart-line text-2xl mr-2"></i> <span class="font-semibold">Real-time Analysis</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-save text-2xl mr-2"></i> <span class="font-semibold">Save Formulas</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header><!-- Main Calculator -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+   <div class="grid lg:grid-cols-3 gap-8"><!-- Calculator Input Panel -->
+    <div class="lg:col-span-2">
+     <div class="calculator-card p-8">
+      <h2 class="text-2xl font-bold text-primary mb-6"><i class="fas fa-cogs mr-2"></i> Feed Formulation</h2><!-- Animal Type Selection -->
+      <div class="mb-8"><label class="block text-sm font-semibold text-gray-700 mb-4">Select Animal Type</label>
+       <div class="animal-selector">
+        <div class="animal-option" data-animal="dairy" onclick="selectAnimal('dairy')"><i class="fas fa-cow animal-icon"></i>
+         <div class="font-semibold">
+          Dairy Cattle
+         </div>
+        </div>
+        <div class="animal-option" data-animal="poultry" onclick="selectAnimal('poultry')"><i class="fas fa-drumstick-bite animal-icon"></i>
+         <div class="font-semibold">
+          Poultry
+         </div>
+        </div>
+        <div class="animal-option" data-animal="layers" onclick="selectAnimal('layers')"><i class="fas fa-egg animal-icon"></i>
+         <div class="font-semibold">
+          Layers
+         </div>
+        </div>
+        <div class="animal-option" data-animal="pigs" onclick="selectAnimal('pigs')"><i class="fas fa-piggy-bank animal-icon"></i>
+         <div class="font-semibold">
+          Pigs
+         </div>
+        </div>
+       </div>
+      </div><!-- Target Specifications -->
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+       <div><label class="block text-sm font-semibold text-gray-700 mb-2">Target Protein (%)</label> <input type="number" id="target-protein" class="input-field" placeholder="e.g., 18" min="0" max="50" step="0.1">
+       </div>
+       <div><label class="block text-sm font-semibold text-gray-700 mb-2">Target Energy (ME kcal/kg)</label> <input type="number" id="target-energy" class="input-field" placeholder="e.g., 2800" min="1000" max="4000" step="10">
+       </div>
+      </div><!-- Formula Name -->
+      <div class="mb-8"><label class="block text-sm font-semibold text-gray-700 mb-2">Formula Name</label> <input type="text" id="formula-name" class="input-field" placeholder="e.g., High Performance Dairy Mix">
+      </div><!-- Ingredients Section -->
+      <div class="mb-8">
+       <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">Ingredients</h3><button onclick="addIngredient()" class="btn-secondary"> <i class="fas fa-plus mr-2"></i>Add Ingredient </button>
+       </div>
+       <div id="ingredients-container"><!-- Ingredients will be added here dynamically -->
+       </div>
+      </div><!-- Action Buttons -->
+      <div class="flex flex-wrap gap-4"><button onclick="calculateFormula()" class="btn-primary flex-1 min-w-40"> <i class="fas fa-calculator mr-2"></i>Calculate Formula </button> <button onclick="saveFormula()" class="btn-primary flex-1 min-w-40"> <i class="fas fa-save mr-2"></i>Save Formula </button> <button onclick="resetCalculator()" class="bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors"> <i class="fas fa-refresh mr-2"></i>Reset </button>
+      </div>
+     </div>
+    </div><!-- Results Panel -->
+    <div class="lg:col-span-1">
+     <div class="calculator-card p-6 sticky top-8">
+      <h3 class="text-xl font-bold text-primary mb-6"><i class="fas fa-chart-bar mr-2"></i> Nutritional Analysis</h3><!-- Current Formula Display -->
+      <div class="mb-6">
+       <div class="text-sm text-gray-600 mb-2">
+        Current Formula:
+       </div>
+       <div id="current-formula" class="font-semibold text-gray-800">
+        No formula selected
+       </div>
+      </div><!-- Protein Analysis -->
+      <div class="mb-6">
+       <div class="flex justify-between items-center mb-2"><span class="font-semibold text-gray-700">Crude Protein</span> <span id="protein-value" class="font-bold text-secondary">0.0%</span>
+       </div>
+       <div class="nutrition-meter">
+        <div id="protein-bar" class="nutrition-fill protein-fill" style="width: 0%"></div>
+       </div>
+       <div class="text-xs text-gray-500 mt-1">
+        Target: <span id="protein-target">--</span>%
+       </div>
+      </div><!-- Energy Analysis -->
+      <div class="mb-6">
+       <div class="flex justify-between items-center mb-2"><span class="font-semibold text-gray-700">Metabolizable Energy</span> <span id="energy-value" class="font-bold text-accent">0 kcal/kg</span>
+       </div>
+       <div class="nutrition-meter">
+        <div id="energy-bar" class="nutrition-fill energy-fill" style="width: 0%"></div>
+       </div>
+       <div class="text-xs text-gray-500 mt-1">
+        Target: <span id="energy-target">--</span> kcal/kg
+       </div>
+      </div><!-- Cost Analysis -->
+      <div class="mb-6">
+       <div class="flex justify-between items-center mb-2"><span class="font-semibold text-gray-700">Estimated Cost</span> <span id="cost-value" class="font-bold text-warm">KSh 0</span>
+       </div>
+       <div class="text-xs text-gray-500">
+        Per 50kg bag
+       </div>
+      </div><!-- Ingredient Breakdown -->
+      <div class="mb-6">
+       <h4 class="font-semibold text-gray-700 mb-3">Ingredient Breakdown</h4>
+       <div id="ingredient-breakdown" class="space-y-2">
+        <div class="text-sm text-gray-500 text-center py-4">
+         Add ingredients to see breakdown
+        </div>
+       </div>
+      </div><!-- Quality Indicators -->
+      <div class="border-t pt-4">
+       <h4 class="font-semibold text-gray-700 mb-3">Quality Indicators</h4>
+       <div class="space-y-2">
+        <div class="flex justify-between text-sm"><span>Protein Quality:</span> <span id="protein-quality" class="font-semibold">--</span>
+        </div>
+        <div class="flex justify-between text-sm"><span>Energy Density:</span> <span id="energy-density" class="font-semibold">--</span>
+        </div>
+        <div class="flex justify-between text-sm"><span>Cost Efficiency:</span> <span id="cost-efficiency" class="font-semibold">--</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Saved Formulas Section -->
+   <div class="mt-12">
+    <div class="calculator-card p-8">
+     <h3 class="text-2xl font-bold text-primary mb-6"><i class="fas fa-history mr-2"></i> Saved Formulas</h3>
+     <div id="saved-formulas" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="text-center py-8 text-gray-500"><i class="fas fa-folder-open text-4xl mb-4 opacity-50"></i>
+       <p>No saved formulas yet. Create and save your first formula above!</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </main><!-- Contact Support -->
+  <section class="gradient-bg text-white py-12 mt-16">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold mb-4">Need Expert Assistance?</h2>
+    <p class="text-xl opacity-90 mb-8">Our animal nutrition specialists are here to help optimize your feed formulations</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="tel:+254727455027" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"> <i class="fas fa-phone mr-2"></i> <span id="contact-phone">+254727455027</span> </a> <a href="mailto:support@bountymillers.com" class="bg-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors"> <i class="fas fa-envelope mr-2"></i> <span id="support-email">support@bountymillers.com</span> </a>
+    </div>
+   </div>
+  </section>
+  <script>
+        // Global variables
+        let currentAnimal = '';
+        let ingredients = [];
+        let savedFormulas = [];
+        let currentRecordCount = 0;
+
+        // Ingredient database with nutritional values
+        const ingredientDatabase = {
+            'Maize Meal': { protein: 9, energy: 3200, cost: 3000 },
+            'Soybean Meal': { protein: 48, energy: 2400, cost: 4500 },
+            'Fish Meal': { protein: 65, energy: 2800, cost: 8000 },
+            'Wheat Bran': { protein: 16, energy: 2200, cost: 2000 },
+            'Sunflower Cake': { protein: 36, energy: 2100, cost: 3200 },
+            'Cotton Seed Cake': { protein: 42, energy: 2300, cost: 3500 },
+            'Blood Meal': { protein: 85, energy: 2600, cost: 10000 },
+            'Meat & Bone Meal': { protein: 52, energy: 2500, cost: 6500 },
+            'Limestone': { protein: 0, energy: 0, cost: 1200 },
+            'Salt': { protein: 0, energy: 0, cost: 800 },
+            'Vitamin Premix': { protein: 0, energy: 0, cost: 15000 },
+            'Mineral Premix': { protein: 0, energy: 0, cost: 12000 }
+        };
+
+        // Animal-specific targets
+        const animalTargets = {
+            dairy: { protein: 18, energy: 2800 },
+            poultry: { protein: 22, energy: 3000 },
+            layers: { protein: 17, energy: 2750 },
+            pigs: { protein: 16, energy: 3200 }
+        };
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                savedFormulas = data;
+                displaySavedFormulas();
+            }
+        };
+
+        // Element SDK Configuration
+        const defaultConfig = {
+            calculator_title: "Professional Feed Calculator",
+            calculator_subtitle: "Precision formulation for optimal animal nutrition",
+            company_name: "Bounty Millers Limited",
+            contact_phone: "+254727455027",
+            support_email: "support@bountymillers.com"
+        };
+
+        // Initialize SDKs
+        async function initializeSDKs() {
+            try {
+                // Initialize Data SDK
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize Data SDK");
+                    }
+                }
+
+                // Initialize Element SDK
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: async (config) => {
+                            // Update calculator title and subtitle
+                            const titleElement = document.getElementById('calculator-title');
+                            if (titleElement) {
+                                titleElement.textContent = config.calculator_title || defaultConfig.calculator_title;
+                            }
+
+                            const subtitleElement = document.getElementById('calculator-subtitle');
+                            if (subtitleElement) {
+                                subtitleElement.textContent = config.calculator_subtitle || defaultConfig.calculator_subtitle;
+                            }
+
+                            // Update contact information
+                            const phoneElement = document.getElementById('contact-phone');
+                            if (phoneElement) {
+                                phoneElement.textContent = config.contact_phone || defaultConfig.contact_phone;
+                                phoneElement.parentElement.href = `tel:${config.contact_phone || defaultConfig.contact_phone}`;
+                            }
+
+                            const emailElement = document.getElementById('support-email');
+                            if (emailElement) {
+                                emailElement.textContent = config.support_email || defaultConfig.support_email;
+                                emailElement.parentElement.href = `mailto:${config.support_email || defaultConfig.support_email}`;
+                            }
+                        },
+                        mapToCapabilities: (config) => ({
+                            recolorables: [],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["calculator_title", config.calculator_title || defaultConfig.calculator_title],
+                            ["calculator_subtitle", config.calculator_subtitle || defaultConfig.calculator_subtitle],
+                            ["company_name", config.company_name || defaultConfig.company_name],
+                            ["contact_phone", config.contact_phone || defaultConfig.contact_phone],
+                            ["support_email", config.support_email || defaultConfig.support_email]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("SDK initialization error:", error);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSDKs();
+            addIngredient(); // Add first ingredient row
+        });
+
+        // Select animal type
+        function selectAnimal(animal) {
+            currentAnimal = animal;
+            
+            // Update UI
+            document.querySelectorAll('.animal-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.querySelector(`[data-animal="${animal}"]`).classList.add('active');
+            
+            // Set target values
+            const targets = animalTargets[animal];
+            document.getElementById('target-protein').value = targets.protein;
+            document.getElementById('target-energy').value = targets.energy;
+            document.getElementById('protein-target').textContent = targets.protein;
+            document.getElementById('energy-target').textContent = targets.energy;
+            
+            updateCurrentFormula();
+        }
+
+        // Add ingredient row
+        function addIngredient() {
+            const container = document.getElementById('ingredients-container');
+            const ingredientId = 'ingredient-' + Date.now();
+            
+            const ingredientRow = document.createElement('div');
+            ingredientRow.className = 'ingredient-row';
+            ingredientRow.id = ingredientId;
+            
+            ingredientRow.innerHTML = `
+                <div class="grid md:grid-cols-4 gap-4 items-end">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Ingredient</label>
+                        <select class="input-field ingredient-select" onchange="updateIngredientInfo('${ingredientId}')">
+                            <option value="">Select ingredient...</option>
+                            ${Object.keys(ingredientDatabase).map(ingredient => 
+                                `<option value="${ingredient}">${ingredient}</option>`
+                            ).join('')}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Percentage (%)</label>
+                        <input type="number" class="input-field percentage-input" placeholder="0" min="0" max="100" step="0.1" onchange="calculateFormula()">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Cost/50kg (KSh)</label>
+                        <input type="number" class="input-field cost-input" placeholder="0" min="0" step="10" onchange="calculateFormula()">
+                    </div>
+                    <div>
+                        <button onclick="removeIngredient('${ingredientId}')" class="bg-red-500 text-white px-4 py-3 rounded-lg hover:bg-red-600 transition-colors">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-3 text-sm text-gray-600 ingredient-info">
+                    Select an ingredient to see nutritional information
+                </div>
+            `;
+            
+            container.appendChild(ingredientRow);
+        }
+
+        // Remove ingredient row
+        function removeIngredient(ingredientId) {
+            const element = document.getElementById(ingredientId);
+            if (element) {
+                element.remove();
+                calculateFormula();
+            }
+        }
+
+        // Update ingredient information
+        function updateIngredientInfo(ingredientId) {
+            const row = document.getElementById(ingredientId);
+            const select = row.querySelector('.ingredient-select');
+            const costInput = row.querySelector('.cost-input');
+            const infoDiv = row.querySelector('.ingredient-info');
+            
+            const ingredient = select.value;
+            if (ingredient && ingredientDatabase[ingredient]) {
+                const data = ingredientDatabase[ingredient];
+                costInput.value = data.cost;
+                infoDiv.innerHTML = `
+                    <strong>${ingredient}:</strong> 
+                    Protein: ${data.protein}% | 
+                    Energy: ${data.energy} kcal/kg | 
+                    Cost: KSh ${data.cost}/50kg
+                `;
+            } else {
+                infoDiv.textContent = 'Select an ingredient to see nutritional information';
+            }
+            
+            calculateFormula();
+        }
+
+        // Calculate formula
+        function calculateFormula() {
+            const ingredientRows = document.querySelectorAll('.ingredient-row');
+            let totalProtein = 0;
+            let totalEnergy = 0;
+            let totalCost = 0;
+            let totalPercentage = 0;
+            const breakdown = [];
+            
+            ingredientRows.forEach(row => {
+                const ingredient = row.querySelector('.ingredient-select').value;
+                const percentage = parseFloat(row.querySelector('.percentage-input').value) || 0;
+                const cost = parseFloat(row.querySelector('.cost-input').value) || 0;
+                
+                if (ingredient && percentage > 0 && ingredientDatabase[ingredient]) {
+                    const data = ingredientDatabase[ingredient];
+                    const contribution = percentage / 100;
+                    
+                    totalProtein += data.protein * contribution;
+                    totalEnergy += data.energy * contribution;
+                    totalCost += cost * contribution;
+                    totalPercentage += percentage;
+                    
+                    breakdown.push({
+                        name: ingredient,
+                        percentage: percentage,
+                        proteinContrib: data.protein * contribution,
+                        energyContrib: data.energy * contribution
+                    });
+                }
+            });
+            
+            // Update results display
+            updateResults(totalProtein, totalEnergy, totalCost, totalPercentage, breakdown);
+        }
+
+        // Update results display
+        function updateResults(protein, energy, cost, totalPercentage, breakdown) {
+            // Update values
+            document.getElementById('protein-value').textContent = protein.toFixed(1) + '%';
+            document.getElementById('energy-value').textContent = Math.round(energy) + ' kcal/kg';
+            document.getElementById('cost-value').textContent = 'KSh ' + Math.round(cost);
+            
+            // Update progress bars
+            const targetProtein = parseFloat(document.getElementById('target-protein').value) || 20;
+            const targetEnergy = parseFloat(document.getElementById('target-energy').value) || 3000;
+            
+            const proteinPercent = Math.min((protein / targetProtein) * 100, 100);
+            const energyPercent = Math.min((energy / targetEnergy) * 100, 100);
+            
+            document.getElementById('protein-bar').style.width = proteinPercent + '%';
+            document.getElementById('energy-bar').style.width = energyPercent + '%';
+            
+            // Update quality indicators
+            updateQualityIndicators(protein, energy, cost, targetProtein, targetEnergy);
+            
+            // Update ingredient breakdown
+            updateIngredientBreakdown(breakdown, totalPercentage);
+        }
+
+        // Update quality indicators
+        function updateQualityIndicators(protein, energy, cost, targetProtein, targetEnergy) {
+            const proteinQuality = getQualityRating(protein, targetProtein);
+            const energyDensity = getEnergyRating(energy);
+            const costEfficiency = getCostRating(cost);
+            
+            document.getElementById('protein-quality').textContent = proteinQuality;
+            document.getElementById('energy-density').textContent = energyDensity;
+            document.getElementById('cost-efficiency').textContent = costEfficiency;
+        }
+
+        // Get quality rating
+        function getQualityRating(actual, target) {
+            const ratio = actual / target;
+            if (ratio >= 0.95 && ratio <= 1.05) return 'Excellent';
+            if (ratio >= 0.85 && ratio <= 1.15) return 'Good';
+            if (ratio >= 0.75 && ratio <= 1.25) return 'Fair';
+            return 'Poor';
+        }
+
+        // Get energy rating
+        function getEnergyRating(energy) {
+            if (energy >= 3000) return 'High';
+            if (energy >= 2500) return 'Medium';
+            if (energy >= 2000) return 'Low';
+            return 'Very Low';
+        }
+
+        // Get cost rating
+        function getCostRating(cost) {
+            if (cost <= 2500) return 'Excellent';
+            if (cost <= 3500) return 'Good';
+            if (cost <= 4500) return 'Fair';
+            return 'Expensive';
+        }
+
+        // Update ingredient breakdown
+        function updateIngredientBreakdown(breakdown, totalPercentage) {
+            const container = document.getElementById('ingredient-breakdown');
+            
+            if (breakdown.length === 0) {
+                container.innerHTML = '<div class="text-sm text-gray-500 text-center py-4">Add ingredients to see breakdown</div>';
+                return;
+            }
+            
+            let html = '';
+            breakdown.forEach(item => {
+                html += `
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="font-medium">${item.name}</span>
+                        <span class="text-gray-600">${item.percentage}%</span>
+                    </div>
+                `;
+            });
+            
+            if (totalPercentage !== 100) {
+                html += `
+                    <div class="border-t pt-2 mt-2">
+                        <div class="flex justify-between items-center text-sm font-semibold ${totalPercentage > 100 ? 'text-red-600' : 'text-yellow-600'}">
+                            <span>Total:</span>
+                            <span>${totalPercentage.toFixed(1)}%</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // Update current formula display
+        function updateCurrentFormula() {
+            const formulaName = document.getElementById('formula-name').value || 'Untitled Formula';
+            const animalType = currentAnimal ? currentAnimal.charAt(0).toUpperCase() + currentAnimal.slice(1) : 'No animal selected';
+            document.getElementById('current-formula').textContent = `${formulaName} (${animalType})`;
+        }
+
+        // Save formula
+        async function saveFormula() {
+            if (currentRecordCount >= 999) {
+                showToast('Maximum limit of 999 formulas reached. Please delete some formulas first.', 'error');
+                return;
+            }
+
+            const formulaName = document.getElementById('formula-name').value;
+            if (!formulaName) {
+                showToast('Please enter a formula name before saving.', 'warning');
+                return;
+            }
+
+            if (!currentAnimal) {
+                showToast('Please select an animal type before saving.', 'warning');
+                return;
+            }
+
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="spinner"></span> Saving...';
+            button.disabled = true;
+
+            // Collect ingredient data
+            const ingredientRows = document.querySelectorAll('.ingredient-row');
+            const ingredientsData = [];
+            
+            ingredientRows.forEach(row => {
+                const ingredient = row.querySelector('.ingredient-select').value;
+                const percentage = parseFloat(row.querySelector('.percentage-input').value) || 0;
+                
+                if (ingredient && percentage > 0) {
+                    ingredientsData.push({
+                        name: ingredient,
+                        percentage: percentage
+                    });
+                }
+            });
+
+            if (ingredientsData.length === 0) {
+                showToast('Please add at least one ingredient before saving.', 'warning');
+                button.innerHTML = originalText;
+                button.disabled = false;
+                return;
+            }
+
+            // Calculate totals
+            let totalProtein = 0;
+            let totalEnergy = 0;
+            let totalCost = 0;
+
+            ingredientsData.forEach(item => {
+                const data = ingredientDatabase[item.name];
+                const contribution = item.percentage / 100;
+                totalProtein += data.protein * contribution;
+                totalEnergy += data.energy * contribution;
+                totalCost += data.cost * contribution;
+            });
+
+            const formulaData = {
+                id: 'formula-' + Date.now(),
+                formula_name: formulaName,
+                animal_type: currentAnimal,
+                target_protein: parseFloat(document.getElementById('target-protein').value) || 0,
+                target_energy: parseFloat(document.getElementById('target-energy').value) || 0,
+                ingredients: JSON.stringify(ingredientsData),
+                calculated_protein: totalProtein,
+                calculated_energy: totalEnergy,
+                total_cost: totalCost,
+                created_at: new Date().toISOString(),
+                user_name: 'User'
+            };
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(formulaData);
+                if (result.isOk) {
+                    showToast('Formula saved successfully!', 'success');
+                } else {
+                    showToast('Failed to save formula. Please try again.', 'error');
+                }
+            } else {
+                showToast('Formula saved locally!', 'success');
+            }
+
+            // Reset button state
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }
+
+        // Display saved formulas
+        function displaySavedFormulas() {
+            const container = document.getElementById('saved-formulas');
+            
+            if (savedFormulas.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-folder-open text-4xl mb-4 opacity-50"></i>
+                        <p>No saved formulas yet. Create and save your first formula above!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            savedFormulas.forEach(formula => {
+                const ingredients = JSON.parse(formula.ingredients || '[]');
+                const proteinMatch = Math.abs(formula.calculated_protein - formula.target_protein) <= 2;
+                const energyMatch = Math.abs(formula.calculated_energy - formula.target_energy) <= 100;
+                
+                html += `
+                    <div class="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-blue-300 transition-colors">
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="font-bold text-lg text-gray-800">${formula.formula_name}</h4>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
+                                ${formula.animal_type.charAt(0).toUpperCase() + formula.animal_type.slice(1)}
+                            </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <div class="text-sm text-gray-600">Protein</div>
+                                <div class="font-semibold ${proteinMatch ? 'text-green-600' : 'text-yellow-600'}">
+                                    ${formula.calculated_protein.toFixed(1)}% 
+                                    <span class="text-xs">(Target: ${formula.target_protein}%)</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-600">Energy</div>
+                                <div class="font-semibold ${energyMatch ? 'text-green-600' : 'text-yellow-600'}">
+                                    ${Math.round(formula.calculated_energy)} kcal/kg
+                                    <span class="text-xs">(Target: ${formula.target_energy})</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="text-sm text-gray-600 mb-2">Cost per 50kg bag</div>
+                            <div class="font-bold text-orange-600">KSh ${Math.round(formula.total_cost)}</div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="text-sm text-gray-600 mb-2">Ingredients (${ingredients.length})</div>
+                            <div class="text-xs text-gray-500">
+                                ${ingredients.slice(0, 3).map(ing => `${ing.name} (${ing.percentage}%)`).join(', ')}
+                                ${ingredients.length > 3 ? '...' : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-2">
+                            <button onclick="loadFormula('${formula.id}')" class="flex-1 bg-blue-500 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-blue-600 transition-colors">
+                                <i class="fas fa-upload mr-1"></i>Load
+                            </button>
+                            <button onclick="deleteFormula('${formula.id}')" class="bg-red-500 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-red-600 transition-colors">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="text-xs text-gray-400 mt-3">
+                            Saved: ${new Date(formula.created_at).toLocaleDateString()}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Load formula
+        function loadFormula(formulaId) {
+            const formula = savedFormulas.find(f => f.id === formulaId);
+            if (!formula) return;
+
+            // Set animal type
+            selectAnimal(formula.animal_type);
+            
+            // Set targets
+            document.getElementById('target-protein').value = formula.target_protein;
+            document.getElementById('target-energy').value = formula.target_energy;
+            document.getElementById('formula-name').value = formula.formula_name;
+            
+            // Clear existing ingredients
+            document.getElementById('ingredients-container').innerHTML = '';
+            
+            // Load ingredients
+            const ingredients = JSON.parse(formula.ingredients || '[]');
+            ingredients.forEach(ingredient => {
+                addIngredient();
+                const rows = document.querySelectorAll('.ingredient-row');
+                const lastRow = rows[rows.length - 1];
+                
+                lastRow.querySelector('.ingredient-select').value = ingredient.name;
+                lastRow.querySelector('.percentage-input').value = ingredient.percentage;
+                
+                // Update ingredient info
+                updateIngredientInfo(lastRow.id);
+            });
+            
+            calculateFormula();
+            showToast('Formula loaded successfully!', 'success');
+        }
+
+        // Delete formula
+        async function deleteFormula(formulaId) {
+            const formula = savedFormulas.find(f => f.id === formulaId);
+            if (!formula) return;
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.delete(formula);
+                if (result.isOk) {
+                    showToast('Formula deleted successfully!', 'success');
+                } else {
+                    showToast('Failed to delete formula. Please try again.', 'error');
+                }
+            } else {
+                showToast('Formula deleted!', 'success');
+            }
+        }
+
+        // Reset calculator
+        function resetCalculator() {
+            document.getElementById('formula-name').value = '';
+            document.getElementById('target-protein').value = '';
+            document.getElementById('target-energy').value = '';
+            document.getElementById('ingredients-container').innerHTML = '';
+            
+            // Reset animal selection
+            document.querySelectorAll('.animal-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            currentAnimal = '';
+            
+            // Reset results
+            document.getElementById('protein-value').textContent = '0.0%';
+            document.getElementById('energy-value').textContent = '0 kcal/kg';
+            document.getElementById('cost-value').textContent = 'KSh 0';
+            document.getElementById('protein-bar').style.width = '0%';
+            document.getElementById('energy-bar').style.width = '0%';
+            document.getElementById('protein-target').textContent = '--';
+            document.getElementById('energy-target').textContent = '--';
+            document.getElementById('current-formula').textContent = 'No formula selected';
+            document.getElementById('ingredient-breakdown').innerHTML = '<div class="text-sm text-gray-500 text-center py-4">Add ingredients to see breakdown</div>';
+            
+            // Add first ingredient row
+            addIngredient();
+            
+            showToast('Calculator reset successfully!', 'success');
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'exclamation-triangle'} mr-2"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 4000);
+        }
+
+        // Update formula name display when typing
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('formula-name').addEventListener('input', updateCurrentFormula);
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'997692cb01fb8a6a',t:'MTc2MTk0OTU4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
