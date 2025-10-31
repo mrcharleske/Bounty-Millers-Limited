@@ -1,0 +1,1302 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bounty Millers Limited - Premium Animal Feeds from Kiambu</title>
+  <meta name="description" content="Premium animal feeds manufacturer in Kiambu, Kenya. Dairy feeds, poultry feeds, pig feeds, and raw materials. Fast delivery across Central Kenya.">
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bounty Millers Limited",
+      "url": "https://bountymillers.com",
+      "logo": "https://bountymillers.com/images/logo.jpg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+254727455027",
+        "contactType": "customer service"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kiambu",
+        "addressCountry": "KE"
+      }
+    }
+    </script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- SDKs -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* Agricultural Color Scheme */
+        :root {
+            --primary-green: #2d5016;
+            --secondary-green: #4a7c59;
+            --accent-green: #6b8e23;
+            --earth-brown: #8b4513;
+            --warm-yellow: #daa520;
+        }
+        
+        .bg-primary { background-color: var(--primary-green); }
+        .bg-secondary { background-color: var(--secondary-green); }
+        .bg-accent { background-color: var(--accent-green); }
+        .bg-earth { background-color: var(--earth-brown); }
+        .bg-warm { background-color: var(--warm-yellow); }
+        
+        .text-primary { color: var(--primary-green); }
+        .text-secondary { color: var(--secondary-green); }
+        .text-accent { color: var(--accent-green); }
+        .text-earth { color: var(--earth-brown); }
+        .text-warm { color: var(--warm-yellow); }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 50%, var(--accent-green) 100%);
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(45, 80, 22, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--accent-green) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(74, 124, 89, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--earth-brown) 0%, var(--warm-yellow) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #654321 0%, #b8860b 100%);
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 36px;
+        }
+        
+        .language-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--secondary-green);
+            transition: .4s;
+            border-radius: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 28px;
+            width: 28px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(44px);
+        }
+        
+        /* Navigation Dropdown */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-section {
+            padding: 16px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .dropdown-section:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-title {
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 6px 0;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            color: var(--secondary-green);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu-content {
+            background: white;
+            width: 280px;
+            height: 100%;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateX(0);
+        }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        /* Stats Animation */
+        .stat-counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-green);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem !important;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .stat-counter {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.125rem !important;
+            }
+        }
+        
+        /* Hidden class for language switching */
+        .hidden-lang {
+            display: none !important;
+        }
+
+        /* ============================================= */
+        /* HERO TEXT VISIBILITY FIX – BOLD & HIGH CONTRAST */
+        /* ============================================= */
+        .hero-title,
+        .hero-subtitle,
+        .hero-title span,
+        .hero-subtitle span {
+            font-weight: 900 !important;                    /* Ultra bold */
+            color: #ffffff !important;                      /* Pure white */
+            text-shadow: 
+                0 2px 4px rgba(0,0,0,0.6),
+                0 0px 12px rgba(0,0,0,0.5),
+                0 0 20px rgba(0,0,0,0.3);
+            letter-spacing: 0.8px;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-subtitle {
+                font-size: 2.25rem !important;
+            }
+        }
+        /* ============================================= */
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg fixed w-full z-50" data-aos="slide-down">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+     <!-- Logo and Company Name -->
+     <div class="flex items-center">
+      <img src="images/logo.jpg" alt="Bounty Millers Logo" class="h-10 w-auto"> 
+      <span class="ml-3 text-xl font-bold text-primary" id="company-name">Bounty Millers Limited</span>
+     </div>
+     <!-- Desktop Menu -->
+     <div class="hidden lg:flex items-center space-x-8">
+      <a href="#home" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Home" data-lang-sw="Nyumbani">Home</a> 
+      <!-- Products Dropdown -->
+      <div class="dropdown">
+       <button class="text-gray-700 hover:text-secondary transition-colors flex items-center"> 
+        <span data-lang-en="Products" data-lang-sw="Bidhaa">Products</span> <i class="fas fa-chevron-down ml-1"></i> 
+       </button>
+       <div class="dropdown-content">
+        <div class="dropdown-section">
+         <div class="dropdown-title" data-lang-en="Finished Feeds" data-lang-sw="Chakula Tayari">
+          Finished Feeds
+         </div>
+         <a href="dairy-feeds.html" class="dropdown-item" data-lang-en="Dairy Feeds" data-lang-sw="Chakula cha Ng'ombe wa Maziwa">Dairy Feeds</a> 
+         <a href="poultry-feeds.html" class="dropdown-item" data-lang-en="Poultry Feeds" data-lang-sw="Chakula cha Kuku">Poultry Feeds</a> 
+         <a href="layer-feeds.html" class="dropdown-item" data-lang-en="Layer Feeds" data-lang-sw="Chakula cha Kuku wa Mayai">Layer Feeds</a> 
+         <a href="pig-feeds.html" class="dropdown-item" data-lang-en="Pig Feeds" data-lang-sw="Chakula cha Nguruwe">Pig Feeds</a>
+        </div>
+        <div class="dropdown-section">
+         <div class="dropdown-title" data-lang-en="Raw Materials" data-lang-sw="Malighafi">
+          Raw Materials
+         </div>
+         <a href="raw-materials.html" class="dropdown-item" data-lang-en="Protein Sources" data-lang-sw="Vyanzo vya Protini">Protein Sources</a> 
+         <a href="raw-materials.html" class="dropdown-item" data-lang-en="Energy Sources" data-lang-sw="Vyanzo vya Nishati">Energy Sources</a> 
+         <a href="raw-materials.html" class="dropdown-item" data-lang-en="Minerals &amp; Additives" data-lang-sw="Madini na Viongezeo">Minerals &amp; Additives</a>
+        </div>
+       </div>
+      </div>
+      <!-- Tools Dropdown -->
+      <div class="dropdown">
+       <button class="text-gray-700 hover:text-secondary transition-colors flex items-center"> 
+        <span data-lang-en="Tools" data-lang-sw="Zana">Tools</span> <i class="fas fa-chevron-down ml-1"></i> 
+       </button>
+       <div class="dropdown-content">
+        <div class="dropdown-section">
+         <a href="calculator.html" class="dropdown-item" data-lang-en="Feed Calculator" data-lang-sw="Kikokotoo cha Chakula">Feed Calculator</a> 
+         <a href="quiz.html" class="dropdown-item" data-lang-en="Feed Quiz" data-lang-sw="Jaribio la Chakula">Feed Quiz</a> 
+         <a href="nutrition-assistant.html" class="dropdown-item" data-lang-en="Nutrition Assistant" data-lang-sw="Msaidizi wa Lishe">Nutrition Assistant</a> 
+         <a href="sustainability.html" class="dropdown-item" data-lang-en="Sustainability Hub" data-lang-sw="Kituo cha Mazingira">Sustainability Hub</a>
+        </div>
+       </div>
+      </div>
+      <a href="blog.html" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Blog" data-lang-sw="Blogu">Blog</a> 
+      <a href="contact.html" class="text-gray-700 hover:text-secondary transition-colors" data-lang-en="Contact" data-lang-sw="Wasiliana">Contact</a> 
+      <!-- Language Toggle -->
+      <div class="flex items-center">
+       <label class="language-toggle"> 
+        <input type="checkbox" id="language-toggle"> 
+        <span class="slider"> <span>EN</span> <span>SW</span> </span> 
+       </label>
+      </div>
+      <!-- Phone Button --> 
+      <a href="tel:+254727455027" class="btn-primary text-white px-4 py-2 rounded-lg font-semibold"> 
+       <i class="fas fa-phone mr-2"></i><span id="phone-display">+254727455027</span> 
+      </a>
+     </div>
+     <!-- Mobile Menu Button -->
+     <div class="lg:hidden flex items-center space-x-4">
+      <!-- Mobile Language Toggle --> 
+      <label class="language-toggle"> 
+       <input type="checkbox" id="mobile-language-toggle"> 
+       <span class="slider"> <span>EN</span> <span>SW</span> </span> 
+      </label> 
+      <button id="mobile-menu-btn" class="text-gray-700 hover:text-secondary"> 
+       <i class="fas fa-bars text-xl"></i> 
+      </button>
+     </div>
+    </div>
+   </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+   <div class="mobile-menu-content">
+    <div class="p-6 border-b">
+     <div class="flex items-center justify-between">
+      <span class="text-xl font-bold text-primary" id="mobile-company-name">Bounty Millers</span> 
+      <button id="close-mobile-menu" class="text-gray-500 hover:text-gray-700"> 
+       <i class="fas fa-times text-xl"></i> 
+      </button>
+     </div>
+    </div>
+    <div class="p-6 space-y-4">
+     <a href="#home" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Home" data-lang-sw="Nyumbani">Home</a> 
+     <!-- Mobile Products Section -->
+     <div>
+      <div class="py-2 font-semibold text-primary" data-lang-en="Products" data-lang-sw="Bidhaa">
+       Products
+      </div>
+      <div class="ml-4 space-y-2">
+       <a href="dairy-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Dairy Feeds" data-lang-sw="Chakula cha Ng'ombe">Dairy Feeds</a> 
+       <a href="poultry-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Poultry Feeds" data-lang-sw="Chakula cha Kuku">Poultry Feeds</a> 
+       <a href="layer-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Layer Feeds" data-lang-sw="Chakula cha Mayai">Layer Feeds</a> 
+       <a href="pig-feeds.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Pig Feeds" data-lang-sw="Chakula cha Nguruwe">Pig Feeds</a> 
+       <a href="raw-materials.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Raw Materials" data-lang-sw="Malighafi">Raw Materials</a>
+      </div>
+     </div>
+     <!-- Mobile Tools Section -->
+     <div>
+      <div class="py-2 font-semibold text-primary" data-lang-en="Tools" data-lang-sw="Zana">
+       Tools
+      </div>
+      <div class="ml-4 space-y-2">
+       <a href="calculator.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Feed Calculator" data-lang-sw="Kikokotoo cha Chakula">Feed Calculator</a> 
+       <a href="quiz.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Feed Quiz" data-lang-sw="Jaribio la Chakula">Feed Quiz</a> 
+       <a href="nutrition-assistant.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Nutrition Assistant" data-lang-sw="Msaidizi wa Lishe">Nutrition Assistant</a> 
+       <a href="sustainability.html" class="block py-1 text-gray-600 hover:text-secondary" data-lang-en="Sustainability Hub" data-lang-sw="Kituo cha Mazingira">Sustainability Hub</a>
+      </div>
+     </div>
+     <a href="blog.html" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Blog" data-lang-sw="Blogu">Blog</a> 
+     <a href="contact.html" class="block py-2 text-gray-700 hover:text-secondary transition-colors" data-lang-en="Contact" data-lang-sw="Wasiliana">Contact</a>
+     <div class="pt-4 border-t">
+      <a href="tel:+254727455027" class="block w-full text-center btn-primary text-white py-3 rounded-lg font-semibold"> 
+       <i class="fas fa-phone mr-2"></i><span id="mobile-phone-display">+254727455027</span> 
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="gradient-bg hero-pattern pt-16 min-h-screen flex items-center">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+     <div class="text-white" data-aos="fade-right">
+      <h1 class="hero-title text-4xl md:text-6xl font-bold mb-6">
+       <span class="lang-en" id="hero-title-en">Premium Animal Feeds from Kiambu</span> 
+       <span class="lang-sw hidden-lang" id="hero-title-sw">Chakula cha Wanyamapori cha Hali ya Juu kutoka Kiambu</span>
+      </h1>
+      <p class="hero-subtitle text-xl md:text-2xl mb-8 opacity-90">
+       <span class="lang-en" id="hero-subtitle-en">Serving Central Kenya farmers since 2003 with quality feeds and raw materials</span> 
+       <span class="lang-sw hidden-lang" id="hero-subtitle-sw">Kutumikia wakulima wa Kenya ya Kati tangu 2003 na chakula cha ubora na malighafi</span>
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+       <a href="products.html" class="btn-primary px-8 py-4 rounded-lg font-semibold text-lg text-center"> 
+        <i class="fas fa-seedling mr-2"></i> 
+        <span class="lang-en">Explore Products</span> 
+        <span class="lang-sw hidden-lang">Chunguza Bidhaa</span> 
+       </a> 
+       <a href="calculator.html" class="btn-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg text-center"> 
+        <i class="fas fa-calculator mr-2"></i> 
+        <span class="lang-en">Feed Calculator</span> 
+        <span class="lang-sw hidden-lang">Kikokotoo cha Chakula</span> 
+       </a>
+      </div>
+     </div>
+     <!-- Quick Feed Finder Widget -->
+     <div class="bg-white rounded-2xl p-8 shadow-2xl" data-aos="fade-left">
+      <h3 class="text-2xl font-bold text-primary mb-6">
+       <span class="lang-en">Quick Feed Finder</span> 
+       <span class="lang-sw hidden-lang">Kitafuta Chakula cha Haraka</span>
+      </h3>
+      <form id="quick-finder-form" class="space-y-4">
+       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2"> 
+         <span class="lang-en">Animal Type</span> 
+         <span class="lang-sw hidden-lang">Aina ya Mnyama</span> 
+        </label> 
+        <select id="quick-animal" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"> 
+         <option value=""> Select Animal Chagua Mnyama </option> 
+         <option value="dairy" data-lang-en="Dairy Cattle" data-lang-sw="Ng'ombe wa Maziwa">Dairy Cattle</option> 
+         <option value="broiler" data-lang-en="Broiler Chicken" data-lang-sw="Kuku wa Nyama">Broiler Chicken</option> 
+         <option value="layer" data-lang-en="Layer Chicken" data-lang-sw="Kuku wa Mayai">Layer Chicken</option> 
+         <option value="pig" data-lang-en="Pigs" data-lang-sw="Nguruwe">Pigs</option> 
+        </select>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2"> 
+         <span class="lang-en">Feed Stage</span> 
+         <span class="lang-sw hidden-lang">Hatua ya Chakula</span> 
+        </label> 
+        <select id="quick-stage" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"> 
+         <option value=""> Select Stage Chagua Hatua </option> 
+        </select>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2"> 
+         <span class="lang-en">Herd Size</span> 
+         <span class="lang-sw hidden-lang">Idadi ya Wanyamapori</span> 
+        </label> 
+        <input type="number" id="quick-herd-size" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="100" min="1">
+       </div>
+       <button type="submit" class="w-full btn-primary py-3 rounded-lg font-semibold text-white"> 
+        <i class="fas fa-search mr-2"></i> 
+        <span class="lang-en">Find Perfect Feed</span> 
+        <span class="lang-sw hidden-lang">Pata Chakula Kamili</span> 
+       </button>
+      </form>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="bg-white py-16">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+     <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+      <div class="stat-counter mb-2" data-counter="20">
+       0
+      </div>
+      <div class="text-gray-600">
+       <span class="lang-en">Years Experience</span> 
+       <span class="lang-sw hidden-lang">Miaka ya Uzoefu</span>
+      </div>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+      <div class="stat-counter mb-2" data-counter="5000">
+       0
+      </div>
+      <div class="text-gray-600">
+       <span class="lang-en">Happy Farmers</span> 
+       <span class="lang-sw hidden-lang">Wakulima Wenye Furaha</span>
+      </div>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+      <div class="stat-counter mb-2" data-counter="50">
+       0
+      </div>
+      <div class="text-gray-600">
+       <span class="lang-en">Feed Products</span> 
+       <span class="lang-sw hidden-lang">Bidhaa za Chakula</span>
+      </div>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+      <div class="stat-counter mb-2" data-counter="100">
+       0
+      </div>
+      <div class="text-gray-600">
+       <span class="lang-en">Dealers Network</span> 
+       <span class="lang-sw hidden-lang">Mtandao wa Mauzo</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="py-20 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16" data-aos="fade-up">
+     <h2 class="text-4xl font-bold text-primary mb-4">
+      <span class="lang-en">Our Featured Products</span> 
+      <span class="lang-sw hidden-lang">Bidhaa Zetu Maarufu</span>
+     </h2>
+     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      <span class="lang-en">Premium quality feeds designed for optimal animal nutrition and performance</span> 
+      <span class="lang-sw hidden-lang">Chakula cha ubora wa juu kilichoundwa kwa lishe bora ya wanyamapori na utendaji</span>
+     </p>
+    </div>
+    <div class="product-grid">
+     <!-- Dairy Feeds -->
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
+      <img src="images/dairygold.jpg" alt="Dairy Gold Feed" class="w-full h-48 object-cover">
+      <div class="p-6">
+       <h4 class="text-xl font-bold text-primary mb-2">
+        <span class="lang-en">Dairy Feeds</span> 
+        <span class="lang-sw hidden-lang">Chakula cha Ng'ombe wa Maziwa</span>
+       </h4>
+       <p class="text-gray-600 mb-4">
+        <span class="lang-en">Premium dairy feeds for optimal milk production and cow health</span> 
+        <span class="lang-sw hidden-lang">Chakula cha ng'ombe wa maziwa cha ubora kwa uzalishaji wa maziwa na afya ya ng'ombe</span>
+       </p>
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Dairy Gold</span> <span class="text-sm font-semibold text-secondary">Premium</span></div>
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Dairy Supreme</span> <span class="text-sm font-semibold text-accent">Standard</span></div>
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Dairy Economy</span> <span class="text-sm font-semibold text-earth">Budget</span></div>
+       </div>
+       <div class="flex gap-2">
+        <a href="dairy-feeds.html" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold text-center"> 
+         <span class="lang-en">View Details</span> 
+         <span class="lang-sw hidden-lang">Ona Maelezo</span> 
+        </a> 
+        <button onclick="openWhatsApp('dairy feeds')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"> 
+         <i class="fab fa-whatsapp"></i> 
+        </button>
+       </div>
+      </div>
+     </div>
+     <!-- Poultry Feeds -->
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="200">
+      <img src="images/broilerstarter.jpg" alt="Broiler Starter Feed" class="w-full h-48 object-cover">
+      <div class="p-6">
+       <h4 class="text-xl font-bold text-primary mb-2">
+        <span class="lang-en">Poultry Feeds</span> 
+        <span class="lang-sw hidden-lang">Chakula cha Kuku</span>
+       </h4>
+       <p class="text-gray-600 mb-4">
+        <span class="lang-en">Complete nutrition for broilers and layers at every growth stage</span> 
+        <span class="lang-sw hidden-lang">Lishe kamili kwa kuku wa nyama na mayai katika kila hatua ya ukuaji</span>
+       </p>
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Broiler Starter</span> <span class="text-sm font-semibold text-secondary">0-3 weeks</span></div>
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Broiler Grower</span> <span class="text-sm font-semibold text-accent">3-6 weeks</span></div>
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Broiler Finisher</span> <span class="text-sm font-semibold text-earth">6+ weeks</span></div>
+       </div>
+       <div class="flex gap-2">
+        <a href="poultry-feeds.html" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold text-center"> 
+         <span class="lang-en">View Details</span> 
+         <span class="lang-sw hidden-lang">Ona Maelezo</span> 
+        </a> 
+        <button onclick="openWhatsApp('poultry feeds')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"> 
+         <i class="fab fa-whatsapp"></i> 
+        </button>
+       </div>
+      </div>
+     </div>
+     <!-- Layer Feeds -->
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="300">
+      <img src="images/layerphase1.jpg" alt="Layer Phase 1 Feed" class="w-full h-48 object-cover">
+      <div class="p-6">
+       <h4 class="text-xl font-bold text-primary mb-2">
+        <span class="lang-en">Layer Feeds</span> 
+        <span class="lang-sw hidden-lang">Chakula cha Kuku wa Mayai</span>
+       </h4>
+       <p class="text-gray-600 mb-4">
+        <span class="lang-en">Specialized feeds for maximum egg production and shell quality</span> 
+        <span class="lang-sw hidden-lang">Chakula maalum kwa uzalishaji mkubwa wa mayai na ubora wa ganda</span>
+       </p>
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Layer Phase 1</span> <span class="text-sm font-semibold text-secondary">18-40 weeks</span></div>
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Layer Phase 2</span> <span class="text-sm font-semibold text-accent">40-65 weeks</span></div>
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Layer Phase 3</span> <span class="text-sm font-semibold text-earth">65+ weeks</span></div>
+       </div>
+       <div class="flex gap-2">
+        <a href="layer-feeds.html" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold text-center"> 
+         <span class="lang-en">View Details</span> 
+         <span class="lang-sw hidden-lang">Ona Maelezo</span> 
+        </a> 
+        <button onclick="openWhatsApp('layer feeds')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"> 
+         <i class="fab fa-whatsapp"></i> 
+        </button>
+       </div>
+      </div>
+     </div>
+     <!-- Raw Materials -->
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="400">
+      <img src="images/soyafullat.jpg" alt="Soya Full Fat" class="w-full h-48 object-cover">
+      <div class="p-6">
+       <h4 class="text-xl font-bold text-primary mb-2">
+        <span class="lang-en">Raw Materials</span> 
+        <span class="lang-sw hidden-lang">Malighafi</span>
+       </h4>
+       <p class="text-gray-600 mb-4">
+        <span class="lang-en">High-quality protein and energy sources for custom feed mixing</span> 
+        <span class="lang-sw hidden-lang">Vyanzo vya protini na nishati vya ubora kwa kuchanganya chakula maalum</span>
+       </p>
+       <div class="space-y-2 mb-4">
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Soya Full Fat</span> <span class="text-sm font-semibold text-secondary">38% CP</span></div>
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Fish Meal</span> <span class="text-sm font-semibold text-accent">65% CP</span></div>
+        <div class="flex justify-between"><span class="text-sm text-gray-500">Maize Germ</span> <span class="text-sm font-semibold text-earth">3200 ME</span></div>
+       </div>
+       <div class="flex gap-2">
+        <a href="raw-materials.html" class="flex-1 btn-primary text-white py-2 rounded-lg font-semibold text-center"> 
+         <span class="lang-en">View Details</span> 
+         <span class="lang-sw hidden-lang">Ona Maelezo</span> 
+        </a> 
+        <button onclick="openWhatsApp('raw materials')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"> 
+         <i class="fab fa-whatsapp"></i> 
+        </button>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="text-center mt-12" data-aos="fade-up">
+     <a href="products.html" class="btn-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg"> 
+      <span class="lang-en">View All Products</span> 
+      <span class="lang-sw hidden-lang">Ona Bidhaa Zote</span> 
+      <i class="fas fa-arrow-right ml-2"></i> 
+     </a>
+    </div>
+   </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="py-20 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16" data-aos="fade-up">
+     <h2 class="text-4xl font-bold text-primary mb-4">
+      <span class="lang-en">Why Choose Bounty Millers?</span> 
+      <span class="lang-sw hidden-lang">Kwa Nini Uchague Bounty Millers?</span>
+     </h2>
+     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      <span class="lang-en">Over 20 years of experience serving Central Kenya's farming community</span> 
+      <span class="lang-sw hidden-lang">Zaidi ya miaka 20 ya uzoefu wa kutumikia jamii ya wakulima wa Kenya ya Kati</span>
+     </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+      <div class="bg-secondary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+       <i class="fas fa-award text-white text-2xl"></i>
+      </div>
+      <h4 class="text-xl font-semibold text-primary mb-2">
+       <span class="lang-en">Premium Quality</span> 
+       <span class="lang-sw hidden-lang">Ubora wa Hali ya Juu</span>
+      </h4>
+      <p class="text-gray-600">
+       <span class="lang-en">Rigorous quality control ensures every batch meets the highest standards</span> 
+       <span class="lang-sw hidden-lang">Udhibiti mkali wa ubora unahakikisha kila kizuizi kinakidhi viwango vya juu</span>
+      </p>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+      <div class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+       <i class="fas fa-truck text-white text-2xl"></i>
+      </div>
+      <h4 class="text-xl font-semibold text-primary mb-2">
+       <span class="lang-en">Fast Delivery</span> 
+       <span class="lang-sw hidden-lang">Utoaji wa Haraka</span>
+      </h4>
+      <p class="text-gray-600">
+       <span class="lang-en">Same-day delivery within Kiambu and next-day delivery across Central Kenya</span> 
+       <span class="lang-sw hidden-lang">Utoaji siku hiyo hiyo ndani ya Kiambu na utoaji siku inayofuata kote Kenya ya Kati</span>
+      </p>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+      <div class="bg-earth rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+       <i class="fas fa-users text-white text-2xl"></i>
+      </div>
+      <h4 class="text-xl font-semibold text-primary mb-2">
+       <span class="lang-en">Expert Support</span> 
+       <span class="lang-sw hidden-lang">Msaada wa Kitaalamu</span>
+      </h4>
+      <p class="text-gray-600">
+       <span class="lang-en">Our nutrition experts provide personalized feeding recommendations</span> 
+       <span class="lang-sw hidden-lang">Wataalamu wetu wa lishe wanatoa mapendekezo ya kulisha ya kibinafsi</span>
+      </p>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+      <div class="bg-warm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+       <i class="fas fa-leaf text-white text-2xl"></i>
+      </div>
+      <h4 class="text-xl font-semibold text-primary mb-2">
+       <span class="lang-en">Sustainable Practices</span> 
+       <span class="lang-sw hidden-lang">Mazoea Endelevu</span>
+      </h4>
+      <p class="text-gray-600">
+       <span class="lang-en">Environmentally responsible manufacturing with local sourcing</span> 
+       <span class="lang-sw hidden-lang">Uzalishaji unaohusiana na mazingira na vyanzo vya ndani</span>
+      </p>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="500">
+      <div class="bg-secondary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+       <i class="fas fa-calculator text-white text-2xl"></i>
+      </div>
+      <h4 class="text-xl font-semibold text-primary mb-2">
+       <span class="lang-en">Smart Tools</span> 
+       <span class="lang-sw hidden-lang">Zana Mahiri</span>
+      </h4>
+      <p class="text-gray-600">
+       <span class="lang-en">Advanced calculators and tools to optimize your feeding program</span> 
+       <span class="lang-sw hidden-lang">Vikokotoo vya hali ya juu na zana za kuboresha mpango wako wa kulisha</span>
+      </p>
+     </div>
+     <div class="text-center" data-aos="fade-up" data-aos-delay="600">
+      <div class="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+       <i class="fas fa-handshake text-white text-2xl"></i>
+      </div>
+      <h4 class="text-xl font-semibold text-primary mb-2">
+       <span class="lang-en">Trusted Partner</span> 
+       <span class="lang-sw hidden-lang">Mshirika wa Kuaminika</span>
+      </h4>
+      <p class="text-gray-600">
+       <span class="lang-en">Building long-term relationships with farmers across Central Kenya</span> 
+       <span class="lang-sw hidden-lang">Kujenga uhusiano wa muda mrefu na wakulima kote Kenya ya Kati</span>
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="gradient-bg py-20">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+    <h2 class="text-4xl font-bold text-white mb-6">
+     <span class="lang-en">Ready to Improve Your Livestock Nutrition?</span> 
+     <span class="lang-sw hidden-lang">Uko Tayari Kuboresha Lishe ya Mifugo Yako?</span>
+    </h2>
+    <p class="text-xl text-white opacity-90 mb-8">
+     <span class="lang-en">Get expert advice and premium feeds delivered to your farm</span> 
+     <span class="lang-sw hidden-lang">Pata ushauri wa kitaalamu na chakula cha ubora kuletwa shambani kwako</span>
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+     <a href="contact.html" class="btn-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg"> 
+      <i class="fas fa-phone mr-2"></i> 
+      <span class="lang-en">Contact Us Today</span> 
+      <span class="lang-sw hidden-lang">Wasiliana Nasi Leo</span> 
+     </a> 
+     <a href="calculator.html" class="bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors"> 
+      <i class="fas fa-calculator mr-2"></i> 
+      <span class="lang-en">Try Feed Calculator</span> 
+      <span class="lang-sw hidden-lang">Jaribu Kikokotoo cha Chakula</span> 
+     </a>
+    </div>
+   </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-16">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8">
+     <div>
+      <div class="flex items-center mb-4">
+       <img src="images/logo-white.jpg" alt="Bounty Millers Logo" class="h-10 w-auto mr-3"> 
+       <span class="text-xl font-bold" id="footer-company-name">Bounty Millers Limited</span>
+      </div>
+      <p class="text-gray-300 mb-4">
+       <span class="lang-en">Premium animal feeds manufacturer serving Central Kenya farmers since 2003.</span> 
+       <span class="lang-sw hidden-lang">Mtengenezaji wa chakula cha wanyamapori cha ubora anayetumikia wakulima wa Kenya ya Kati tangu 2003.</span>
+      </p>
+      <div class="flex space-x-4">
+       <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-facebook text-xl"></i> </a> 
+       <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-twitter text-xl"></i> </a> 
+       <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-instagram text-xl"></i> </a> 
+       <a href="#" class="text-gray-300 hover:text-white transition-colors"> <i class="fab fa-linkedin text-xl"></i> </a>
+      </div>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">
+       <span class="lang-en">Products</span> 
+       <span class="lang-sw hidden-lang">Bidhaa</span>
+      </h4>
+      <ul class="space-y-2">
+       <li><a href="dairy-feeds.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Dairy Feeds</span> 
+        <span class="lang-sw hidden-lang">Chakula cha Ng'ombe</span> 
+       </a></li>
+       <li><a href="poultry-feeds.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Poultry Feeds</span> 
+        <span class="lang-sw hidden-lang">Chakula cha Kuku</span> 
+       </a></li>
+       <li><a href="layer-feeds.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Layer Feeds</span> 
+        <span class="lang-sw hidden-lang">Chakula cha Mayai</span> 
+       </a></li>
+       <li><a href="pig-feeds.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Pig Feeds</span> 
+        <span class="lang-sw hidden-lang">Chakula cha Nguruwe</span> 
+       </a></li>
+       <li><a href="raw-materials.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Raw Materials</span> 
+        <span class="lang-sw hidden-lang">Malighafi</span> 
+       </a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">
+       <span class="lang-en">Tools &amp; Services</span> 
+       <span class="lang-sw hidden-lang">Zana na Huduma</span>
+      </h4>
+      <ul class="space-y-2">
+       <li><a href="calculator.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Feed Calculator</span> 
+        <span class="lang-sw hidden-lang">Kikokotoo cha Chakula</span> 
+       </a></li>
+       <li><a href="quiz.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Feed Quiz</span> 
+        <span class="lang-sw hidden-lang">Jaribio la Chakula</span> 
+       </a></li>
+       <li><a href="sustainability.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Sustainability Hub</span> 
+        <span class="lang-sw hidden-lang">Kituo cha Mazingira</span> 
+       </a></li>
+       <li><a href="nutrition-assistant.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Nutrition Assistant</span> 
+        <span class="lang-sw hidden-lang">Msaidizi wa Lishe</span> 
+       </a></li>
+       <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors"> 
+        <span class="lang-en">Blog</span> 
+        <span class="lang-sw hidden-lang">Blogu</span> 
+       </a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-lg font-semibold mb-4">
+       <span class="lang-en">Contact Info</span> 
+       <span class="lang-sw hidden-lang">Maelezo ya Mawasiliano</span>
+      </h4>
+      <div class="space-y-2">
+       <p class="text-gray-300"><i class="fas fa-map-marker-alt mr-2"></i> <span id="footer-location">Kiambu, Kenya</span></p>
+       <p class="text-gray-300"><i class="fas fa-phone mr-2"></i> <a href="tel:+254727455027" class="hover:text-white transition-colors" id="footer-phone">+254727455027</a></p>
+       <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i> <a href="mailto:info@bountymillers.com" class="hover:text-white transition-colors" id="footer-email">info@bountymillers.com</a></p>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+     <p class="text-gray-300">
+      <span class="lang-en">© 2024 Bounty Millers Limited. All rights reserved. | Serving Central Kenya's farming community</span> 
+      <span class="lang-sw hidden-lang">© 2024 Bounty Millers Limited. Haki zote zimehifadhiwa. | Kutumikia jamii ya wakulima wa Kenya ya Kati</span>
+     </p>
+    </div>
+   </div>
+  </footer>
+
+  <!-- WhatsApp Float Button --> 
+  <a href="https://wa.me/254727455027?text=Hello%20Bounty%20Millers!%20I'm%20interested%20in%20your%20feeds." target="_blank" rel="noopener noreferrer" class="whatsapp-float"> 
+   <i class="fab fa-whatsapp"></i> 
+  </a>
+
+  <script>
+        // Global variables
+        let currentLanguage = 'en';
+        let currentRecordCount = 0;
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                console.log(`Data updated: ${data.length} records`);
+            }
+        };
+
+        // Element SDK Configuration
+        const defaultConfig = {
+            company_name: "Bounty Millers Limited",
+            hero_title_en: "Premium Animal Feeds from Kiambu",
+            hero_title_sw: "Chakula cha Wanyamapori cha Hali ya Juu kutoka Kiambu",
+            hero_subtitle_en: "Serving Central Kenya farmers since 2003",
+            hero_subtitle_sw: "Kutumikia wakulima wa Kenya ya Kati tangu 2003",
+            phone_number: "+254727455027",
+            email_address: "info@bountymillers.com",
+            location_text: "Kiambu, Kenya"
+        };
+
+        // Initialize SDKs
+        async function initializeSDKs() {
+            try {
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize Data SDK");
+                    }
+                }
+
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: async (config) => {
+                            const companyElements = document.querySelectorAll('#company-name, #mobile-company-name, #footer-company-name');
+                            companyElements.forEach(el => {
+                                el.textContent = config.company_name || defaultConfig.company_name;
+                            });
+
+                            const heroTitleEn = document.getElementById('hero-title-en');
+                            if (heroTitleEn) heroTitleEn.textContent = config.hero_title_en || defaultConfig.hero_title_en;
+
+                            const heroTitleSw = document.getElementById('hero-title-sw');
+                            if (heroTitleSw) heroTitleSw.textContent = config.hero_title_sw || defaultConfig.hero_title_sw;
+
+                            const heroSubtitleEn = document.getElementById('hero-subtitle-en');
+                            if (heroSubtitleEn) heroSubtitleEn.textContent = config.hero_subtitle_en || defaultConfig.hero_subtitle_en;
+
+                            const heroSubtitleSw = document.getElementById('hero-subtitle-sw');
+                            if (heroSubtitleSw) heroSubtitleSw.textContent = config.hero_subtitle_sw || defaultConfig.hero_subtitle_sw;
+
+                            const phoneElements = document.querySelectorAll('#phone-display, #mobile-phone-display, #footer-phone');
+                            phoneElements.forEach(el => {
+                                el.textContent = config.phone_number || defaultConfig.phone_number;
+                                if (el.tagName === 'A') {
+                                    el.href = `tel:${config.phone_number || defaultConfig.phone_number}`;
+                                }
+                            });
+
+                            const emailElements = document.querySelectorAll('#footer-email');
+                            emailElements.forEach(el => {
+                                el.textContent = config.email_address || defaultConfig.email_address;
+                                if (el.tagName === 'A') {
+                                    el.href = `mailto:${config.email_address || defaultConfig.email_address}`;
+                                }
+                            });
+
+                            const locationElements = document.querySelectorAll('#footer-location');
+                            locationElements.forEach(el => {
+                                el.textContent = config.location_text || defaultConfig.location_text;
+                            });
+                        },
+                        mapToCapabilities: (config) => ({
+                            recolorables: [],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["company_name", config.company_name || defaultConfig.company_name],
+                            ["hero_title_en", config.hero_title_en || defaultConfig.hero_title_en],
+                            ["hero_title_sw", config.hero_title_sw || defaultConfig.hero_title_sw],
+                            ["hero_subtitle_en", config.hero_subtitle_en || defaultConfig.hero_subtitle_en],
+                            ["hero_subtitle_sw", config.hero_subtitle_sw || defaultConfig.hero_subtitle_sw],
+                            ["phone_number", config.phone_number || defaultConfig.phone_number],
+                            ["email_address", config.email_address || defaultConfig.email_address],
+                            ["location_text", config.location_text || defaultConfig.location_text]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("SDK initialization error:", error);
+            }
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSDKs();
+            initializeAOS();
+            initializeCounters();
+            initializeLanguageToggle();
+            initializeMobileMenu();
+            initializeQuickFinder();
+        });
+
+        // AOS Animation initialization
+        function initializeAOS() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
+            });
+        }
+
+        // Counter animation
+        function initializeCounters() {
+            const counters = document.querySelectorAll('[data-counter]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-counter'));
+                        animateCounter(counter, target);
+                        observer.unobserve(counter);
+                    }
+                });
+            });
+
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 40);
+        }
+
+        // Language toggle functionality
+        function initializeLanguageToggle() {
+            const toggles = document.querySelectorAll('#language-toggle, #mobile-language-toggle');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'sw' : 'en';
+                    updateLanguage();
+                    toggles.forEach(t => t.checked = this.checked);
+                });
+            });
+        }
+
+        function updateLanguage() {
+            document.querySelectorAll('.lang-en, .lang-sw').forEach(el => {
+                el.classList.add('hidden-lang');
+            });
+
+            document.querySelectorAll(`.lang-${currentLanguage}`).forEach(el => {
+                el.classList.remove('hidden-lang');
+            });
+
+            document.querySelectorAll('[data-lang-en][data-lang-sw]').forEach(el => {
+                const text = currentLanguage === 'en' ? el.getAttribute('data-lang-en') : el.getAttribute('data-lang-sw');
+                el.textContent = text;
+            });
+
+            document.querySelectorAll('option[data-lang-en][data-lang-sw]').forEach(option => {
+                const text = currentLanguage === 'en' ? option.getAttribute('data-lang-en') : option.getAttribute('data-lang-sw');
+                option.textContent = text;
+            });
+        }
+
+        // Mobile menu functionality
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+            });
+
+            closeMobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Quick finder functionality
+        function initializeQuickFinder() {
+            const animalSelect = document.getElementById('quick-animal');
+            const stageSelect = document.getElementById('quick-stage');
+            const form = document.getElementById('quick-finder-form');
+            
+            animalSelect.addEventListener('change', function() {
+                updateStageOptions(this.value, stageSelect);
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleQuickFinder();
+            });
+        }
+
+        function updateStageOptions(animal, stageSelect) {
+            const stages = {
+                dairy: [
+                    { en: 'Lactating', sw: 'Wazalishaji' },
+                    { en: 'Dry', sw: 'Wakavu' },
+                    { en: 'Heifer', sw: 'Mtoto wa Kike' }
+                ],
+                broiler: [
+                    { en: 'Starter (0-3 weeks)', sw: 'Mwanzo (wiki 0-3)' },
+                    { en: 'Grower (3-6 weeks)', sw: 'Mkuaji (wiki 3-6)' },
+                    { en: 'Finisher (6+ weeks)', sw: 'Mwisho (wiki 6+)' }
+                ],
+                layer: [
+                    { en: 'Phase 1 (18-40 weeks)', sw: 'Hatua 1 (wiki 18-40)' },
+                    { en: 'Phase 2 (40-65 weeks)', sw: 'Hatua 2 (wiki 40-65)' },
+                    { en: 'Phase 3 (65+ weeks)', sw: 'Hatua 3 (wiki 65+)' }
+                ],
+                pig: [
+                    { en: 'Starter (5-25 kg)', sw: 'Mwanzo (5-25 kg)' },
+                    { en: 'Grower (25-60 kg)', sw: 'Mkuaji (25-60 kg)' },
+                    { en: 'Finisher (60+ kg)', sw: 'Mwisho (60+ kg)' }
+                ]
+            };
+            
+            stageSelect.innerHTML = `<option value="">${currentLanguage === 'en' ? 'Select Stage' : 'Chagua Hatua'}</option>`;
+            
+            if (stages[animal]) {
+                stages[animal].forEach(stage => {
+                    const option = document.createElement('option');
+                    option.value = stage.en.toLowerCase().replace(/[^a-z]/g, '');
+                    option.textContent = currentLanguage === 'en' ? stage.en : stage.sw;
+                    stageSelect.appendChild(option);
+                });
+            }
+        }
+
+        function handleQuickFinder() {
+            const animal = document.getElementById('quick-animal').value;
+            const stage = document.getElementById('quick-stage').value;
+            const herdSize = document.getElementById('quick-herd-size').value;
+            
+            if (!animal || !stage) {
+                showToast(currentLanguage === 'en' ? 'Please select animal type and stage' : 'Tafadhali chagua aina ya mnyama na hatua', 'warning');
+                return;
+            }
+            
+            const data = {
+                type: 'quick_finder',
+                animal_type: animal,
+                feed_type: stage,
+                herd_size: parseInt(herdSize) || 0,
+                created_at: new Date().toISOString()
+            };
+            
+            submitData(data, currentLanguage === 'en' ? 'Redirecting to recommended products...' : 'Kuongoza kwa bidhaa zinazopendekeza...');
+            
+            const productPages = {
+                dairy: 'dairy-feeds.html',
+                broiler: 'poultry-feeds.html',
+                layer: 'layer-feeds.html',
+                pig: 'pig-feeds.html'
+            };
+            
+            setTimeout(() => {
+                window.location.href = productPages[animal] || 'products.html';
+            }, 1000);
+        }
+
+        async function submitData(data, successMessage) {
+            if (currentRecordCount >= 999) {
+                showToast(currentLanguage === 'en' ? 'Maximum limit reached. Please contact us directly.' : 'Kikomo cha juu kimefikiwa. Tafadhali wasiliana nasi moja kwa moja.', 'error');
+                return;
+            }
+            
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(data);
+                if (result.isOk) {
+                    showToast(successMessage, 'success');
+                } else {
+                    showToast(currentLanguage === 'en' ? 'Failed to submit data. Please try again.' : 'Imeshindwa kutuma data. Tafadhali jaribu tena.', 'error');
+                }
+            } else {
+                showToast(successMessage, 'success');
+            }
+        }
+
+        function openWhatsApp(product) {
+            const phone = window.elementSdk?.config?.phone_number || defaultConfig.phone_number;
+            const message = currentLanguage === 'en' ? 
+                `Hello Bounty Millers! I'm interested in your ${product}. Can you provide more information and pricing?` :
+                `Hujambo Bounty Millers! Ninapenda ${product} yenu. Je, mnaweza kutoa maelezo zaidi na bei?`;
+            const url = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300`;
+            
+            const colors = {
+                success: 'bg-green-600 text-white',
+                error: 'bg-red-600 text-white',
+                warning: 'bg-yellow-600 text-white',
+                info: 'bg-blue-600 text-white'
+            };
+            
+            toast.className += ` ${colors[type] || colors.info}`;
+            toast.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} mr-3"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (document.body.contains(toast)) {
+                        document.body.removeChild(toast);
+                    }
+                }, 300);
+            }, 4000);
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99761a9090708a6b',t:'MTc2MTk0NDY1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+ </body>
+</html>
