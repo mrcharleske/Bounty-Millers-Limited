@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Blog | Bounty Millers Limited</title>
+  <meta name="description" content="Monthly insights on agriculture, sustainability, and industry trends from Bounty Millers Limited."><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- SDKs -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* Blog Color Scheme */
+        :root {
+            --blog-primary: #1e40af;
+            --blog-secondary: #3b82f6;
+            --blog-accent: #60a5fa;
+            --blog-surface: #f8fafc;
+            --blog-text: #1e293b;
+        }
+        
+        .bg-blog-primary { background-color: var(--blog-primary); }
+        .bg-blog-secondary { background-color: var(--blog-secondary); }
+        .bg-blog-accent { background-color: var(--blog-accent); }
+        .bg-blog-surface { background-color: var(--blog-surface); }
+        .text-blog-primary { color: var(--blog-primary); }
+        .text-blog-secondary { color: var(--blog-secondary); }
+        .text-blog-accent { color: var(--blog-accent); }
+        .text-blog-text { color: var(--blog-text); }
+        
+        .gradient-blog {
+            background: linear-gradient(135deg, var(--blog-primary) 0%, var(--blog-secondary) 100%);
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.1);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .blog-card:hover {
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.15);
+            border-color: var(--blog-secondary);
+            transform: translateY(-5px);
+        }
+        
+        .post-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #f1f5f9;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .post-card:hover {
+            box-shadow: 0 15px 35px rgba(30, 64, 175, 0.2);
+            border-color: var(--blog-secondary);
+            transform: translateY(-8px);
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .category-agriculture { background: #dcfce7; color: #166534; }
+        .category-sustainability { background: #f0fdf4; color: #15803d; }
+        .category-technology { background: #dbeafe; color: #1e40af; }
+        .category-industry { background: #fef3c7; color: #92400e; }
+        .category-research { background: #fce7f3; color: #be185d; }
+        .category-news { background: #e0f2fe; color: #0369a1; }
+        
+        .btn-blog {
+            background: linear-gradient(135deg, var(--blog-primary) 0%, var(--blog-secondary) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-blog:hover {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+        }
+        
+        .btn-blog:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--blog-primary);
+            border: 2px solid var(--blog-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--blog-primary);
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--blog-text);
+            margin-bottom: 8px;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--blog-primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--blog-primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            padding: 8px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+        
+        .filter-tab {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: transparent;
+        }
+        
+        .filter-tab.active {
+            background: var(--blog-primary);
+            color: white;
+        }
+        
+        .filter-tab:not(.active):hover {
+            background: white;
+            color: var(--blog-primary);
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .featured-post {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+            padding: 32px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--blog-secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.success { background: var(--blog-secondary); }
+        .toast.error { background: #ef4444; }
+        .toast.warning { background: #f59e0b; }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--blog-primary) 0%, var(--blog-secondary) 50%, var(--blog-accent) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--blog-secondary);
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.1);
+        }
+        
+        .read-time {
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .post-content {
+            line-height: 1.7;
+            color: #374151;
+        }
+        
+        .post-content h1, .post-content h2, .post-content h3 {
+            color: var(--blog-text);
+            font-weight: 700;
+            margin: 24px 0 16px 0;
+        }
+        
+        .post-content h1 { font-size: 2rem; }
+        .post-content h2 { font-size: 1.5rem; }
+        .post-content h3 { font-size: 1.25rem; }
+        
+        .post-content p {
+            margin-bottom: 16px;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+        
+        .post-content li {
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-post {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filter-tabs {
+                justify-content: center;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-blog-surface"><!-- Hero Section -->
+  <header class="hero-section text-white py-16 relative">
+   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center">
+     <h1 class="text-5xl md:text-6xl font-bold mb-6" id="blog-title">📝 Monthly Blog</h1>
+     <p class="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto mb-8" id="blog-subtitle">Monthly insights on agriculture, sustainability, and industry trends</p>
+     <div class="flex flex-wrap justify-center items-center gap-8 mt-8">
+      <div class="flex items-center"><i class="fas fa-calendar text-3xl mr-3"></i> <span class="font-semibold text-lg">Monthly Updates</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-lightbulb text-3xl mr-3"></i> <span class="font-semibold text-lg">Industry Insights</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-chart-line text-3xl mr-3"></i> <span class="font-semibold text-lg">Trend Analysis</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header><!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><!-- Blog Statistics -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-bold text-blog-text mb-8 text-center">Blog Statistics</h2>
+    <div class="stats-grid">
+     <div class="stat-card">
+      <div class="text-4xl mb-4">
+       📚
+      </div>
+      <div class="text-3xl font-bold text-blog-primary" id="total-posts">
+       0
+      </div>
+      <div class="text-gray-600 font-medium">
+       Total Posts
+      </div>
+     </div>
+     <div class="stat-card">
+      <div class="text-4xl mb-4">
+       👀
+      </div>
+      <div class="text-3xl font-bold text-blog-secondary" id="total-views">
+       0
+      </div>
+      <div class="text-gray-600 font-medium">
+       Total Views
+      </div>
+     </div>
+     <div class="stat-card">
+      <div class="text-4xl mb-4">
+       ❤️
+      </div>
+      <div class="text-3xl font-bold text-red-500" id="total-likes">
+       0
+      </div>
+      <div class="text-gray-600 font-medium">
+       Total Likes
+      </div>
+     </div>
+     <div class="stat-card">
+      <div class="text-4xl mb-4">
+       📅
+      </div>
+      <div class="text-3xl font-bold text-green-600" id="this-month">
+       0
+      </div>
+      <div class="text-gray-600 font-medium">
+       This Month
+      </div>
+     </div>
+    </div>
+   </section><!-- Create New Post -->
+   <section class="blog-card p-8 mb-12">
+    <h3 class="text-2xl font-bold text-blog-primary mb-6"><i class="fas fa-plus-circle mr-2"></i> Create New Blog Post</h3>
+    <form id="create-post-form" onsubmit="createPost(event)">
+     <div class="grid md:grid-cols-2 gap-6">
+      <div class="form-group"><label class="form-label" for="post-title">Post Title</label> <input type="text" id="post-title" class="form-input" placeholder="Enter your blog post title" required>
+      </div>
+      <div class="form-group"><label class="form-label" for="post-category">Category</label> <select id="post-category" class="form-select" required> <option value="">Select Category</option> <option value="agriculture">Agriculture</option> <option value="sustainability">Sustainability</option> <option value="technology">Technology</option> <option value="industry">Industry News</option> <option value="research">Research</option> <option value="news">Company News</option> </select>
+      </div>
+     </div>
+     <div class="form-group"><label class="form-label" for="post-excerpt">Excerpt</label> <textarea id="post-excerpt" class="form-textarea" placeholder="Brief summary of your post (2-3 sentences)" required></textarea>
+     </div>
+     <div class="form-group"><label class="form-label" for="post-content">Content</label> <textarea id="post-content" class="form-textarea" style="min-height: 200px;" placeholder="Write your full blog post content here..." required></textarea>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="form-group"><label class="form-label" for="post-author">Author</label> <input type="text" id="post-author" class="form-input" value="Bounty Millers Team" required>
+      </div>
+      <div class="form-group"><label class="form-label" for="post-tags">Tags (comma separated)</label> <input type="text" id="post-tags" class="form-input" placeholder="agriculture, sustainability, farming">
+      </div>
+      <div class="form-group"><label class="form-label" for="post-status">Status</label> <select id="post-status" class="form-select"> <option value="published">Published</option> <option value="draft">Draft</option> </select>
+      </div>
+     </div>
+     <div class="flex gap-4 mt-6"><button type="submit" class="btn-blog"> <i class="fas fa-save"></i> Publish Post </button> <button type="button" onclick="clearForm()" class="btn-secondary"> <i class="fas fa-times"></i> Clear Form </button>
+     </div>
+    </form>
+   </section><!-- Search and Filters -->
+   <section class="mb-8">
+    <div class="search-box"><input type="text" id="search-posts" class="search-input" placeholder="Search blog posts..." oninput="filterPosts()"> <i class="search-icon fas fa-search"></i>
+    </div>
+    <div class="filter-tabs"><button class="filter-tab active" onclick="filterByCategory('all')">All Posts</button> <button class="filter-tab" onclick="filterByCategory('agriculture')">Agriculture</button> <button class="filter-tab" onclick="filterByCategory('sustainability')">Sustainability</button> <button class="filter-tab" onclick="filterByCategory('technology')">Technology</button> <button class="filter-tab" onclick="filterByCategory('industry')">Industry</button> <button class="filter-tab" onclick="filterByCategory('research')">Research</button> <button class="filter-tab" onclick="filterByCategory('news')">News</button>
+    </div>
+   </section><!-- Blog Posts -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-bold text-blog-text mb-8">Latest Blog Posts</h2>
+    <div id="posts-container">
+     <div class="text-center py-12 text-gray-500"><i class="fas fa-blog text-6xl mb-4 opacity-50"></i>
+      <h3 class="text-xl font-semibold mb-2">No blog posts yet</h3>
+      <p>Create your first blog post to get started!</p>
+     </div>
+    </div>
+   </section>
+  </main><!-- Post Modal -->
+  <div id="post-modal" class="modal">
+   <div class="modal-content">
+    <div class="p-8">
+     <div class="flex justify-between items-start mb-6">
+      <h2 id="modal-title" class="text-3xl font-bold text-blog-text"></h2><button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl"> <i class="fas fa-times"></i> </button>
+     </div>
+     <div id="modal-meta" class="post-meta mb-6"></div>
+     <div id="modal-content" class="post-content"></div>
+     <div class="flex justify-between items-center mt-8 pt-6 border-t border-gray-200">
+      <div class="flex gap-4"><button onclick="likePost()" class="btn-secondary" id="like-button"> <i class="fas fa-heart"></i> <span id="like-count">0</span> Likes </button> <button onclick="sharePost()" class="btn-secondary"> <i class="fas fa-share"></i> Share </button>
+      </div><button onclick="deleteCurrentPost()" class="text-red-500 hover:text-red-700"> <i class="fas fa-trash mr-1"></i> Delete Post </button>
+     </div>
+    </div>
+   </div>
+  </div><!-- Company Info -->
+  <footer class="gradient-blog text-white py-12 mt-16">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold mb-4" id="company-name">Bounty Millers Limited</h2>
+    <p class="text-xl opacity-90 mb-8">Sharing knowledge and insights for a sustainable agricultural future</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="tel:+254727455027" class="bg-white text-blog-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"> <i class="fas fa-phone mr-2"></i>+254727455027 </a> <a href="mailto:info@bountymillers.com" class="bg-blog-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-400 transition-colors"> <i class="fas fa-envelope mr-2"></i>info@bountymillers.com </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Global variables
+        let blogPosts = [];
+        let filteredPosts = [];
+        let currentRecordCount = 0;
+        let currentFilter = 'all';
+        let currentPost = null;
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                blogPosts = data;
+                filteredPosts = [...blogPosts];
+                updateStats();
+                displayPosts();
+            }
+        };
+
+        // Element SDK Configuration
+        const defaultConfig = {
+            blog_title: "📝 Monthly Blog",
+            blog_subtitle: "Monthly insights on agriculture, sustainability, and industry trends",
+            author_name: "Bounty Millers Team",
+            company_name: "Bounty Millers Limited"
+        };
+
+        // Initialize SDKs
+        async function initializeSDKs() {
+            try {
+                // Initialize Data SDK
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize Data SDK");
+                    }
+                }
+
+                // Initialize Element SDK
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: async (config) => {
+                            // Update blog title
+                            const titleElement = document.getElementById('blog-title');
+                            if (titleElement) {
+                                titleElement.textContent = config.blog_title || defaultConfig.blog_title;
+                            }
+
+                            // Update blog subtitle
+                            const subtitleElement = document.getElementById('blog-subtitle');
+                            if (subtitleElement) {
+                                subtitleElement.textContent = config.blog_subtitle || defaultConfig.blog_subtitle;
+                            }
+
+                            // Update author name
+                            const authorElement = document.getElementById('post-author');
+                            if (authorElement) {
+                                authorElement.value = config.author_name || defaultConfig.author_name;
+                            }
+
+                            // Update company name
+                            const companyElement = document.getElementById('company-name');
+                            if (companyElement) {
+                                companyElement.textContent = config.company_name || defaultConfig.company_name;
+                            }
+                        },
+                        mapToCapabilities: (config) => ({
+                            recolorables: [],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["blog_title", config.blog_title || defaultConfig.blog_title],
+                            ["blog_subtitle", config.blog_subtitle || defaultConfig.blog_subtitle],
+                            ["author_name", config.author_name || defaultConfig.author_name],
+                            ["company_name", config.company_name || defaultConfig.company_name]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("SDK initialization error:", error);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSDKs();
+        });
+
+        // Create new blog post
+        async function createPost(event) {
+            event.preventDefault();
+            
+            if (currentRecordCount >= 999) {
+                showToast('Maximum limit of 999 posts reached. Please delete some posts first.', 'error');
+                return;
+            }
+
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+            const excerpt = document.getElementById('post-excerpt').value;
+            const category = document.getElementById('post-category').value;
+            const author = document.getElementById('post-author').value;
+            const tags = document.getElementById('post-tags').value;
+            const status = document.getElementById('post-status').value;
+            
+            // Calculate read time (average 200 words per minute)
+            const wordCount = content.split(' ').length;
+            const readTime = Math.ceil(wordCount / 200);
+            
+            const post = {
+                id: 'post-' + Date.now(),
+                title: title,
+                content: content,
+                excerpt: excerpt,
+                category: category,
+                author: author,
+                featured_image: '', // Could be added later
+                tags: tags,
+                status: status,
+                publish_date: new Date().toISOString(),
+                read_time: readTime,
+                views: 0,
+                likes: 0,
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString()
+            };
+
+            // Show loading state
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<div class="spinner"></div> Publishing...';
+            submitButton.disabled = true;
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(post);
+                if (result.isOk) {
+                    showToast('Blog post published successfully!', 'success');
+                    clearForm();
+                } else {
+                    showToast('Failed to publish post. Please try again.', 'error');
+                }
+            } else {
+                showToast('Blog post published successfully!', 'success');
+                clearForm();
+            }
+
+            // Reset button
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+        }
+
+        // Clear form
+        function clearForm() {
+            document.getElementById('create-post-form').reset();
+            document.getElementById('post-author').value = defaultConfig.author_name;
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('total-posts').textContent = blogPosts.length;
+            
+            const totalViews = blogPosts.reduce((sum, post) => sum + (post.views || 0), 0);
+            document.getElementById('total-views').textContent = totalViews.toLocaleString();
+            
+            const totalLikes = blogPosts.reduce((sum, post) => sum + (post.likes || 0), 0);
+            document.getElementById('total-likes').textContent = totalLikes.toLocaleString();
+            
+            // Posts this month
+            const thisMonth = new Date().getMonth();
+            const thisYear = new Date().getFullYear();
+            const thisMonthPosts = blogPosts.filter(post => {
+                const postDate = new Date(post.publish_date);
+                return postDate.getMonth() === thisMonth && postDate.getFullYear() === thisYear;
+            }).length;
+            document.getElementById('this-month').textContent = thisMonthPosts;
+        }
+
+        // Display blog posts
+        function displayPosts() {
+            const container = document.getElementById('posts-container');
+            
+            if (filteredPosts.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <i class="fas fa-blog text-6xl mb-4 opacity-50"></i>
+                        <h3 class="text-xl font-semibold mb-2">No blog posts found</h3>
+                        <p>Create your first blog post or adjust your search criteria!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort posts by publish date (newest first)
+            const sortedPosts = [...filteredPosts].sort((a, b) => 
+                new Date(b.publish_date) - new Date(a.publish_date)
+            );
+
+            let html = '';
+            
+            // Featured post (most recent)
+            if (sortedPosts.length > 0) {
+                const featured = sortedPosts[0];
+                html += createFeaturedPostHTML(featured);
+            }
+
+            // Regular posts grid
+            if (sortedPosts.length > 1) {
+                html += '<div class="posts-grid">';
+                sortedPosts.slice(1).forEach(post => {
+                    html += createPostCardHTML(post);
+                });
+                html += '</div>';
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // Create featured post HTML
+        function createFeaturedPostHTML(post) {
+            const categoryClass = `category-${post.category}`;
+            const publishDate = new Date(post.publish_date).toLocaleDateString();
+            
+            return `
+                <div class="featured-post" onclick="openPost('${post.id}')">
+                    <div>
+                        <span class="category-badge ${categoryClass}">${post.category}</span>
+                        <h2 class="text-4xl font-bold text-blog-text mt-4 mb-4">${post.title}</h2>
+                        <p class="text-xl text-gray-600 mb-6">${post.excerpt}</p>
+                        <div class="flex items-center gap-4 text-gray-500 mb-6">
+                            <span><i class="fas fa-user mr-1"></i>${post.author}</span>
+                            <span><i class="fas fa-calendar mr-1"></i>${publishDate}</span>
+                            <span><i class="fas fa-clock mr-1"></i>${post.read_time} min read</span>
+                            <span><i class="fas fa-eye mr-1"></i>${post.views} views</span>
+                        </div>
+                        <button class="btn-blog">
+                            <i class="fas fa-arrow-right"></i>
+                            Read Full Post
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-8xl mb-4">📰</div>
+                        <div class="text-lg font-semibold text-blog-primary">Featured Post</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Create post card HTML
+        function createPostCardHTML(post) {
+            const categoryClass = `category-${post.category}`;
+            const publishDate = new Date(post.publish_date).toLocaleDateString();
+            
+            return `
+                <div class="post-card" onclick="openPost('${post.id}')">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="category-badge ${categoryClass}">${post.category}</span>
+                            <span class="text-sm text-gray-500">${publishDate}</span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-blog-text mb-3">${post.title}</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">${post.excerpt}</p>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-user mr-1"></i>${post.author}</span>
+                            <span><i class="fas fa-clock mr-1"></i>${post.read_time} min</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                            <div class="flex gap-4 text-sm text-gray-500">
+                                <span><i class="fas fa-eye mr-1"></i>${post.views}</span>
+                                <span><i class="fas fa-heart mr-1"></i>${post.likes}</span>
+                            </div>
+                            <button class="btn-blog text-sm px-4 py-2">
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Open post in modal
+        async function openPost(postId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (!post) return;
+
+            currentPost = post;
+            
+            // Update view count
+            post.views = (post.views || 0) + 1;
+            if (window.dataSdk) {
+                await window.dataSdk.update(post);
+            }
+
+            // Populate modal
+            document.getElementById('modal-title').textContent = post.title;
+            
+            const publishDate = new Date(post.publish_date).toLocaleDateString();
+            document.getElementById('modal-meta').innerHTML = `
+                <span class="category-badge category-${post.category}">${post.category}</span>
+                <span><i class="fas fa-user mr-1"></i>${post.author}</span>
+                <span><i class="fas fa-calendar mr-1"></i>${publishDate}</span>
+                <span><i class="fas fa-clock mr-1"></i>${post.read_time} min read</span>
+                <span><i class="fas fa-eye mr-1"></i>${post.views} views</span>
+            `;
+            
+            // Format content with basic HTML
+            const formattedContent = post.content
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            document.getElementById('modal-content').innerHTML = `<p>${formattedContent}</p>`;
+            
+            document.getElementById('like-count').textContent = post.likes || 0;
+            
+            // Show modal
+            document.getElementById('post-modal').classList.add('show');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('post-modal').classList.remove('show');
+            currentPost = null;
+        }
+
+        // Like post
+        async function likePost() {
+            if (!currentPost) return;
+
+            currentPost.likes = (currentPost.likes || 0) + 1;
+            document.getElementById('like-count').textContent = currentPost.likes;
+
+            if (window.dataSdk) {
+                await window.dataSdk.update(currentPost);
+            }
+
+            showToast('Post liked!', 'success');
+        }
+
+        // Share post
+        function sharePost() {
+            if (!currentPost) return;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: currentPost.title,
+                    text: currentPost.excerpt,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                showToast('Link copied to clipboard!', 'success');
+            }
+        }
+
+        // Delete current post
+        async function deleteCurrentPost() {
+            if (!currentPost) return;
+
+            // Simple confirmation
+            const confirmDelete = document.createElement('div');
+            confirmDelete.innerHTML = `
+                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 24px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); z-index: 2000;">
+                    <h3 style="margin-bottom: 16px; color: #1e293b;">Delete Post?</h3>
+                    <p style="margin-bottom: 20px; color: #64748b;">This action cannot be undone.</p>
+                    <div style="display: flex; gap: 12px;">
+                        <button onclick="confirmDeletePost()" style="background: #ef4444; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Delete</button>
+                        <button onclick="cancelDelete()" style="background: #f1f5f9; color: #1e293b; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Cancel</button>
+                    </div>
+                </div>
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1999;"></div>
+            `;
+            
+            document.body.appendChild(confirmDelete);
+            window.deleteConfirmDialog = confirmDelete;
+        }
+
+        // Confirm delete post
+        async function confirmDeletePost() {
+            if (!currentPost) return;
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.delete(currentPost);
+                if (result.isOk) {
+                    showToast('Post deleted successfully!', 'success');
+                    closeModal();
+                } else {
+                    showToast('Failed to delete post. Please try again.', 'error');
+                }
+            } else {
+                showToast('Post deleted successfully!', 'success');
+                closeModal();
+            }
+
+            cancelDelete();
+        }
+
+        // Cancel delete
+        function cancelDelete() {
+            if (window.deleteConfirmDialog) {
+                document.body.removeChild(window.deleteConfirmDialog);
+                window.deleteConfirmDialog = null;
+            }
+        }
+
+        // Filter posts by category
+        function filterByCategory(category) {
+            currentFilter = category;
+            
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter posts
+            if (category === 'all') {
+                filteredPosts = [...blogPosts];
+            } else {
+                filteredPosts = blogPosts.filter(post => post.category === category);
+            }
+            
+            // Apply search filter if active
+            const searchTerm = document.getElementById('search-posts').value.toLowerCase();
+            if (searchTerm) {
+                filteredPosts = filteredPosts.filter(post => 
+                    post.title.toLowerCase().includes(searchTerm) ||
+                    post.content.toLowerCase().includes(searchTerm) ||
+                    post.excerpt.toLowerCase().includes(searchTerm) ||
+                    post.author.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            displayPosts();
+        }
+
+        // Filter posts by search
+        function filterPosts() {
+            const searchTerm = document.getElementById('search-posts').value.toLowerCase();
+            
+            // Start with category filter
+            let basePosts = currentFilter === 'all' ? 
+                [...blogPosts] : 
+                blogPosts.filter(post => post.category === currentFilter);
+            
+            // Apply search filter
+            if (searchTerm) {
+                filteredPosts = basePosts.filter(post => 
+                    post.title.toLowerCase().includes(searchTerm) ||
+                    post.content.toLowerCase().includes(searchTerm) ||
+                    post.excerpt.toLowerCase().includes(searchTerm) ||
+                    post.author.toLowerCase().includes(searchTerm)
+                );
+            } else {
+                filteredPosts = basePosts;
+            }
+            
+            displayPosts();
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'exclamation-triangle'} mr-2"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 4000);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('post-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99786fcaa33f8a6a',t:'MTc2MTk2OTExOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
