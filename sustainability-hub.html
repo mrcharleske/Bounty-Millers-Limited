@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sustainability Hub | Environmental Impact Tools</title>
+  <meta name="description" content="Comprehensive sustainability tools for environmental impact assessment, carbon footprint tracking, and eco-friendly practices."><!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- SDKs -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* Sustainability Color Scheme */
+        :root {
+            --sustainability-primary: #059669;
+            --sustainability-secondary: #10b981;
+            --sustainability-accent: #34d399;
+            --sustainability-surface: #ecfdf5;
+            --sustainability-text: #064e3b;
+        }
+        
+        .bg-sustainability-primary { background-color: var(--sustainability-primary); }
+        .bg-sustainability-secondary { background-color: var(--sustainability-secondary); }
+        .bg-sustainability-accent { background-color: var(--sustainability-accent); }
+        .bg-sustainability-surface { background-color: var(--sustainability-surface); }
+        .text-sustainability-primary { color: var(--sustainability-primary); }
+        .text-sustainability-secondary { color: var(--sustainability-secondary); }
+        .text-sustainability-accent { color: var(--sustainability-accent); }
+        .text-sustainability-text { color: var(--sustainability-text); }
+        
+        .gradient-sustainability {
+            background: linear-gradient(135deg, var(--sustainability-primary) 0%, var(--sustainability-secondary) 100%);
+        }
+        
+        .sustainability-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.1);
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .sustainability-card:hover {
+            box-shadow: 0 20px 40px rgba(5, 150, 105, 0.15);
+            border-color: var(--sustainability-secondary);
+            transform: translateY(-5px);
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #f3f4f6;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sustainability-primary), var(--sustainability-accent));
+        }
+        
+        .tool-card:hover {
+            box-shadow: 0 15px 35px rgba(5, 150, 105, 0.2);
+            border-color: var(--sustainability-secondary);
+            transform: translateY(-8px);
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .category-carbon { background: #fef3c7; color: #92400e; }
+        .category-waste { background: #dbeafe; color: #1e40af; }
+        .category-energy { background: #fce7f3; color: #be185d; }
+        .category-water { background: #e0f2fe; color: #0369a1; }
+        .category-biodiversity { background: #f0fdf4; color: #166534; }
+        .category-agriculture { background: #fff7ed; color: #c2410c; }
+        
+        .impact-meter {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .impact-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--sustainability-secondary);
+            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.1);
+        }
+        
+        .btn-sustainability {
+            background: linear-gradient(135deg, var(--sustainability-primary) 0%, var(--sustainability-secondary) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-sustainability:hover {
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--sustainability-primary);
+            border: 2px solid var(--sustainability-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--sustainability-primary);
+            color: white;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--sustainability-primary);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            padding: 8px;
+            background: #f9fafb;
+            border-radius: 12px;
+        }
+        
+        .filter-tab {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: transparent;
+        }
+        
+        .filter-tab.active {
+            background: var(--sustainability-primary);
+            color: white;
+        }
+        
+        .filter-tab:not(.active):hover {
+            background: white;
+            color: var(--sustainability-primary);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--sustainability-secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.success { background: var(--sustainability-secondary); }
+        .toast.error { background: #ef4444; }
+        .toast.warning { background: #f59e0b; }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--sustainability-primary) 0%, var(--sustainability-secondary) 50%, var(--sustainability-accent) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
+        .floating-icon:nth-child(3) { top: 80%; left: 20%; animation-delay: 4s; }
+        .floating-icon:nth-child(4) { top: 30%; left: 70%; animation-delay: 1s; }
+        .floating-icon:nth-child(5) { top: 70%; left: 50%; animation-delay: 3s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filter-tabs {
+                justify-content: center;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-sustainability-surface"><!-- Hero Section -->
+  <header class="hero-section text-white py-16 relative">
+   <div class="floating-elements"><i class="floating-icon fas fa-leaf text-4xl"></i> <i class="floating-icon fas fa-recycle text-3xl"></i> <i class="floating-icon fas fa-solar-panel text-4xl"></i> <i class="floating-icon fas fa-water text-3xl"></i> <i class="floating-icon fas fa-seedling text-4xl"></i>
+   </div>
+   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center">
+     <h1 class="text-5xl md:text-6xl font-bold mb-6" id="hub-title">🌱 Sustainability Hub</h1>
+     <p class="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto mb-8" id="hub-subtitle">Comprehensive environmental impact tools for a sustainable future</p>
+     <div class="flex flex-wrap justify-center items-center gap-8 mt-8">
+      <div class="flex items-center"><i class="fas fa-chart-line text-3xl mr-3"></i> <span class="font-semibold text-lg">Impact Tracking</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-leaf text-3xl mr-3"></i> <span class="font-semibold text-lg">Carbon Footprint</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-recycle text-3xl mr-3"></i> <span class="font-semibold text-lg">Waste Management</span>
+      </div>
+      <div class="flex items-center"><i class="fas fa-solar-panel text-3xl mr-3"></i> <span class="font-semibold text-lg">Energy Efficiency</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header><!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><!-- Statistics Overview -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-bold text-sustainability-text mb-8 text-center">Your Sustainability Impact</h2>
+    <div class="stats-grid">
+     <div class="stat-card">
+      <div class="text-4xl mb-4">
+       🌍
+      </div>
+      <div class="text-3xl font-bold text-sustainability-primary" id="total-tools">
+       12
+      </div>
+      <div class="text-gray-600 font-medium">
+       Available Tools
+      </div>
+     </div>
+     <div class="stat-card">
+      <div class="text-4xl mb-4">
+       📊
+      </div>
+      <div class="text-3xl font-bold text-sustainability-secondary" id="assessments-completed">
+       0
+      </div>
+      <div class="text-gray-600 font-medium">
+       Assessments Completed
+      </div>
+     </div>
+     <div class="stat-card">
+      <div class="text-4xl mb-4">
+       🎯
+      </div>
+      <div class="text-3xl font-bold text-green-600" id="impact-score">
+       85
+      </div>
+      <div class="text-gray-600 font-medium">
+       Sustainability Score
+      </div>
+     </div>
+     <div class="stat-card">
+      <div class="text-4xl mb-4">
+       🏆
+      </div>
+      <div class="text-3xl font-bold text-yellow-600" id="achievements">
+       3
+      </div>
+      <div class="text-gray-600 font-medium">
+       Achievements
+      </div>
+     </div>
+    </div>
+   </section><!-- Search and Filters -->
+   <section class="mb-8">
+    <div class="search-box"><input type="text" id="search-tools" class="search-input" placeholder="Search sustainability tools..." oninput="filterTools()"> <i class="search-icon fas fa-search"></i>
+    </div>
+    <div class="filter-tabs"><button class="filter-tab active" onclick="filterByCategory('all')">All Tools</button> <button class="filter-tab" onclick="filterByCategory('carbon')">Carbon Footprint</button> <button class="filter-tab" onclick="filterByCategory('waste')">Waste Management</button> <button class="filter-tab" onclick="filterByCategory('energy')">Energy Efficiency</button> <button class="filter-tab" onclick="filterByCategory('water')">Water Conservation</button> <button class="filter-tab" onclick="filterByCategory('biodiversity')">Biodiversity</button> <button class="filter-tab" onclick="filterByCategory('agriculture')">Sustainable Agriculture</button>
+    </div>
+   </section><!-- Sustainability Tools Grid -->
+   <section class="mb-12">
+    <h2 class="text-3xl font-bold text-sustainability-text mb-8">Environmental Impact Tools</h2>
+    <div class="tools-grid" id="tools-grid"><!-- Tools will be populated by JavaScript -->
+    </div>
+   </section><!-- Quick Actions -->
+   <section class="sustainability-card p-8 mb-12">
+    <h3 class="text-2xl font-bold text-sustainability-primary mb-6"><i class="fas fa-bolt mr-2"></i> Quick Actions</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+     <div class="text-center p-6 bg-sustainability-surface rounded-lg"><i class="fas fa-calculator text-4xl text-sustainability-primary mb-4"></i>
+      <h4 class="font-bold mb-2">Carbon Calculator</h4>
+      <p class="text-gray-600 mb-4">Calculate your carbon footprint instantly</p><button onclick="openTool('carbon-calculator')" class="btn-sustainability"> <i class="fas fa-play"></i> Start Calculator </button>
+     </div>
+     <div class="text-center p-6 bg-sustainability-surface rounded-lg"><i class="fas fa-recycle text-4xl text-sustainability-secondary mb-4"></i>
+      <h4 class="font-bold mb-2">Waste Audit</h4>
+      <p class="text-gray-600 mb-4">Analyze your waste generation patterns</p><button onclick="openTool('waste-audit')" class="btn-sustainability"> <i class="fas fa-play"></i> Start Audit </button>
+     </div>
+     <div class="text-center p-6 bg-sustainability-surface rounded-lg"><i class="fas fa-solar-panel text-4xl text-sustainability-accent mb-4"></i>
+      <h4 class="font-bold mb-2">Energy Assessment</h4>
+      <p class="text-gray-600 mb-4">Evaluate your energy efficiency</p><button onclick="openTool('energy-assessment')" class="btn-sustainability"> <i class="fas fa-play"></i> Start Assessment </button>
+     </div>
+    </div>
+   </section><!-- Recent Activity -->
+   <section class="sustainability-card p-8">
+    <h3 class="text-2xl font-bold text-sustainability-primary mb-6"><i class="fas fa-history mr-2"></i> Recent Activity</h3>
+    <div id="recent-activity">
+     <div class="text-center py-8 text-gray-500"><i class="fas fa-chart-line text-4xl mb-4 opacity-50"></i>
+      <p>No recent activity. Start using sustainability tools to see your progress here!</p>
+     </div>
+    </div>
+   </section>
+  </main><!-- Company Info -->
+  <footer class="gradient-sustainability text-white py-12 mt-16">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold mb-4" id="company-name">Bounty Millers Limited</h2>
+    <p class="text-xl opacity-90 mb-8">Leading the way in sustainable agriculture and environmental stewardship</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="tel:+254727455027" class="bg-white text-sustainability-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"> <i class="fas fa-phone mr-2"></i>+254727455027 </a> <a href="mailto:info@bountymillers.com" class="bg-sustainability-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-400 transition-colors"> <i class="fas fa-envelope mr-2"></i>info@bountymillers.com </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+        // Global variables
+        let toolsData = [];
+        let filteredTools = [];
+        let currentRecordCount = 0;
+        let currentFilter = 'all';
+
+        // Sustainability tools database
+        const sustainabilityTools = [
+            {
+                id: 'carbon-calculator',
+                name: 'Carbon Footprint Calculator',
+                category: 'carbon',
+                description: 'Calculate and track your carbon emissions across different activities and sectors.',
+                icon: 'fas fa-leaf',
+                impact_score: 95,
+                usage_count: 0,
+                features: ['Personal & Business', 'Detailed Breakdown', 'Reduction Tips', 'Progress Tracking'],
+                color: 'green'
+            },
+            {
+                id: 'waste-audit',
+                name: 'Waste Management Audit',
+                category: 'waste',
+                description: 'Comprehensive waste analysis and reduction strategy planning tool.',
+                icon: 'fas fa-recycle',
+                impact_score: 88,
+                usage_count: 0,
+                features: ['Waste Stream Analysis', 'Reduction Strategies', 'Cost Savings', 'Compliance Tracking'],
+                color: 'blue'
+            },
+            {
+                id: 'energy-assessment',
+                name: 'Energy Efficiency Assessment',
+                category: 'energy',
+                description: 'Evaluate energy consumption and identify optimization opportunities.',
+                icon: 'fas fa-solar-panel',
+                impact_score: 92,
+                usage_count: 0,
+                features: ['Energy Audit', 'Efficiency Recommendations', 'Cost Analysis', 'ROI Calculator'],
+                color: 'yellow'
+            },
+            {
+                id: 'water-conservation',
+                name: 'Water Conservation Planner',
+                category: 'water',
+                description: 'Plan and implement water conservation strategies for maximum impact.',
+                icon: 'fas fa-tint',
+                impact_score: 85,
+                usage_count: 0,
+                features: ['Usage Analysis', 'Conservation Methods', 'Savings Calculator', 'Implementation Guide'],
+                color: 'cyan'
+            },
+            {
+                id: 'biodiversity-tracker',
+                name: 'Biodiversity Impact Tracker',
+                category: 'biodiversity',
+                description: 'Monitor and enhance biodiversity in your operations and surroundings.',
+                icon: 'fas fa-seedling',
+                impact_score: 78,
+                usage_count: 0,
+                features: ['Species Monitoring', 'Habitat Assessment', 'Conservation Actions', 'Impact Measurement'],
+                color: 'green'
+            },
+            {
+                id: 'sustainable-agriculture',
+                name: 'Sustainable Agriculture Guide',
+                category: 'agriculture',
+                description: 'Implement sustainable farming practices for environmental and economic benefits.',
+                icon: 'fas fa-tractor',
+                impact_score: 90,
+                usage_count: 0,
+                features: ['Practice Assessment', 'Soil Health', 'Crop Rotation', 'Organic Methods'],
+                color: 'orange'
+            },
+            {
+                id: 'supply-chain',
+                name: 'Supply Chain Sustainability',
+                category: 'carbon',
+                description: 'Assess and improve sustainability across your entire supply chain.',
+                icon: 'fas fa-truck',
+                impact_score: 82,
+                usage_count: 0,
+                features: ['Supplier Assessment', 'Transportation Analysis', 'Ethical Sourcing', 'Risk Management'],
+                color: 'purple'
+            },
+            {
+                id: 'renewable-energy',
+                name: 'Renewable Energy Planner',
+                category: 'energy',
+                description: 'Plan and implement renewable energy solutions for your operations.',
+                icon: 'fas fa-wind',
+                impact_score: 94,
+                usage_count: 0,
+                features: ['Solar Assessment', 'Wind Analysis', 'Cost-Benefit Analysis', 'Implementation Timeline'],
+                color: 'green'
+            },
+            {
+                id: 'circular-economy',
+                name: 'Circular Economy Designer',
+                category: 'waste',
+                description: 'Design circular economy solutions to minimize waste and maximize resource efficiency.',
+                icon: 'fas fa-sync-alt',
+                impact_score: 87,
+                usage_count: 0,
+                features: ['Material Flow Analysis', 'Circular Strategies', 'Business Model Innovation', 'Impact Assessment'],
+                color: 'indigo'
+            },
+            {
+                id: 'green-building',
+                name: 'Green Building Assessor',
+                category: 'energy',
+                description: 'Evaluate and improve the environmental performance of buildings and facilities.',
+                icon: 'fas fa-building',
+                impact_score: 83,
+                usage_count: 0,
+                features: ['LEED Assessment', 'Energy Modeling', 'Material Selection', 'Indoor Air Quality'],
+                color: 'teal'
+            },
+            {
+                id: 'ecosystem-services',
+                name: 'Ecosystem Services Valuator',
+                category: 'biodiversity',
+                description: 'Quantify and value the ecosystem services provided by natural areas.',
+                icon: 'fas fa-tree',
+                impact_score: 76,
+                usage_count: 0,
+                features: ['Service Identification', 'Economic Valuation', 'Conservation Planning', 'Policy Support'],
+                color: 'green'
+            },
+            {
+                id: 'climate-adaptation',
+                name: 'Climate Adaptation Planner',
+                category: 'carbon',
+                description: 'Develop strategies to adapt to climate change impacts and build resilience.',
+                icon: 'fas fa-thermometer-half',
+                impact_score: 89,
+                usage_count: 0,
+                features: ['Risk Assessment', 'Vulnerability Analysis', 'Adaptation Strategies', 'Resilience Building'],
+                color: 'red'
+            }
+        ];
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                currentRecordCount = data.length;
+                toolsData = data;
+                updateStats();
+                displayRecentActivity();
+            }
+        };
+
+        // Element SDK Configuration
+        const defaultConfig = {
+            hub_title: "🌱 Sustainability Hub",
+            hub_subtitle: "Comprehensive environmental impact tools for a sustainable future",
+            company_name: "Bounty Millers Limited"
+        };
+
+        // Initialize SDKs
+        async function initializeSDKs() {
+            try {
+                // Initialize Data SDK
+                if (window.dataSdk) {
+                    const initResult = await window.dataSdk.init(dataHandler);
+                    if (!initResult.isOk) {
+                        console.error("Failed to initialize Data SDK");
+                    }
+                }
+
+                // Initialize Element SDK
+                if (window.elementSdk) {
+                    window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: async (config) => {
+                            // Update hub title
+                            const titleElement = document.getElementById('hub-title');
+                            if (titleElement) {
+                                titleElement.textContent = config.hub_title || defaultConfig.hub_title;
+                            }
+
+                            // Update hub subtitle
+                            const subtitleElement = document.getElementById('hub-subtitle');
+                            if (subtitleElement) {
+                                subtitleElement.textContent = config.hub_subtitle || defaultConfig.hub_subtitle;
+                            }
+
+                            // Update company name
+                            const companyElement = document.getElementById('company-name');
+                            if (companyElement) {
+                                companyElement.textContent = config.company_name || defaultConfig.company_name;
+                            }
+                        },
+                        mapToCapabilities: (config) => ({
+                            recolorables: [],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["hub_title", config.hub_title || defaultConfig.hub_title],
+                            ["hub_subtitle", config.hub_subtitle || defaultConfig.hub_subtitle],
+                            ["company_name", config.company_name || defaultConfig.company_name]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("SDK initialization error:", error);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSDKs();
+            initializeTools();
+            displayTools();
+        });
+
+        // Initialize tools data
+        function initializeTools() {
+            filteredTools = [...sustainabilityTools];
+        }
+
+        // Display tools in grid
+        function displayTools() {
+            const grid = document.getElementById('tools-grid');
+            
+            if (filteredTools.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-gray-500">
+                        <i class="fas fa-search text-4xl mb-4 opacity-50"></i>
+                        <p>No tools found matching your criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            filteredTools.forEach(tool => {
+                const categoryClass = `category-${tool.category}`;
+                
+                html += `
+                    <div class="tool-card" onclick="openTool('${tool.id}')">
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="text-4xl">
+                                    <i class="${tool.icon} text-sustainability-primary"></i>
+                                </div>
+                                <span class="category-badge ${categoryClass}">${tool.category}</span>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold text-sustainability-text mb-2">${tool.name}</h3>
+                            <p class="text-gray-600 mb-4 line-clamp-2">${tool.description}</p>
+                            
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700">Impact Score</span>
+                                    <span class="text-sm font-bold text-sustainability-primary">${tool.impact_score}/100</span>
+                                </div>
+                                <div class="impact-meter">
+                                    <div class="impact-fill" style="width: ${tool.impact_score}%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-2">Key Features:</h4>
+                                <ul class="text-xs text-gray-600 space-y-1">
+                                    ${tool.features.slice(0, 3).map(feature => `<li>• ${feature}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                                <span class="text-sm text-gray-500">
+                                    <i class="fas fa-chart-line mr-1"></i>
+                                    Used ${tool.usage_count} times
+                                </span>
+                                <button class="btn-sustainability text-sm px-4 py-2">
+                                    <i class="fas fa-play mr-1"></i>
+                                    Launch Tool
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+        }
+
+        // Filter tools by category
+        function filterByCategory(category) {
+            currentFilter = category;
+            
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter tools
+            if (category === 'all') {
+                filteredTools = [...sustainabilityTools];
+            } else {
+                filteredTools = sustainabilityTools.filter(tool => tool.category === category);
+            }
+            
+            // Apply search filter if active
+            const searchTerm = document.getElementById('search-tools').value.toLowerCase();
+            if (searchTerm) {
+                filteredTools = filteredTools.filter(tool => 
+                    tool.name.toLowerCase().includes(searchTerm) ||
+                    tool.description.toLowerCase().includes(searchTerm) ||
+                    tool.category.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            displayTools();
+        }
+
+        // Filter tools by search
+        function filterTools() {
+            const searchTerm = document.getElementById('search-tools').value.toLowerCase();
+            
+            // Start with category filter
+            let baseTools = currentFilter === 'all' ? 
+                [...sustainabilityTools] : 
+                sustainabilityTools.filter(tool => tool.category === currentFilter);
+            
+            // Apply search filter
+            if (searchTerm) {
+                filteredTools = baseTools.filter(tool => 
+                    tool.name.toLowerCase().includes(searchTerm) ||
+                    tool.description.toLowerCase().includes(searchTerm) ||
+                    tool.category.toLowerCase().includes(searchTerm)
+                );
+            } else {
+                filteredTools = baseTools;
+            }
+            
+            displayTools();
+        }
+
+        // Open sustainability tool
+        async function openTool(toolId) {
+            if (currentRecordCount >= 999) {
+                showToast('Maximum limit of 999 tool uses reached. Please delete some records first.', 'error');
+                return;
+            }
+
+            const tool = sustainabilityTools.find(t => t.id === toolId);
+            if (!tool) return;
+
+            // Record tool usage
+            const usage = {
+                id: 'usage-' + Date.now(),
+                tool_name: tool.name,
+                category: tool.category,
+                description: tool.description,
+                impact_score: tool.impact_score,
+                usage_count: 1,
+                last_used: new Date().toISOString(),
+                created_at: new Date().toISOString()
+            };
+
+            if (window.dataSdk) {
+                const result = await window.dataSdk.create(usage);
+                if (result.isOk) {
+                    showToast(`Launched ${tool.name}!`, 'success');
+                    
+                    // Update tool usage count
+                    tool.usage_count++;
+                    displayTools();
+                } else {
+                    showToast('Failed to record tool usage. Please try again.', 'error');
+                }
+            } else {
+                showToast(`Launched ${tool.name}!`, 'success');
+                tool.usage_count++;
+                displayTools();
+            }
+
+            // Simulate tool opening (in real implementation, this would navigate to the actual tool)
+            setTimeout(() => {
+                showToast(`${tool.name} is now ready to use!`, 'success');
+            }, 1500);
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('total-tools').textContent = sustainabilityTools.length;
+            document.getElementById('assessments-completed').textContent = toolsData.length;
+            
+            // Calculate average impact score
+            const avgImpact = toolsData.length > 0 ? 
+                Math.round(toolsData.reduce((sum, tool) => sum + tool.impact_score, 0) / toolsData.length) : 85;
+            document.getElementById('impact-score').textContent = avgImpact;
+            
+            // Calculate achievements (tools used more than 5 times)
+            const achievements = sustainabilityTools.filter(tool => tool.usage_count > 5).length;
+            document.getElementById('achievements').textContent = achievements;
+        }
+
+        // Display recent activity
+        function displayRecentActivity() {
+            const container = document.getElementById('recent-activity');
+            
+            if (toolsData.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-chart-line text-4xl mb-4 opacity-50"></i>
+                        <p>No recent activity. Start using sustainability tools to see your progress here!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            const recentTools = toolsData.slice().reverse().slice(0, 5);
+            
+            recentTools.forEach(tool => {
+                const date = new Date(tool.last_used).toLocaleDateString();
+                const time = new Date(tool.last_used).toLocaleTimeString();
+                const categoryClass = `category-${tool.category}`;
+                
+                html += `
+                    <div class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg mb-3 hover:shadow-md transition-shadow">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-sustainability-surface rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-line text-sustainability-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-sustainability-text">${tool.tool_name}</h4>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <span class="category-badge ${categoryClass} text-xs">${tool.category}</span>
+                                    <span class="text-sm text-gray-500">${date} ${time}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-lg font-bold text-sustainability-primary">${tool.impact_score}</div>
+                            <div class="text-xs text-gray-500">Impact Score</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'exclamation-triangle'} mr-2"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 4000);
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9978690a15898a6a',t:'MTc2MTk2ODg0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
